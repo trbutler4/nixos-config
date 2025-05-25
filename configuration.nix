@@ -55,19 +55,24 @@
 			gopls
 			python314
 
-		    	# Language servers
-		    	pyright
-		    	rust-analyzer
-		    	gopls
-		    	nodePackages.typescript-language-server
+    	# Language servers
+    	pyright
+    	rust-analyzer
+    	gopls
+    	nodePackages.typescript-language-server
 
 			# misc
 			fastfetch
 			cmatrix
-		];
+	];
 		
-		programs.bash.enable = true;
-		programs.fish.enable = true;
+		programs.bash = { 
+			enable = true; 
+			bashrcExtra = ''
+alias lg="lazygit"
+alias nv="nvim"
+			'';
+		};
 
 
 		  programs.tmux = {
@@ -76,48 +81,47 @@
 		    terminal = "tmux-256color";
 		    keyMode = "vi";      
 		    extraConfig = ''
-		      # ===== Basic Settings =====
-			set -g default-terminal "tmux-256color"  # Better color support
-			set -g escape-time 10                    # Faster escape sequence detection
-			set -g base-index 1                      # Start window numbering at 1
-			set -g pane-base-index 1                 # Start pane numbering at 1
-			set -g renumber-windows on               # Renumber windows when one is closed
-			set -g mouse on                          # Enable mouse support (scroll, resize, click)
+# ===== Basic Settings =====
+set -g default-terminal "tmux-256color"  # Better color support
+set -g escape-time 10                    # Faster escape sequence detection
+set -g base-index 1                      # Start window numbering at 1
+set -g pane-base-index 1                 # Start pane numbering at 1
+set -g renumber-windows on               # Renumber windows when one is closed
+set -g mouse on                          # Enable mouse support (scroll, resize, click)
 
-			# ===== Key Bindings =====
-			# Prefix: Ctrl-Space (instead of default Ctrl-b)
-			set -g prefix C-Space
-			unbind C-b
-			bind C-Space send-prefix
+# ===== Key Bindings =====
+# Prefix: Ctrl-Space (instead of default Ctrl-b)
+set -g prefix C-Space
+unbind C-b
+bind C-Space send-prefix
 
-			# Split panes with | (vertical) and - (horizontal)
-			bind | split-window -h -c "#{pane_current_path}"
-			bind - split-window -v -c "#{pane_current_path}"
-			unbind '"'
-			unbind %
+# Split panes with | (vertical) and - (horizontal)
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
 
-			# Reload config (r)
-			bind r source-file ~/.tmux.conf \; display "Reloaded config!"
+# Reload config (r)
+bind r source-file ~/.tmux.conf \; display "Reloaded config!"
 
-			# Easy window navigation (Alt-arrow)
-			bind -n M-Left select-pane -L
-			bind -n M-Right select-pane -R
-			bind -n M-Up select-pane -U
-			bind -n M-Down select-pane -D
+# Easy window navigation (Alt-arrow)
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
 
-			# ===== Status Bar =====
-			set -g status-style "fg=white,bg=black"  # Clean colors
-			set -g status-left "#[bold]#S #[default]" # Show session name
-			set -g status-right "#(date '+%H:%M')"   # Time on the right
-			set -g status-interval 1                 # Update every second
+# ===== Status Bar =====
+set -g status-style "fg=white,bg=black"  # Clean colors
+set -g status-left "#[bold]#S #[default]" # Show session name
+set -g status-right "#(date '+%H:%M')"   # Time on the right
+set -g status-interval 1                 # Update every second
 
-			# Window list in status bar
-			set -g window-status-format "#I:#W"      # Simple format: index:name
-			set -g window-status-current-format "#[reverse]#I:#W" # Highlight current
+# Window list in status bar
+set -g window-status-format "#I:#W"      # Simple format: index:name
+set -g window-status-current-format "#[reverse]#I:#W" # Highlight current
 
-			# ===== Misc =====
-			set -g history-limit 5000                # Increase scrollback buffer
-
+# ===== Misc =====
+set -g history-limit 5000                # Increase scrollback buffer
 		    '';
 		  };
 
@@ -154,31 +158,31 @@
 			    ];
 			    
 			extraLuaConfig = ''
-			      -- Basic settings
-			      vim.opt.number = true
-			      vim.opt.relativenumber = true
-			      vim.opt.tabstop = 4
-			      vim.opt.shiftwidth = 4
-			      vim.opt.expandtab = true
-			      vim.opt.smartindent = true
-			      vim.opt.termguicolors = true
-			      vim.opt.mouse = "a"
-			      vim.opt.clipboard = "unnamedplus"
-			      
-			      -- Enable transparency
-			      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- Basic settings
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.termguicolors = true
+vim.opt.mouse = "a"
+vim.opt.clipboard = "unnamedplus"
 
-			      -- Load Tokyo Night with transparency
-			      require("tokyonight").setup({
-				style = "night",  -- other options: storm, night, moon, day
-				transparent = true,
-				styles = {
-				  sidebars = "transparent",
-				  floats = "transparent",
-				}
-			      })
-			      vim.cmd("colorscheme tokyonight")
+-- Enable transparency
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+-- Load Tokyo Night with transparency
+require("tokyonight").setup({
+style = "night",  -- other options: storm, night, moon, day
+transparent = true,
+styles = {
+sidebars = "transparent",
+floats = "transparent",
+}
+})
+vim.cmd("colorscheme tokyonight")
 			    '';
 		};
       };
