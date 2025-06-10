@@ -80,9 +80,9 @@
     gnome-themes-extra
     gnome-tweaks
     adwaita-icon-theme
+    gedit
     gnomeExtensions.tiling-shell
     gnomeExtensions.bing-wallpaper
-    eog # image viewer
 
     # Tools
     neovim
@@ -122,7 +122,7 @@
     telegram-desktop
     alacritty
     ghostty
-    libreoffice-still-unwrapped
+    libreoffice-still
     gimp3
 
     # misc config
