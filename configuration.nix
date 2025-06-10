@@ -82,6 +82,7 @@
     adwaita-icon-theme
     gnomeExtensions.tiling-shell
     gnomeExtensions.bing-wallpaper
+    eog # image viewer
 
     # Tools
     neovim
