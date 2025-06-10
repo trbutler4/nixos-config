@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo cp ./configuration.nix /etc/nixos/configuration.nix
+sudo cp ~/nixos-config/configuration.nix /etc/nixos/configuration.nix
 sudo nixos-rebuild switch

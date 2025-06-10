@@ -79,6 +79,7 @@
     # GNOME stuff
     gnome-themes-extra
     gnome-tweaks
+    adwaita-icon-theme
     gnomeExtensions.tiling-shell
     gnomeExtensions.bing-wallpaper
 
