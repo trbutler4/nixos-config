@@ -1,189 +1,163 @@
 # Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
 
-# NixOS-WSL specific options are documented on the NixOS-WSL repository:
-# https://github.com/nix-community/NixOS-WSL
-
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-	imports = [
-  		<nixos-wsl/modules>
-  		# Instead of the direct import, use the recommended way:
-  		"${builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"}/nixos"
-	];
-	
-	system.stateVersion = "24.11"; 
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
-	wsl.enable = true;
-	wsl.defaultUser = "iv";
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-	nix.settings.experimental-features = [
-		"nix-command" 
-		"flakes"
-	];
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-	users.users.iv = {
-		isNormalUser = true; 
-		extraGroups = [ "wheel" ]; # for sudo access
-	};
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-	home-manager.users.iv = { config, lib, pkgs, ... }: {
-		home.stateVersion = "24.11"; 
+  # Set your time zone.
+  time.timeZone = "America/Chicago";
 
-		home.packages = with pkgs; [ 
-			# essential
-			gcc
-			git
-			tmux
-			vim
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-			# tools
-			zellij
-			lazygit
-			htop
-			btop
-			bat
-			yazi
-			fzf
-			evil-helix
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
 
-			# language support
-			go
-			gopls
-			python314
-
-    	# Language servers
-    	pyright
-    	rust-analyzer
-    	gopls
-    	nodePackages.typescript-language-server
-
-			# misc
-			fastfetch
-			cmatrix
-	];
-		
-		programs.bash = { 
-			enable = true; 
-			bashrcExtra = ''
-alias lg="lazygit"
-alias nv="nvim"
-			'';
-		};
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
 
-		  programs.tmux = {
-		    enable = true;
-		    shortcut = "Space";  
-		    terminal = "tmux-256color";
-		    keyMode = "vi";      
-		    extraConfig = ''
-# ===== Basic Settings =====
-set -g default-terminal "tmux-256color"  # Better color support
-set -g escape-time 10                    # Faster escape sequence detection
-set -g base-index 1                      # Start window numbering at 1
-set -g pane-base-index 1                 # Start pane numbering at 1
-set -g renumber-windows on               # Renumber windows when one is closed
-set -g mouse on                          # Enable mouse support (scroll, resize, click)
-
-# ===== Key Bindings =====
-# Prefix: Ctrl-Space (instead of default Ctrl-b)
-set -g prefix C-Space
-unbind C-b
-bind C-Space send-prefix
-
-# Split panes with | (vertical) and - (horizontal)
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-unbind '"'
-unbind %
-
-# Reload config (r)
-bind r source-file ~/.tmux.conf \; display "Reloaded config!"
-
-# Easy window navigation (Alt-arrow)
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
-
-# ===== Status Bar =====
-set -g status-style "fg=white,bg=black"  # Clean colors
-set -g status-left "#[bold]#S #[default]" # Show session name
-set -g status-right "#(date '+%H:%M')"   # Time on the right
-set -g status-interval 1                 # Update every second
-
-# Window list in status bar
-set -g window-status-format "#I:#W"      # Simple format: index:name
-set -g window-status-current-format "#[reverse]#I:#W" # Highlight current
-
-# ===== Misc =====
-set -g history-limit 5000                # Increase scrollback buffer
-		    '';
-		  };
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
 
-		programs.neovim = {
-			enable = true;
-			viAlias = true;
-			vimAlias = true;
-			vimdiffAlias = true;
-			    
-			plugins = with pkgs.vimPlugins; [
-				# Essential plugins
-			      	plenary-nvim
-			      	nvim-web-devicons
-			      	nvim-treesitter.withAllGrammars
-			      	nvim-lspconfig
-			      	nvim-cmp
-			      	cmp-nvim-lsp
-			      	lspkind-nvim
-			      	luasnip
-			      	cmp_luasnip
-			      	telescope-nvim
-			      
-				# UI/UX plugins
-				vim-commentary
-				vim-surround
-				vim-sleuth  # Automatic indentation detection
-				vim-fugitive
-				vim-gitgutter 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.trbiv = {
+    isNormalUser = true;
+    description = "Thomas Robert Butler IV";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [
+    ];
+  };
 
-				# Colorscheme
-				nord-nvim  
-				tokyonight-nvim
-			    ];
-			    
-			extraLuaConfig = ''
--- Basic settings
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.termguicolors = true
-vim.opt.mouse = "a"
-vim.opt.clipboard = "unnamedplus"
+  # Install firefox.
+  programs.firefox.enable = true;
 
--- Enable transparency
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
--- Load Tokyo Night with transparency
-require("tokyonight").setup({
-style = "night",  -- other options: storm, night, moon, day
-transparent = true,
-styles = {
-sidebars = "transparent",
-floats = "transparent",
-}
-})
-vim.cmd("colorscheme tokyonight")
-			    '';
-		};
-      };
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    # Essentials
+    gcc
+    vim 
+    git
+    wget
+    htop
+
+    # GNOME stuff
+    gnome-themes-extra
+    gnome-tweaks
+    gnomeExtensions.tiling-shell
+    gnomeExtensions.bing-wallpaper
+
+    # Tools
+    neovim
+    helix
+    zellij
+    lazygit
+    yazi
+    fastfetch
+    unzip
+    fzf
+
+    # Programming
+    nodejs_24
+    bun
+    typescript
+    typescript-language-server
+    vscode-langservers-extracted
+    python3
+    rustc 
+    rustup 
+    cargo
+    go
+    gopls
+    golangci-lint
+    golangci-lint-langserver
+    delve
+    claude-code
+    ruff
+    python312Packages.jedi-language-server
+    python312Packages.python-lsp-server
+
+    # Apps
+    brave
+    zed-editor
+    obs-studio
+    spotify
+    telegram-desktop
+    alacritty
+    ghostty
+    libreoffice-still-unwrapped
+    gimp3
+
+    # misc config
+    starship
+    vimPlugins.LazyVim
+  ];
+
+  virtualisation.docker = {
+    enable = true; 
+  };
+
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+
 }
