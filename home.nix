@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -23,12 +28,12 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true; 
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "git"        
+        "git"
       ];
       theme = "lambda";
     };
@@ -36,7 +41,7 @@
 
   # Fzf
   programs.fzf = {
-    enable = true; 
+    enable = true;
     enableZshIntegration = true;
   };
 
@@ -47,11 +52,11 @@
       vim = {
         viAlias = false;
         vimAlias = true;
-        
+
         # Basic options
         lineNumberMode = "number";
         preventJunkFiles = true;
-        
+
         # Theme
         theme = {
           enable = true;
@@ -74,25 +79,25 @@
         # Language support
         languages = {
           nix.enable = true;
-          
+
           ts = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-          
+
           rust = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-          
+
           python = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-          
+
           go = {
             enable = true;
             lsp.enable = true;
@@ -140,3 +145,4 @@
     };
   };
 }
+
