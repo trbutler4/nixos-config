@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -42,7 +42,10 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
@@ -54,7 +57,11 @@
   users.users.trbiv = {
     isNormalUser = true;
     description = "Thomas Robert Butler IV";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -67,7 +74,7 @@
   environment.systemPackages = with pkgs; [
     # Essentials
     gcc
-    vim 
+    vim
     git
     wget
     htop
@@ -95,12 +102,14 @@
     # Programming
     nodejs_24
     bun
+    yarn
+    pnpm
     typescript
     typescript-language-server
     vscode-langservers-extracted
     python3
-    rustc 
-    rustup 
+    rustc
+    rustup
     cargo
     go
     gopls
@@ -129,8 +138,9 @@
   ];
 
   virtualisation.docker = {
-    enable = true; 
+    enable = true;
   };
 
   system.stateVersion = "25.05"; # dont change
 }
+
