@@ -88,10 +88,12 @@
     helix
     zellij
     lazygit
+    lazydocker
     yazi
     fastfetch
     unzip
     fzf
+    gnumake
 
     # Programming
     nodejs_24
