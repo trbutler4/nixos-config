@@ -54,7 +54,7 @@
         vimAlias = true;
 
         # Basic options
-        lineNumberMode = "number";
+        lineNumberMode = "relative";
         preventJunkFiles = true;
 
         # Theme
