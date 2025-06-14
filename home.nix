@@ -103,6 +103,12 @@
             lsp.enable = true;
             treesitter.enable = true;
           };
+
+          astro = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
         };
 
         # Autocompletion
