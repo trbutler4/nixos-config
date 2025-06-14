@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -56,14 +57,14 @@
     isNormalUser = true;
     description = "Thomas Robert Butler IV";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  home-manager.users.trbiv = {pkgs, ...}: {
+    home.packages = [ pkgs.atool pkgs.httpie];
+    programs.firefox.enable = true;
+    home.stateVersion = "25.05";
+  };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -124,6 +125,7 @@
     ghostty
     libreoffice-still
     gimp3
+    thunderbird
 
     # misc config
     starship
