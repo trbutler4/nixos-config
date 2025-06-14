@@ -62,9 +62,14 @@
 
   home-manager.users.trbiv = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie];
+
     programs.firefox.enable = true;
+
     programs.zsh = {
       enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true; 
+      syntaxHighlighting.enable = true;
       oh-my-zsh = {
         enable = true;
         plugins = [
@@ -73,6 +78,12 @@
         theme = "lambda";
       };
     };
+
+    programs.fzf = {
+      enable = true; 
+      enableZshIntegration = true;
+    };
+
     home.stateVersion = "25.05";
   };
 
@@ -143,7 +154,6 @@
     thunderbird
 
     # misc config
-    starship
     vimPlugins.LazyVim
   ];
 
