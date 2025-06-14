@@ -141,6 +141,13 @@
 
         # Leader key
         globals.mapleader = " ";
+
+        # Which-key for keybinding help
+        binds = {
+          whichKey = {
+            enable = true;
+          };
+        };
       };
     };
   };
