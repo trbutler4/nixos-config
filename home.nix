@@ -60,8 +60,8 @@
         # Theme
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
+          name = "gruvbox";
+          style = "dark";
         };
 
         # Treesitter for syntax highlighting
@@ -135,7 +135,7 @@
         statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            theme = "gruvbox";
           };
         };
 
@@ -145,4 +145,3 @@
     };
   };
 }
-
