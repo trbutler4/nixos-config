@@ -148,6 +148,66 @@
             enable = true;
           };
         };
+
+        # Custom keybindings
+        keymaps = [
+          # LSP keybindings
+          {
+            mode = "n";
+            key = "gd";
+            action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+          }
+          {
+            mode = "n";
+            key = "gD";
+            action = "<cmd>lua vim.lsp.buf.declaration()<CR>";
+          }
+          {
+            mode = "n";
+            key = "gr";
+            action = "<cmd>lua vim.lsp.buf.references()<CR>";
+          }
+          {
+            mode = "n";
+            key = "gi";
+            action = "<cmd>lua vim.lsp.buf.implementation()<CR>";
+          }
+          {
+            mode = "n";
+            key = "K";
+            action = "<cmd>lua vim.lsp.buf.hover()<CR>";
+          }
+          {
+            mode = "n";
+            key = "<C-k>";
+            action = "<cmd>lua vim.lsp.buf.signature_help()<CR>";
+          }
+          {
+            mode = "n";
+            key = "<leader>rn";
+            action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+          }
+          {
+            mode = "n";
+            key = "<leader>ca";
+            action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
+          }
+          {
+            mode = "n";
+            key = "[d";
+            action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
+          }
+          {
+            mode = "n";
+            key = "]d";
+            action = "<cmd>lua vim.diagnostic.goto_next()<CR>";
+          }
+          {
+            mode = "n";
+            key = "<leader>d";
+            action = "<cmd>lua vim.diagnostic.open_float()<CR>";
+          }
+        ];
       };
     };
   };
