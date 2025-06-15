@@ -48,6 +48,7 @@
     fzf
     gnumake
     claude-code
+    asdf-vm
 
     # Node/Typescript
     nodejs_24
@@ -57,17 +58,14 @@
     typescript
     typescript-language-server
     vscode-langservers-extracted
-
     # Python
     python3
     uv
-
     # Go
     go
     gopls
     golangci-lint
     golangci-lint-langserver
-
     # Rust
     rustup
   ];
@@ -96,7 +94,7 @@
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    #syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -105,6 +103,10 @@
       ];
       theme = "lambda";
     };
+    initExtra = ''
+      . "${pkgs.asdf-vm}/share/asdf-vm/asdf.sh"
+      . "${pkgs.asdf-vm}/share/asdf-vm/completions/asdf.bash"
+    '';
   };
 
   programs.fzf = {
