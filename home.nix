@@ -88,8 +88,6 @@
     };
   };
 
-  programs.firefox.enable = true;
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -104,7 +102,6 @@
     };
   };
 
-  # Fzf
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
