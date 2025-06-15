@@ -2,8 +2,19 @@
 
 # Update script for flake-based NixOS configuration
 # This script rebuilds the system using the flake configuration
+# Usage: ./update.sh [hostname]
+# If no hostname is provided, defaults to 'nixos'
 
 set -e
+
+# Get hostname from argument - required
+if [ -z "$1" ]; then
+    echo -e "${RED}Error: Hostname is required${NC}"
+    echo "Usage: $0 <hostname>"
+    echo "Available hosts: yoga, desktop"
+    exit 1
+fi
+HOSTNAME=$1
 
 # Colors for output
 RED='\033[0;31m'
@@ -20,9 +31,9 @@ if [ ! -f "flake.nix" ]; then
     exit 1
 fi
 
-# Copy hardware-configuration.nix from system to local directory
-echo -e "${YELLOW}Copying hardware-configuration.nix from /etc/nixos/...${NC}"
-sudo cp /etc/nixos/hardware-configuration.nix ./hardware-configuration.nix
+# Copy hardware-configuration.nix from system to host directory
+echo -e "${YELLOW}Copying hardware-configuration.nix from /etc/nixos/ to hosts/${HOSTNAME}/...${NC}"
+sudo cp /etc/nixos/hardware-configuration.nix ./hosts/${HOSTNAME}/hardware-configuration.nix
 
 # Add any unstaged changes to git (flakes require files to be tracked)
 echo -e "${YELLOW}Adding changes to git...${NC}"
@@ -33,9 +44,5 @@ echo -e "${YELLOW}Updating flake inputs...${NC}"
 nix flake update
 
 # Build and switch to new configuration
-echo -e "${YELLOW}Building and switching to new configuration...${NC}"
-sudo nixos-rebuild switch --flake .#nixos
-
-echo -e "${GREEN}✓ System updated successfully!${NC}"
-echo -e "${YELLOW}Note: Home Manager changes will be applied on next login or you can run:${NC}"
-echo -e "${YELLOW}home-manager switch --flake .#trbiv@nixos${NC}"
+echo -e "${YELLOW}Building and switching to new configuration for ${HOSTNAME}...${NC}"
+sudo nixos-rebuild switch --flake .#${HOSTNAME}
