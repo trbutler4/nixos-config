@@ -56,6 +56,7 @@
     vscode-langservers-extracted
 
     # Python
+    python3
     uv
     ruff
     delve
