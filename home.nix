@@ -66,31 +66,11 @@
 
         languages = {
           nix.enable = true;
-          ts = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-          rust = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-          python = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-          go = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-          astro = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
+          ts.enable = true;
+          rust.enable = true;
+          python.enable = true;
+          go.enable = true;
+          astro.enable = true;
         };
 
         autocomplete = {
