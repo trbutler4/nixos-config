@@ -10,21 +10,15 @@
     inputs.nvf.homeManagerModules.default
   ];
 
-  # Basic home manager config
   home.username = "trbiv";
   home.homeDirectory = "/home/trbiv";
   home.stateVersion = "25.05";
 
-  # Packages
   home.packages = with pkgs; [
-    atool
-    httpie
   ];
 
-  # Firefox
   programs.firefox.enable = true;
 
-  # Zsh configuration
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -45,7 +39,6 @@
     enableZshIntegration = true;
   };
 
-  # Basic nvf configuration
   programs.nvf = {
     enable = true;
     settings = {
@@ -111,12 +104,10 @@
           };
         };
 
-        # Autocompletion
         autocomplete = {
           nvim-cmp.enable = true;
         };
 
-        # File tree
         filetree = {
           nvimTree = {
             enable = true;
@@ -126,18 +117,15 @@
           };
         };
 
-        # Telescope for fuzzy finding
         telescope = {
           enable = true;
         };
 
-        # Git integration
         git = {
           enable = true;
           gitsigns.enable = true;
         };
 
-        # Status line
         statusline = {
           lualine = {
             enable = true;
@@ -145,17 +133,14 @@
           };
         };
 
-        # Leader key
         globals.mapleader = " ";
 
-        # Which-key for keybinding help
         binds = {
           whichKey = {
             enable = true;
           };
         };
 
-        # Custom keybindings
         keymaps = [
           # LSP keybindings
           {

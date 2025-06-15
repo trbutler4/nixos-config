@@ -77,7 +77,6 @@
     vim
     git
     wget
-    htop
 
     # GNOME stuff
     gnome-themes-extra
@@ -88,7 +87,7 @@
     gnomeExtensions.bing-wallpaper
 
     # Tools
-    # neovim - now managed by nvf through home-manager
+    htop
     helix
     zellij
     lazygit
@@ -132,9 +131,6 @@
     libreoffice-still
     gimp3
     thunderbird
-
-    # misc config
-    vimPlugins.LazyVim
   ];
 
   virtualisation.docker = {
@@ -143,4 +139,3 @@
 
   system.stateVersion = "25.05"; # dont change
 }
-
