@@ -84,5 +84,5 @@
     enable = true;
   };
 
-  system.stateVersion = "25.05"; # dont change
+  system.stateVersion = "25.11";
 }
