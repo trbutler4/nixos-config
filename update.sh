@@ -20,6 +20,10 @@ if [ ! -f "flake.nix" ]; then
     exit 1
 fi
 
+# Copy hardware-configuration.nix from system to local directory
+echo -e "${YELLOW}Copying hardware-configuration.nix from /etc/nixos/...${NC}"
+sudo cp /etc/nixos/hardware-configuration.nix ./hardware-configuration.nix
+
 # Add any unstaged changes to git (flakes require files to be tracked)
 echo -e "${YELLOW}Adding changes to git...${NC}"
 git add .
