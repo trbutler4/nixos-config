@@ -56,7 +56,7 @@ The Neovim configuration includes:
 1. Clone this repository to your desired location
 2. Run the update script to apply the configuration:
    ```bash
-   ./update-flake.sh
+   bash update.sh
    ```
 
 ### Making Changes
@@ -68,15 +68,9 @@ The Neovim configuration includes:
 
 2. Apply changes:
    ```bash
-   ./update-flake.sh
+   bash update.sh
    ```
 
-### Legacy Update (if needed)
-
-If you need to use the old method:
-```bash
-./update.sh
-```
 
 ## Customizing nvf
 
