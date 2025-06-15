@@ -44,8 +44,9 @@
     unzip
     fzf
     gnumake
+    claude-code
 
-    # Programming
+    # Node/Typescript
     nodejs_24
     bun
     yarn
@@ -53,16 +54,19 @@
     typescript
     typescript-language-server
     vscode-langservers-extracted
-    python3
+
+    # Python
+    uv
+    ruff
+    delve
+
+    # Go
     go
     gopls
     golangci-lint
     golangci-lint-langserver
-    delve
-    claude-code
-    ruff
-    python312Packages.jedi-language-server
-    python312Packages.python-lsp-server
+
+    # Rust
     rustup
   ];
 
