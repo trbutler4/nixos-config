@@ -85,6 +85,7 @@
     gedit
     gnomeExtensions.tiling-shell
     gnomeExtensions.bing-wallpaper
+    gnomeExtensions.appindicator
 
     # Tools
     htop
@@ -132,6 +133,8 @@
     gimp3
     thunderbird
   ];
+
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
   virtualisation.docker = {
     enable = true;
