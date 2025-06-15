@@ -15,6 +15,17 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    # Apps
+    brave
+    zed-editor
+    obs-studio
+    spotify
+    telegram-desktop
+    alacritty
+    ghostty
+    libreoffice-still
+    gimp3
+    discord
   ];
 
   programs.firefox.enable = true;
