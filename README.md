@@ -56,7 +56,7 @@ The Neovim configuration includes:
 1. Clone this repository to your desired location
 2. Run the update script to apply the configuration:
    ```bash
-   bash update.sh
+   bash update.sh <host>
    ```
 
 ### Making Changes
@@ -68,7 +68,7 @@ The Neovim configuration includes:
 
 2. Apply changes:
    ```bash
-   bash update.sh
+   bash update.sh <host>
    ```
 
 

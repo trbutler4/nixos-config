@@ -25,6 +25,8 @@
     }@inputs:
     {
       nixosConfigurations = {
+
+        # Configuration for lenovo yoga laptop
         yoga = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -39,6 +41,7 @@
           ];
         };
 
+        # Configuration for main desktop
         desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -55,4 +58,3 @@
       };
     };
 }
-
