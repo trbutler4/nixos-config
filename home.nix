@@ -12,7 +12,7 @@
 
   home.username = "trbiv";
   home.homeDirectory = "/home/trbiv";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
     # GNOME stuff
