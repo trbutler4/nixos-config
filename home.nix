@@ -83,6 +83,7 @@
           pkgs.gnomeExtensions.tiling-shell.extensionUuid
           pkgs.gnomeExtensions.hide-top-bar.extensionUuid
           pkgs.gnomeExtensions.appindicator.extensionUuid
+          pkgs.gnomeExtensions.desktop-clock.extensionUuid
         ];
       };
     };
