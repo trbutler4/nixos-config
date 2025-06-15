@@ -15,11 +15,6 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
-    # GNOME stuff
-    gnome-themes-extra
-    gnome-tweaks
-    adwaita-icon-theme
-
     # Apps
     brave
     zed-editor
