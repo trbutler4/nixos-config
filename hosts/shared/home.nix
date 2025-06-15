@@ -18,7 +18,7 @@
     # Nix stuff
     home-manager
 
-    # Tools
+    # Terminal Programs
     htop
     helix
     tmux
@@ -30,13 +30,46 @@
     unzip
     fzf
     gnumake
+    claude-code
+    asdf-vm
+
+    # GUI Apps
+    brave
+    zed-editor
+    obs-studio
+    spotify
+    telegram-desktop
+    alacritty
+    ghostty
+    libreoffice-still
+    gimp3
+    discord
+    gedit
+
+    # Node/Typescript
+    nodejs_24
+    bun
+    yarn
+    pnpm
+    typescript
+    typescript-language-server
+    vscode-langservers-extracted
+    # Python
+    python3
+    uv
+    # Go
+    go
+    gopls
+    golangci-lint
+    golangci-lint-langserver
+    # Rust
+    rustup
   ];
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    #syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [

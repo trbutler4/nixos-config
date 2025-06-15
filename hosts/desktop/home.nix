@@ -10,4 +10,3 @@
     ../shared/home.nix
   ];
 }
-

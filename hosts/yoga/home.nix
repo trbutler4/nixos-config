@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -17,42 +18,6 @@
     gnome-themes-extra
     gnome-tweaks
     adwaita-icon-theme
-
-    # Apps
-    brave
-    zed-editor
-    obs-studio
-    spotify
-    telegram-desktop
-    alacritty
-    ghostty
-    libreoffice-still
-    gimp3
-    discord
-    gedit
-
-    # Tools
-    claude-code
-    asdf-vm
-
-    # Node/Typescript
-    nodejs_24
-    bun
-    yarn
-    pnpm
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    # Python
-    python3
-    uv
-    # Go
-    go
-    gopls
-    golangci-lint
-    golangci-lint-langserver
-    # Rust
-    rustup
   ];
 
   dconf = {

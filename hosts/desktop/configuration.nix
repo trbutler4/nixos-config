@@ -46,12 +46,6 @@
     "flakes"
   ];
 
-  services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.printing.enable = true;
-  services.flatpak.enable = true;
-
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
     isNormalUser = true;
