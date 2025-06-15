@@ -15,10 +15,15 @@ This repository contains my NixOS configuration with Home Manager and nvf (Neovi
 ```
 nixos-config/
 ├── flake.nix                 # Main flake configuration
-├── configuration.nix         # NixOS system configuration
+├── flake.lock               # Flake lockfile
 ├── home.nix                 # Home Manager configuration with nvf
-├── hardware-configuration.nix # Hardware-specific configuration
-├── update-flake.sh          # Update script for flake-based rebuilds
+├── hosts/                   # Host-specific configurations
+│   ├── desktop/             # Desktop host configuration
+│   │   └── configuration.nix
+│   └── yoga/                # Yoga host configuration
+│       ├── configuration.nix
+│       └── hardware-configuration.nix
+├── update.sh               # Update script for flake-based rebuilds
 └── README.md               # This file
 ```
 
@@ -62,7 +67,7 @@ The Neovim configuration includes:
 ### Making Changes
 
 1. Edit the relevant configuration files:
-   - `configuration.nix` for system-level changes
+   - `hosts/<hostname>/configuration.nix` for host-specific system-level changes
    - `home.nix` for user-level and nvf changes
    - `flake.nix` for input updates or structural changes
 
