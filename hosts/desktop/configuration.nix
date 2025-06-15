@@ -75,11 +75,6 @@
     vim
     git
     wget
-
-    # GNOME stuff
-    gnome-themes-extra
-    gnome-tweaks
-    adwaita-icon-theme
   ];
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
