@@ -45,58 +45,47 @@
       vim = {
         viAlias = false;
         vimAlias = true;
-
-        # Basic options
         lineNumberMode = "relative";
         preventJunkFiles = true;
 
-        # Theme
         theme = {
           enable = true;
           name = "gruvbox";
           style = "dark";
         };
 
-        # Treesitter for syntax highlighting
         treesitter = {
           enable = true;
           fold = true;
         };
 
-        # LSP Configuration
         lsp = {
           enable = true;
           formatOnSave = true;
         };
 
-        # Language support
         languages = {
           nix.enable = true;
-
           ts = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-
           rust = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-
           python = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-
           go = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
-
           astro = {
             enable = true;
             lsp.enable = true;
