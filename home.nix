@@ -15,6 +15,11 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    # GNOME stuff
+    gnome-themes-extra
+    gnome-tweaks
+    adwaita-icon-theme
+
     # Apps
     brave
     zed-editor
@@ -26,6 +31,38 @@
     libreoffice-still
     gimp3
     discord
+    gedit
+
+    # Tools
+    htop
+    helix
+    zellij
+    lazygit
+    lazydocker
+    yazi
+    fastfetch
+    unzip
+    fzf
+    gnumake
+
+    # Programming
+    nodejs_24
+    bun
+    yarn
+    pnpm
+    typescript
+    typescript-language-server
+    vscode-langservers-extracted
+    python3
+    go
+    gopls
+    golangci-lint
+    golangci-lint-langserver
+    delve
+    claude-code
+    ruff
+    python312Packages.jedi-language-server
+    python312Packages.python-lsp-server
   ];
 
   dconf = {

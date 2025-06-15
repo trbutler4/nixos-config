@@ -78,57 +78,9 @@
     git
     wget
 
-    # GNOME stuff
-    gnome-themes-extra
-    gnome-tweaks
-    adwaita-icon-theme
-    gedit
-
-    # Tools
-    htop
-    helix
-    zellij
-    lazygit
-    lazydocker
-    yazi
-    fastfetch
-    unzip
-    fzf
-    gnumake
-
-    # Programming
-    nodejs_24
-    bun
-    yarn
-    pnpm
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    python3
     rustc
     rustup
     cargo
-    go
-    gopls
-    golangci-lint
-    golangci-lint-langserver
-    delve
-    claude-code
-    ruff
-    python312Packages.jedi-language-server
-    python312Packages.python-lsp-server
-
-    # Apps
-    brave
-    zed-editor
-    obs-studio
-    spotify
-    telegram-desktop
-    alacritty
-    ghostty
-    libreoffice-still
-    gimp3
-    thunderbird
   ];
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
