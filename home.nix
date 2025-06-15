@@ -58,8 +58,6 @@
     # Python
     python3
     uv
-    ruff
-    delve
 
     # Go
     go
