@@ -41,6 +41,7 @@
           # field (look at the following example).
           pkgs.gnomeExtensions.tiling-shell.extensionUuid
           pkgs.gnomeExtensions.hide-top-bar.extensionUuid
+          pkgs.gnomeExtensions.appindicator.extensionUuid
         ];
       };
     };
