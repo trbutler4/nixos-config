@@ -105,10 +105,6 @@
       ];
       theme = "lambda";
     };
-    initContent = ''
-      # Add your custom zsh initialization content here.
-      # For example, you can set environment variables or aliases.
-    '';
   };
 
   programs.fzf = {

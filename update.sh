@@ -55,8 +55,4 @@ nix flake update
 echo -e "${YELLOW}Building and switching to new configuration for ${HOSTNAME}...${NC}"
 sudo nixos-rebuild switch --flake .#${HOSTNAME}
 
-# Switch home-manager configuration
-echo -e "${YELLOW}Switching home-manager configuration...${NC}"
-home-manager switch
-
 echo -e "${GREEN}Update completed successfully!${NC}"
