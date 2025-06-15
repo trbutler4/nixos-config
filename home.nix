@@ -48,7 +48,6 @@
     fzf
     gnumake
     claude-code
-    asdf-vm
 
     # Node/Typescript
     nodejs_24
@@ -109,7 +108,6 @@
     initContent = ''
       # Add your custom zsh initialization content here.
       # For example, you can set environment variables or aliases.
-      export PATH="$HOME/.asdf/shims:$PATH"
     '';
   };
 
