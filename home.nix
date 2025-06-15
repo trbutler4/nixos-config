@@ -45,6 +45,7 @@
     fzf
     gnumake
     claude-code
+    asdf
 
     # Node/Typescript
     nodejs_24
