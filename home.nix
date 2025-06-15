@@ -20,6 +20,9 @@
     gnome-tweaks
     adwaita-icon-theme
 
+    # Nix stuff
+    home-manager
+
     # Apps
     brave
     zed-editor
@@ -45,7 +48,7 @@
     fzf
     gnumake
     claude-code
-    asdf
+    asdf-vm
 
     # Node/Typescript
     nodejs_24
@@ -99,9 +102,15 @@
       enable = true;
       plugins = [
         "git"
+        "asdf"
       ];
       theme = "lambda";
     };
+    initContent = ''
+      # Add your custom zsh initialization content here.
+      # For example, you can set environment variables or aliases.
+      export PATH="$HOME/.asdf/shims:$PATH"
+    '';
   };
 
   programs.fzf = {
