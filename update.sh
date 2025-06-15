@@ -35,6 +35,14 @@ fi
 echo -e "${YELLOW}Copying hardware-configuration.nix from /etc/nixos/ to hosts/${HOSTNAME}/...${NC}"
 sudo cp /etc/nixos/hardware-configuration.nix ./hosts/${HOSTNAME}/hardware-configuration.nix
 
+# Create home-manager config directory if it doesn't exist
+echo -e "${YELLOW}Setting up home-manager configuration...${NC}"
+mkdir -p "$HOME/.config/home-manager"
+
+# Copy home.nix to home-manager config directory
+echo -e "${YELLOW}Copying home.nix to ~/.config/home-manager/...${NC}"
+cp ./home.nix "$HOME/.config/home-manager/home.nix"
+
 # Add any unstaged changes to git (flakes require files to be tracked)
 echo -e "${YELLOW}Adding changes to git...${NC}"
 git add .
@@ -46,3 +54,9 @@ nix flake update
 # Build and switch to new configuration
 echo -e "${YELLOW}Building and switching to new configuration for ${HOSTNAME}...${NC}"
 sudo nixos-rebuild switch --flake .#${HOSTNAME}
+
+# Switch home-manager configuration
+echo -e "${YELLOW}Switching home-manager configuration...${NC}"
+home-manager switch
+
+echo -e "${GREEN}Update completed successfully!${NC}"
