@@ -28,8 +28,8 @@
         trbiv = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ 
-            ./home.nix 
+          modules = [
+            ./hosts/shared/home.nix
             {
               nixpkgs.config.allowUnfree = true;
             }
@@ -49,7 +49,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.trbiv = import ./home.nix;
+              home-manager.users.trbiv = import ./hosts/yoga/home.nix;
             }
           ];
         };
@@ -64,7 +64,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.trbiv = import ./home.nix;
+              home-manager.users.trbiv = import ./hosts/desktop/home.nix;
             }
           ];
         };

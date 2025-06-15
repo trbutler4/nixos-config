@@ -31,17 +31,8 @@ if [ ! -f "flake.nix" ]; then
     exit 1
 fi
 
-# Copy hardware-configuration.nix from system to host directory
-echo -e "${YELLOW}Copying hardware-configuration.nix from /etc/nixos/ to hosts/${HOSTNAME}/...${NC}"
-sudo cp /etc/nixos/hardware-configuration.nix ./hosts/${HOSTNAME}/hardware-configuration.nix
-
-# Create home-manager config directory if it doesn't exist
-echo -e "${YELLOW}Setting up home-manager configuration...${NC}"
-mkdir -p "$HOME/.config/home-manager"
-
-# Copy home.nix to home-manager config directory
-echo -e "${YELLOW}Copying home.nix to ~/.config/home-manager/...${NC}"
-cp ./home.nix "$HOME/.config/home-manager/home.nix"
+# Note: hardware-configuration.nix should be generated once per host and committed
+# No need to copy it on every update as it's host-specific and rarely changes
 
 # Add any unstaged changes to git (flakes require files to be tracked)
 echo -e "${YELLOW}Adding changes to git...${NC}"
@@ -55,8 +46,7 @@ nix flake update
 echo -e "${YELLOW}Building and switching to new configuration for ${HOSTNAME}...${NC}"
 sudo nixos-rebuild switch --flake .#${HOSTNAME}
 
-# Switch to new home-manager config 
-echo -e "${YELLOW}Building and switching to new configuration for ${HOSTNAME}...${NC}"
-home-manager switch --flake .#trbiv
+# Home-manager is now managed through NixOS configuration
+# No need for separate home-manager switch as it's handled by nixos-rebuild
 
 echo -e "${GREEN}Update completed successfully!${NC}"
