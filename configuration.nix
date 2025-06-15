@@ -83,9 +83,6 @@
     gnome-tweaks
     adwaita-icon-theme
     gedit
-    gnomeExtensions.tiling-shell
-    gnomeExtensions.bing-wallpaper
-    gnomeExtensions.appindicator
 
     # Tools
     htop
