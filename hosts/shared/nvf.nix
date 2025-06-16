@@ -16,6 +16,8 @@
         lineNumberMode = "relative";
         preventJunkFiles = true;
 
+        clipboard.enable = true;
+
         theme = {
           enable = true;
           name = "gruvbox";
