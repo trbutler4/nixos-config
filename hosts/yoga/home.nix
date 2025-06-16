@@ -41,6 +41,7 @@
     fzf
     gnumake
     claude-code
+    asdf-vm
 
     # GUI Apps
     brave
