@@ -90,6 +90,7 @@
     };
     initContent = ''
       export PATH="$HOME/.asdf/shims:$PATH"
+      export PATH="$HOME/.starknet-foundry/target/release:$PATH"
     '';
   };
 
