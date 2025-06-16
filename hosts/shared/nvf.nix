@@ -49,9 +49,7 @@
         filetree = {
           nvimTree = {
             enable = true;
-            mappings = {
-              toggle = "<leader>e";
-            };
+            openOnSetup = true;
           };
         };
 
