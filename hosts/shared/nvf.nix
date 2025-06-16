@@ -16,13 +16,20 @@
         lineNumberMode = "relative";
         preventJunkFiles = true;
 
-        clipboard.enable = true;
-
         theme = {
           enable = true;
           name = "gruvbox";
           style = "dark";
           transparent = true;
+        };
+
+        clipboard = {
+          enable = true;
+          providers.xclip.enable = true;
+        };
+
+        autopairs = {
+          nvim-autopairs.enable = true;
         };
 
         treesitter = {
