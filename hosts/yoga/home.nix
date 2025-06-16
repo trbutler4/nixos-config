@@ -84,7 +84,6 @@
       enable = true;
       plugins = [
         "git"
-        "asdf"
       ];
       theme = "lambda";
     };
