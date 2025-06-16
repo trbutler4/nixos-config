@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -92,6 +93,11 @@
         };
 
         undoFile.enable = true;
+
+        extrapackages = [
+          pkgs.ripgrep
+        ];
+
       };
     };
   };
