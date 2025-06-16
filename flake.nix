@@ -29,7 +29,6 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./hosts/shared/home.nix
             {
               nixpkgs.config.allowUnfree = true;
             }
@@ -54,20 +53,6 @@
           ];
         };
 
-        # Configuration for main desktop
-        desktop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/desktop/configuration.nix
-            home-manager.nixosModules.default
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.trbiv = import ./hosts/desktop/home.nix;
-            }
-          ];
-        };
       };
     };
 }

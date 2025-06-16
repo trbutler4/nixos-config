@@ -68,12 +68,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gcc
-    vim
-    git
     wget
   ];
 
@@ -82,6 +77,12 @@
   virtualisation.docker = {
     enable = true;
   };
+
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    asdf-vm
+  ];
 
   system.stateVersion = "25.11";
 }
