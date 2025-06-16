@@ -50,8 +50,6 @@
           python.enable = true;
           go.enable = true;
           astro.enable = true;
-          solidity.enable = true;
-          cairo.enable = true;
         };
 
         autocomplete = {
