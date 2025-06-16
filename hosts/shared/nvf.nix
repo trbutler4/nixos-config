@@ -94,7 +94,7 @@
 
         undoFile.enable = true;
 
-        extrapackages = [
+        extraPackages = [
           pkgs.ripgrep
         ];
 
