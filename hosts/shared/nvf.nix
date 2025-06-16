@@ -55,9 +55,7 @@
           };
         };
 
-        telescope = {
-          enable = true;
-        };
+        telescope.enable = true;
 
         git = {
           enable = true;
@@ -80,6 +78,17 @@
           };
         };
 
+        utility = {
+          yazi-nvim.enable = true;
+          surround.enable = true;
+        };
+
+        terminal.toggleterm = {
+          enable = true;
+          lazygit.enable = true;
+        };
+
+        undoFile.enable = true;
       };
     };
   };
