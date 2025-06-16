@@ -46,13 +46,6 @@
           nvim-cmp.enable = true;
         };
 
-        filetree = {
-          nvimTree = {
-            enable = true;
-            openOnSetup = true;
-          };
-        };
-
         telescope.enable = true;
 
         git = {
@@ -77,7 +70,10 @@
         };
 
         utility = {
-          yazi-nvim.enable = true;
+          yazi-nvim = {
+            enable = true;
+            setupOpts.open_for_directories = true;
+          };
           surround.enable = true;
         };
 
