@@ -74,6 +74,8 @@
     golangci-lint-langserver
     # Rust
     rustup
+    # EVM
+    foundry
   ];
 
   programs.zsh = {
