@@ -76,6 +76,7 @@
     rustup
     # EVM
     foundry
+    slither-analyzer
   ];
 
   programs.zsh = {
