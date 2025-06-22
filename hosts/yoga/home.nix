@@ -92,6 +92,11 @@
       ];
       theme = "lambda";
     };
+    shellAliases = {
+      lg = "lazygit";
+      z = "zellij";
+      y = "yazi";
+    };
     initContent = ''
       export EDITOR=hx
       export PATH="$HOME/.asdf/shims:$PATH"
