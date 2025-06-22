@@ -77,6 +77,7 @@
     # EVM
     foundry
     slither-analyzer
+    solc
   ];
 
   programs.zsh = {
