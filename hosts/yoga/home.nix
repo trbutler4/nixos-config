@@ -70,6 +70,7 @@
     # Go
     go
     gopls
+    delve
     golangci-lint
     golangci-lint-langserver
     # Rust
