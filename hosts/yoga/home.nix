@@ -1,11 +1,12 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
 {
   imports = [
-    ../shared/nvf.nix
+    #../shared/nvf.nix
   ];
 
   home.username = "trbiv";
@@ -108,6 +109,10 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.neovim = {
+    enable = true;
   };
 
 }
