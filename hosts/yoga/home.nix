@@ -20,6 +20,7 @@
     git
     htop
     tmux
+    cryptsetup
 
     # GNOME stuff
     gnome-themes-extra
