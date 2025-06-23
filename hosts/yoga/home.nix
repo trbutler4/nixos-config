@@ -96,6 +96,7 @@
       lg = "lazygit";
       z = "zellij";
       y = "yazi";
+      nv = "nvim";
     };
     initContent = ''
       export EDITOR=hx
