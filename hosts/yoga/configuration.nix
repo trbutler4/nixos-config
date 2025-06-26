@@ -22,8 +22,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  
-  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -45,11 +43,13 @@
     "flakes"
   ];
 
+  # services
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
+  services.automatic-timezoned.enable = true;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
