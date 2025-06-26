@@ -58,6 +58,8 @@
     discord
     gedit
 
+    #Nix
+    nixd
     # Node/Typescript
     nodejs_24
     bun
