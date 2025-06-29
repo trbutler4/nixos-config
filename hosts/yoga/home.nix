@@ -57,6 +57,7 @@
     gimp3
     discord
     gedit
+    albert
 
     #Nix
     nixd
