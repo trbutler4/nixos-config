@@ -61,7 +61,6 @@
     #Nix
     nixd
     # Node/Typescript
-    nodejs_24
     bun
     yarn
     pnpm
