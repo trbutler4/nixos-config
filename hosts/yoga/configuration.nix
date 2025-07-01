@@ -51,6 +51,9 @@
   services.flatpak.enable = true;
   services.automatic-timezoned.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "trbiv" ];
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
     isNormalUser = true;
