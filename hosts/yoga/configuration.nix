@@ -52,7 +52,9 @@
   services.automatic-timezoned.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "trbiv" ];
+  users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
+  virtualisation.virtualbox.host.enableKvm = true;
+  virtualisation.virtualbox.host.addNetworkInterface = false;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
