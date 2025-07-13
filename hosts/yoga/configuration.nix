@@ -56,6 +56,19 @@
   virtualisation.virtualbox.host.enableKvm = true;
   virtualisation.virtualbox.host.addNetworkInterface = false;
 
+  programs.dconf.profiles.user.databases = [
+    {
+      settings = {
+        "org/gnome/desktop/datetime" = {
+          automatic-timezone = true;
+        };
+        "org/gnome/system/location" = {
+          enabled = true;
+        };
+      };
+    }
+  ];
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
     isNormalUser = true;
