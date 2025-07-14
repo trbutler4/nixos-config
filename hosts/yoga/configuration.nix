@@ -42,8 +42,11 @@
   services.desktopManager.gnome.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
-  services.automatic-timezoned.enable = true;
-  services.geoclue2.enable = true; # Required for automatic timezone
+  # Set timezone to Chicago
+  time.timeZone = "America/Chicago";
+  
+  # Disable automatic timezone detection since we're setting it manually
+  services.automatic-timezoned.enable = false;
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
