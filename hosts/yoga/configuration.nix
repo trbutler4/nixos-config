@@ -43,6 +43,7 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   services.automatic-timezoned.enable = true;
+  services.geoclue2.enable = true; # Required for automatic timezone
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
