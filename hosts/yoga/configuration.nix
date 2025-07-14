@@ -67,6 +67,14 @@
 
   environment.systemPackages = with pkgs; [
     wget
+
+    # GNOME stuff
+    gnome-themes-extra
+    gnome-tweaks
+    adwaita-icon-theme
+
+    # Nix stuff
+    home-manager
   ];
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];

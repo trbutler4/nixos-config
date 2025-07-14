@@ -23,14 +23,6 @@
     cryptsetup
     openssl
 
-    # GNOME stuff
-    gnome-themes-extra
-    gnome-tweaks
-    adwaita-icon-theme
-
-    # Nix stuff
-    home-manager
-
     # Terminal Programs
     htop
     helix
