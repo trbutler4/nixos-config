@@ -21,6 +21,7 @@
     htop
     tmux
     cryptsetup
+    openssl
 
     # GNOME stuff
     gnome-themes-extra
@@ -44,6 +45,7 @@
     gnumake
     claude-code
     asdf-vm
+    postgresql
 
     # GUI Apps
     brave

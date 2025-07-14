@@ -14,13 +14,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "yoga"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
@@ -55,19 +48,6 @@
   users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
   virtualisation.virtualbox.host.enableKvm = true;
   virtualisation.virtualbox.host.addNetworkInterface = false;
-
-  programs.dconf.profiles.user.databases = [
-    {
-      settings = {
-        "org/gnome/desktop/datetime" = {
-          automatic-timezone = true;
-        };
-        "org/gnome/system/location" = {
-          enabled = true;
-        };
-      };
-    }
-  ];
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
