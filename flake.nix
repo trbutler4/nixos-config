@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration with nvf integration";
+  description = "NixOS configuration for multiple hosts";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -7,10 +7,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # nvf = {
+    #   url = "github:notashelf/nvf";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -18,7 +19,6 @@
       self,
       nixpkgs,
       home-manager,
-      nvf,
       ...
     }@inputs:
     {
