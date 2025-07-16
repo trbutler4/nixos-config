@@ -11,6 +11,7 @@
   home.username = "trbiv";
   home.homeDirectory = "/home/trbiv";
   home.stateVersion = "25.11";
+  home.enableNixpkgsReleaseCheck = false;
 
   home.packages = with pkgs; [
     # essential
@@ -55,7 +56,7 @@
     #Nix
     nixd
     # Node/Typescript
-    npm
+    nodejs_24
     bun
     yarn
     pnpm
