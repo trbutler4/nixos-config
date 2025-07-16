@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -36,16 +36,14 @@
     "flakes"
   ];
 
-  # services
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
-  # Set timezone to Chicago
+
+  # manually setting timezone -- for some reason automatic timezone was having troubles.
   time.timeZone = "America/Chicago";
-  
-  # Disable automatic timezone detection since we're setting it manually
   services.automatic-timezoned.enable = false;
 
   virtualisation.virtualbox.host.enable = true;
@@ -87,11 +85,6 @@
     enable = true;
   };
 
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-    asdf-vm
-  ];
 
   system.stateVersion = "25.11";
 }

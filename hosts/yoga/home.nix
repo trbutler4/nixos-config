@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -52,7 +51,6 @@
     discord
     gedit
     albert
-    ledger-live-desktop
 
     #Nix
     nixd

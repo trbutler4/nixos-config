@@ -11,10 +11,6 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -23,7 +19,6 @@
       nixpkgs,
       home-manager,
       nvf,
-      nix-ld,
       ...
     }@inputs:
     {
@@ -47,13 +42,11 @@
           modules = [
             ./hosts/yoga/configuration.nix
             home-manager.nixosModules.default
-            nix-ld.nixosModules.nix-ld
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.trbiv = import ./hosts/yoga/home.nix;
-              programs.nix-ld.dev.enable = true;
             }
           ];
         };
