@@ -55,6 +55,7 @@
     #Nix
     nixd
     # Node/Typescript
+    npm
     bun
     yarn
     pnpm
