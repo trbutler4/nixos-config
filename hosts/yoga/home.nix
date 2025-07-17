@@ -52,6 +52,7 @@
     discord
     gedit
     albert
+    zoom-us
 
     #Nix
     nixd
