@@ -73,7 +73,7 @@ The Neovim configuration includes:
 
 2. Apply changes:
    ```bash
-   bash update.sh <host>
+   sudo nixos-rebuild switch --flake .#${HOSTNAME}
    ```
 
 
