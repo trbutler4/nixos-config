@@ -52,5 +52,10 @@
         };
 
       };
+
+      # Add dev output to fix cycle detection in OpenJDK builds
+      dev = {
+        # Empty is fine, just needs to exist
+      };
     };
 }
