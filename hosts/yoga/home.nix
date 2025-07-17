@@ -53,6 +53,7 @@
     gedit
     albert
     zoom-us
+    ledger-live-desktop
 
     #Nix
     nixd

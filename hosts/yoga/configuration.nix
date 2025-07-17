@@ -65,6 +65,9 @@
     shell = pkgs.zsh;
   };
 
+  # needed for udev rules to connect to ledger device
+  hardware.ledger.enable = true;
+
   programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
