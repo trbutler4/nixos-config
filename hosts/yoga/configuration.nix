@@ -46,10 +46,11 @@
   time.timeZone = "America/Chicago";
   services.automatic-timezoned.enable = false;
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
-  virtualisation.virtualbox.host.enableKvm = true;
-  virtualisation.virtualbox.host.addNetworkInterface = false;
+  # Temporarily disabled due to OpenJDK 8 cycle detection bug
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
+  # virtualisation.virtualbox.host.enableKvm = true;
+  # virtualisation.virtualbox.host.addNetworkInterface = false;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trbiv = {
