@@ -20,6 +20,10 @@
     defaultSopsFormat = "yaml";
     validateSopsFiles = false;
     secrets = {
+      # Default user configuration
+      "servers/defaultUser" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/default-user";
+      };
       # Server IP configurations
       "servers/suffix-labs/starknet-node/ip" = {
         path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-starknet-ip";
@@ -30,7 +34,71 @@
     };
   };
 
-  home.packages = with pkgs; [
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+      ];
+      theme = "lambda";
+    };
+    shellAliases = {
+      lg = "lazygit";
+      z = "zellij";
+      y = "yazi";
+      nv = "nvim";
+      # Server SSH aliases - using wrapper scripts
+      suffix-ssh = "ssh-suffix-starknet";
+      ethchi-ssh = "ssh-ethchi-starknet";
+      # Alias management
+      aliases = "alias | fzf";
+    };
+    initContent = ''
+      export EDITOR=nvim
+      export PATH="$HOME/.asdf/shims:$PATH"
+      export PATH="$HOME/.starknet-foundry/target/release:$PATH"
+    '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+  };
+
+  programs.ssh = {
+    enable = true;
+  };
+
+  # Create SSH wrapper scripts using writeShellScriptBin
+  home.packages = let
+    ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
+      IP=$(cat "${config.sops.secrets."servers/suffix-labs/starknet-node/ip".path}" 2>/dev/null || echo "")
+      USER=$(cat "${config.sops.secrets."servers/defaultUser".path}" 2>/dev/null || echo "root")
+      if [ -z "$IP" ]; then
+        echo "Error: Could not read suffix-labs server IP from secrets"
+        exit 1
+      fi
+      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
+    '';
+    
+    ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
+      IP=$(cat "${config.sops.secrets."servers/ethchi/starknet-node/ip".path}" 2>/dev/null || echo "")
+      USER=$(cat "${config.sops.secrets."servers/defaultUser".path}" 2>/dev/null || echo "root")
+      if [ -z "$IP" ]; then
+        echo "Error: Could not read ethchi server IP from secrets"
+        exit 1
+      fi
+      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
+    '';
+  in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
     age
     sops
     # essential
@@ -100,62 +168,7 @@
     foundry
     slither-analyzer
     solc
-  ];
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-      ];
-      theme = "lambda";
-    };
-    shellAliases = {
-      lg = "lazygit";
-      z = "zellij";
-      y = "yazi";
-      nv = "nvim";
-      # Server SSH aliases
-      ssh-suffix-starknet = "ssh suffix-starknet";
-      ssh-ethchi-starknet = "ssh ethchi-starknet";
-    };
-    initContent = ''
-      export EDITOR=nvim
-      export PATH="$HOME/.asdf/shims:$PATH"
-      export PATH="$HOME/.starknet-foundry/target/release:$PATH"
-    '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-  };
-
-  programs.ssh = {
-    enable = true;
-    extraConfig = ''
-      # Suffix Labs Starknet Node
-      Host suffix-starknet
-        HostName $(cat ${config.sops.secrets."servers/suffix-labs/starknet-node/ip".path} 2>/dev/null || echo "")
-        User root
-        StrictHostKeyChecking no
-        UserKnownHostsFile /dev/null
-
-      # Ethchi Starknet Node
-      Host ethchi-starknet
-        HostName $(cat ${config.sops.secrets."servers/ethchi/starknet-node/ip".path} 2>/dev/null || echo "")
-        User root
-        StrictHostKeyChecking no
-        UserKnownHostsFile /dev/null
-    '';
-  };
+  ]);
 
   programs.firefox.enable = true;
 
