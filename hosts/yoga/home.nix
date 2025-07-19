@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -13,7 +14,16 @@
   home.stateVersion = "25.11";
   home.enableNixpkgsReleaseCheck = false;
 
+  sops = {
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    defaultSopsFile = "${config.home.homeDirectory}/.secrets/secrets.yaml";
+    defaultSopsFormat = "yaml";
+    validateSopsFiles = false;
+  };
+
   home.packages = with pkgs; [
+    age
+    sops
     # essential
     gcc
     vim

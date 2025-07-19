@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nvf = {
     #   url = "github:notashelf/nvf";
@@ -18,6 +22,7 @@
     {
       nixpkgs,
       home-manager,
+      sops-nix,
       ...
     }@inputs:
     {
@@ -46,6 +51,9 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.trbiv = import ./hosts/yoga/home.nix;
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
             }
           ];
         };
