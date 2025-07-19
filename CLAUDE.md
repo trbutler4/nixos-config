@@ -110,6 +110,31 @@ Available development tools include:
 
 All changes require running `bash update.sh yoga` to apply. The script automatically adds changes to git (required for flakes) and rebuilds the system.
 
+## Secret Management (SOPS)
+
+The configuration includes sops-nix for encrypted secret management:
+
+### Quick Commands
+```bash
+# Encrypt/edit secrets
+sops ~/.secrets/secrets.yaml
+
+# View decrypted secrets (debugging)
+sops -d ~/.secrets/secrets.yaml
+```
+
+### Configuration
+- **Age Key**: `~/.config/sops/age/keys.txt`
+- **Secrets Directory**: `~/.secrets/`
+- **Public Key**: `age1rd6qf2hhq9gy8x536fkpy2w04k73fj54fyz22hj3v62tkgrf04us8mr9ef`
+
+### Using Secrets in Nix
+```nix
+sops.secrets.my_secret = {
+  path = "${config.home.homeDirectory}/.local/share/my_secret";
+};
+```
+
 ## Important Notes
 
 - All files must be tracked in git before rebuilding (flakes requirement)
@@ -117,3 +142,4 @@ All changes require running `bash update.sh yoga` to apply. The script automatic
 - Hardware configuration is host-specific and rarely needs changes
 - nvf provides extensive plugin and language support - check documentation for available options
 - Home Manager configuration is integrated directly into the NixOS system configuration
+- Run sops commands from repo root where `.sops.yaml` exists

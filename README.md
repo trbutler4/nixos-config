@@ -120,6 +120,31 @@ vim = {
 };
 ```
 
+## Secret Management (SOPS)
+
+### Setup
+```bash
+# Generate age key (one-time)
+age-keygen -o ~/.config/sops/age/keys.txt
+
+# Create and encrypt secrets file
+sops ~/.secrets/secrets.yaml
+```
+
+### Usage
+```bash
+# Edit secrets
+sops ~/.secrets/secrets.yaml
+
+# View decrypted (debugging)
+sops -d ~/.secrets/secrets.yaml
+```
+
+### Configuration
+- Age key: `~/.config/sops/age/keys.txt`
+- Public key: `age1rd6qf2hhq9gy8x536fkpy2w04k73fj54fyz22hj3v62tkgrf04us8mr9ef`
+- Run sops from repo root
+
 ## Troubleshooting
 
 ### Build Errors
