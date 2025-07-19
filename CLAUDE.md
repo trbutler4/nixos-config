@@ -16,10 +16,6 @@ This is a NixOS configuration repository using flakes with Home Manager integrat
 
 ### System Updates and Rebuilds
 ```bash
-# Update system configuration (required hostname argument)
-bash update.sh yoga
-
-# Manual rebuild without update script
 sudo nixos-rebuild switch --flake .#yoga
 
 # Update flake inputs only
