@@ -24,20 +24,8 @@
       "servers/suffix-labs/db-01/ip" = {
         path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-ip";
       };
-      "servers/suffix-labs/db-01/hostname" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-hostname";
-      };
-      "servers/suffix-labs/db-01/ssh_key" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-key";
-      };
       "servers/ethchi/starknet-node/ip" = {
         path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-ip";
-      };
-      "servers/ethchi/starknet-node/hostname" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-hostname";
-      };
-      "servers/ethchi/starknet-node/ssh_key" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-key";
       };
     };
   };
