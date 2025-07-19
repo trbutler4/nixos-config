@@ -20,9 +20,9 @@
     defaultSopsFormat = "yaml";
     validateSopsFiles = false;
     secrets = {
-      # Server configurations
-      "servers/suffix-labs/db-01/ip" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-ip";
+      # Server IP configurations
+      "servers/suffix-labs/starknet-node/ip" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-starknet-ip";
       };
       "servers/ethchi/starknet-node/ip" = {
         path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-ip";
@@ -119,7 +119,7 @@
       y = "yazi";
       nv = "nvim";
       # Server SSH aliases
-      ssh-suffix-db = "ssh suffix-db";
+      ssh-suffix-starknet = "ssh suffix-starknet";
       ssh-ethchi-starknet = "ssh ethchi-starknet";
     };
     initContent = ''
@@ -141,19 +141,17 @@
   programs.ssh = {
     enable = true;
     extraConfig = ''
-      # Suffix Labs DB Server
-      Host suffix-db
-        HostName $(cat ${config.sops.secrets."servers/suffix-labs/db-01/hostname".path} 2>/dev/null || cat ${config.sops.secrets."servers/suffix-labs/db-01/ip".path} 2>/dev/null || echo "")
+      # Suffix Labs Starknet Node
+      Host suffix-starknet
+        HostName $(cat ${config.sops.secrets."servers/suffix-labs/starknet-node/ip".path} 2>/dev/null || echo "")
         User root
-        IdentityFile ${config.sops.secrets."servers/suffix-labs/db-01/ssh_key".path}
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
 
       # Ethchi Starknet Node
       Host ethchi-starknet
-        HostName $(cat ${config.sops.secrets."servers/ethchi/starknet-node/hostname".path} 2>/dev/null || cat ${config.sops.secrets."servers/ethchi/starknet-node/ip".path} 2>/dev/null || echo "")
+        HostName $(cat ${config.sops.secrets."servers/ethchi/starknet-node/ip".path} 2>/dev/null || echo "")
         User root
-        IdentityFile ${config.sops.secrets."servers/ethchi/starknet-node/ssh_key".path}
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
     '';
