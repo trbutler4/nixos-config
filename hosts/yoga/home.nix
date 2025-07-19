@@ -19,6 +19,27 @@
     defaultSopsFile = "${config.home.homeDirectory}/.secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
     validateSopsFiles = false;
+    secrets = {
+      # Server configurations
+      "servers/suffix-labs/db-01/ip" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-ip";
+      };
+      "servers/suffix-labs/db-01/hostname" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-hostname";
+      };
+      "servers/suffix-labs/db-01/ssh_key" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-db01-key";
+      };
+      "servers/ethchi/starknet-node/ip" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-ip";
+      };
+      "servers/ethchi/starknet-node/hostname" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-hostname";
+      };
+      "servers/ethchi/starknet-node/ssh_key" = {
+        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-key";
+      };
+    };
   };
 
   home.packages = with pkgs; [
@@ -48,6 +69,7 @@
     claude-code
     asdf-vm
     postgresql
+    wl-clipboard
 
     # GUI Apps
     brave
@@ -108,6 +130,9 @@
       z = "zellij";
       y = "yazi";
       nv = "nvim";
+      # Server SSH aliases
+      ssh-suffix-db = "ssh suffix-db";
+      ssh-ethchi-starknet = "ssh ethchi-starknet";
     };
     initContent = ''
       export EDITOR=nvim
@@ -123,6 +148,27 @@
 
   programs.neovim = {
     enable = true;
+  };
+
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      # Suffix Labs DB Server
+      Host suffix-db
+        HostName $(cat ${config.sops.secrets."servers/suffix-labs/db-01/hostname".path} 2>/dev/null || cat ${config.sops.secrets."servers/suffix-labs/db-01/ip".path} 2>/dev/null || echo "")
+        User root
+        IdentityFile ${config.sops.secrets."servers/suffix-labs/db-01/ssh_key".path}
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+
+      # Ethchi Starknet Node
+      Host ethchi-starknet
+        HostName $(cat ${config.sops.secrets."servers/ethchi/starknet-node/hostname".path} 2>/dev/null || cat ${config.sops.secrets."servers/ethchi/starknet-node/ip".path} 2>/dev/null || echo "")
+        User root
+        IdentityFile ${config.sops.secrets."servers/ethchi/starknet-node/ssh_key".path}
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+    '';
   };
 
   programs.firefox.enable = true;
