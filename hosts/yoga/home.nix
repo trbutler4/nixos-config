@@ -126,6 +126,7 @@
     asdf-vm
     postgresql
     wl-clipboard
+    ripgrep
 
     # GUI Apps
     brave
