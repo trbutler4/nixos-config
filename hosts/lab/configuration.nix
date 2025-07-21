@@ -54,7 +54,7 @@
     ohMyZsh = {
       enable = true;
       plugins = [ "git" ];
-      theme = "lambda";
+      theme = "batman";
     };
     shellAliases = {
       lg = "lazygit";
