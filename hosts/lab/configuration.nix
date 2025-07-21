@@ -63,6 +63,10 @@
     # Development basics
     gcc
     gnumake
+    pkg-config
+    openssl.dev
+    protobuf
+    zstd.dev
     
     # Terminal tools
     lazygit
