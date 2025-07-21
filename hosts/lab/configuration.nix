@@ -47,24 +47,6 @@
     ];
   };
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" ];
-      theme = "batman";
-    };
-    shellAliases = {
-      lg = "lazygit";
-      nv = "nvim";
-    };
-    interactiveShellInit = ''
-      export EDITOR=nvim
-    '';
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
