@@ -43,7 +43,7 @@
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      # Add your SSH public key here
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNmAMyn+wZCQo8QrH1VoZSfJlgq77wR+duA/Ho+m08X trbiv@nixos"
     ];
   };
 
