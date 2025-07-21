@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +22,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       home-manager,
       sops-nix,
       ...
@@ -55,6 +57,14 @@
                 sops-nix.homeManagerModules.sops
               ];
             }
+          ];
+        };
+
+        # Configuration for lab home server
+        lab = nixpkgs-stable.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/lab/configuration.nix
           ];
         };
 
