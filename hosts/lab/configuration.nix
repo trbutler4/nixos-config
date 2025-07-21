@@ -67,6 +67,7 @@
     openssl.dev
     protobuf
     zstd.dev
+    docker
     
     # Terminal tools
     lazygit
