@@ -59,6 +59,7 @@
     unzip
     ripgrep
     fzf
+    zstd # for decompressing snapshots
     
     # Development basics
     gcc
