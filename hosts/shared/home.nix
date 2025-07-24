@@ -84,7 +84,13 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.decorations = "None";
+      window = {
+        decorations = "None";
+        opacity = 0.85;
+      };
+      colors = {
+        transparent_background_colors = true;
+      };
     };
   };
 
