@@ -64,6 +64,7 @@
       default_layout = "compact";
       pane_frames = false;
       simplified_ui = true;
+      show_startup_tips = false;
       themes = {
         everforest-dark-medium = {
           fg = "#d3c6aa";
