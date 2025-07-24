@@ -60,6 +60,24 @@
           ];
         };
 
+        # Configuration for desktop
+        desktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/desktop/configuration.nix
+            home-manager.nixosModules.default
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.trbiv = import ./hosts/desktop/home.nix;
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
+            }
+          ];
+        };
+
         # Configuration for lab home server
         lab = nixpkgs-stable.lib.nixosSystem {
           system = "x86_64-linux";
