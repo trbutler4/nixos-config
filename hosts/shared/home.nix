@@ -14,8 +14,6 @@
   home.stateVersion = "25.11";
   home.enableNixpkgsReleaseCheck = false;
 
-
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -58,7 +56,7 @@
 
   programs.zellij = {
     enable = true;
-    enableZshIntegration = true;
+    #enableZshIntegration = true;
     settings = {
       theme = "everforest-dark-medium";
       default_layout = "compact";
@@ -82,6 +80,16 @@
       };
     };
   };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window.decorations = "None";
+    };
+  };
+
+  programs.firefox.enable = true;
+
 
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
@@ -175,14 +183,5 @@
     slither-analyzer
     solc
   ]);
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.decorations = "None";
-    };
-  };
-
-  programs.firefox.enable = true;
 
 }
