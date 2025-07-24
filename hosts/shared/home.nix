@@ -86,61 +86,18 @@
     settings = {
       window = {
         decorations = "None";
-        opacity = 1.0;
+        opacity = 0.85;
+      };
+      colors = {
+        transparent_background_colors = true;
       };
     };
   };
 
   programs.firefox.enable = true;
 
-  # Systemd service to watch for wallpaper changes and update Alacritty
-  systemd.user.services.alacritty-wallpaper-sync = {
-    Unit = {
-      Description = "Sync Alacritty background with GNOME wallpaper";
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.writeShellScript "sync-alacritty-wallpaper" ''
-        ${pkgs.glib}/bin/gsettings get org.gnome.desktop.background picture-uri | while read -r wallpaper_uri; do
-          wallpaper_path=$(echo "$wallpaper_uri" | sed 's/^.file:\/\///' | sed 's/.$//')
-          if [ -f "$wallpaper_path" ]; then
-            config_file="$HOME/.config/alacritty/alacritty.toml"
-            mkdir -p "$(dirname "$config_file")"
-            cat > "$config_file" << EOF
-[window]
-decorations = "None"
-opacity = 1.0
 
-[window.background_image]
-path = "$wallpaper_path"
-opacity = 0.3
-EOF
-            echo "Updated Alacritty wallpaper to: $wallpaper_path"
-            # Restart any running alacritty instances
-            ${pkgs.procps}/bin/pkill -USR1 alacritty || true
-          fi
-        done
-      ''}";
-    };
-  };
-
-  # Timer to periodically check for wallpaper changes
-  systemd.user.timers.alacritty-wallpaper-sync = {
-    Unit = {
-      Description = "Timer for Alacritty wallpaper sync";
-    };
-    Timer = {
-      OnBootSec = "30s";
-      OnUnitActiveSec = "30s";
-    };
-    Install = {
-      WantedBy = [ "timers.target" ];
-    };
-  };
-
-
-  # Create SSH wrapper scripts and wallpaper sync script using writeShellScriptBin
+  # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
     ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
       IP=$(yq -r '.servers."suffix-labs"."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
@@ -161,29 +118,7 @@ EOF
       fi
       exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
     '';
-
-    update-alacritty-wallpaper = pkgs.writeShellScriptBin "update-alacritty-wallpaper" ''
-      CONFIG_FILE="$HOME/.config/alacritty/alacritty.toml"
-      WALLPAPER_URI=$(${pkgs.glib}/bin/gsettings get org.gnome.desktop.background picture-uri)
-      WALLPAPER_PATH=$(echo "$WALLPAPER_URI" | sed 's/^.file:\/\///' | sed 's/.$//') 
-      
-      if [ -f "$WALLPAPER_PATH" ]; then
-        mkdir -p "$(dirname "$CONFIG_FILE")"
-        cat > "$CONFIG_FILE" << EOF
-[window]
-decorations = "None"
-opacity = 1.0
-
-[window.background_image]
-path = "$WALLPAPER_PATH"
-opacity = 0.3
-EOF
-        echo "Updated Alacritty wallpaper to: $WALLPAPER_PATH"
-      else
-        echo "Wallpaper file not found: $WALLPAPER_PATH"
-      fi
-    '';
-  in [ ssh-suffix-starknet ssh-ethchi-starknet update-alacritty-wallpaper ] ++ (with pkgs; [
+  in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
     yq-go
     # essential
     gcc
