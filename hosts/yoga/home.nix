@@ -14,25 +14,6 @@
   home.stateVersion = "25.11";
   home.enableNixpkgsReleaseCheck = false;
 
-  sops = {
-    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-    defaultSopsFile = "${config.home.homeDirectory}/.secrets/secrets.yaml";
-    defaultSopsFormat = "yaml";
-    validateSopsFiles = false;
-    secrets = {
-      # Default user configuration
-      "servers/defaultUser" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/default-user";
-      };
-      # Server IP configurations
-      "servers/suffix-labs/starknet-node/ip" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/suffix-labs-starknet-ip";
-      };
-      "servers/ethchi/starknet-node/ip" = {
-        path = "${config.home.homeDirectory}/.local/share/sops/ethchi-starknet-ip";
-      };
-    };
-  };
 
 
   programs.zsh = {
@@ -80,8 +61,8 @@
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
     ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
-      IP=$(cat "${config.sops.secrets."servers/suffix-labs/starknet-node/ip".path}" 2>/dev/null || echo "")
-      USER=$(cat "${config.sops.secrets."servers/defaultUser".path}" 2>/dev/null || echo "root")
+      IP=$(yq -r '.servers."suffix-labs"."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
+      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
       if [ -z "$IP" ]; then
         echo "Error: Could not read suffix-labs server IP from secrets"
         exit 1
@@ -90,8 +71,8 @@
     '';
     
     ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
-      IP=$(cat "${config.sops.secrets."servers/ethchi/starknet-node/ip".path}" 2>/dev/null || echo "")
-      USER=$(cat "${config.sops.secrets."servers/defaultUser".path}" 2>/dev/null || echo "root")
+      IP=$(yq -r '.servers.ethchi."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
+      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
       if [ -z "$IP" ]; then
         echo "Error: Could not read ethchi server IP from secrets"
         exit 1
@@ -99,8 +80,7 @@
       exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
     '';
   in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
-    age
-    sops
+    yq-go
     # essential
     gcc
     vim
