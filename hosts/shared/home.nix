@@ -176,6 +176,13 @@
     solc
   ]);
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window.decorations = "None";
+    };
+  };
+
   programs.firefox.enable = true;
 
 }
