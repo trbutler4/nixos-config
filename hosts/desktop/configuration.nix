@@ -67,6 +67,9 @@
   # needed for udev rules to connect to ledger device
   hardware.ledger.enable = true;
 
+  # Enable NTFS support for external drives
+  boot.supportedFilesystems = [ "ntfs" ];
+
   programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
