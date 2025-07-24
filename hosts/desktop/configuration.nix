@@ -13,7 +13,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "yoga"; # Define your hostname.
+  networking.hostName = "desktop"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
