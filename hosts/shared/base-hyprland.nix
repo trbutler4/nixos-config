@@ -82,6 +82,8 @@
         kb_layout = "us";
         kb_options = "caps:escape";
         follow_mouse = 1;
+        repeat_rate = 50;
+        repeat_delay = 200;
         touchpad = {
           natural_scroll = "no";
         };
@@ -91,7 +93,7 @@
       # General window management - shared
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 10;
         border_size = 2;
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";

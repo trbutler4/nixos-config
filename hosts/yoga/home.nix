@@ -7,7 +7,7 @@
 {
   imports = [
     ../shared/base-home.nix
-    ../shared/hyprland-base.nix
+    ../shared/base-hyprland.nix
     ./hyprland.nix
   ];
 }
