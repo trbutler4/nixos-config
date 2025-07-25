@@ -199,7 +199,7 @@
       
       bind = [
         # Basic window management
-        "$mod, T, exec, alacritty --working-directory $(hyprctl activewindow -j | jq -r '.pid' | xargs pwdx 2>/dev/null | awk '{print $2}' || echo $HOME)"
+        "$mod, T, exec, alacritty"
         "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
         "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
