@@ -159,17 +159,6 @@
         ];
       };
       
-      # Dwindle layout - follows default config
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
-      
-      # Master layout - follows default config
-      master = {
-        new_status = "master";
-      };
-      
       # Misc settings - follows default config
       misc = {
         force_default_wallpaper = -1;
