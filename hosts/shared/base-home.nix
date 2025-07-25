@@ -56,7 +56,7 @@
 
   programs.zellij = {
     enable = true;
-    enableZshIntegration = true;
+    #enableZshIntegration = true;
     settings = {
       theme = "everforest-dark-medium";
       default_layout = "compact";
