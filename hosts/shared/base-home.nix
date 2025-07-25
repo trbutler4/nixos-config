@@ -190,6 +190,24 @@
     slither-analyzer
     solc
     
+    # Cursor theme
+    vanilla-dmz
+    
   ]);
+
+  # Cursor theme configuration
+  home.pointerCursor = {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  # Additional Wayland cursor configuration
+  home.sessionVariables = {
+    XCURSOR_THEME = "Vanilla-DMZ";
+    XCURSOR_SIZE = "24";
+  };
 
 }

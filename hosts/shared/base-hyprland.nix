@@ -91,9 +91,9 @@
       general = {
         gaps_in = 5;
         gaps_out = 8;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        border_size = 1;
+        "col.active_border" = "rgba(888888cc)";
+        "col.inactive_border" = "rgba(44444488)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "master";
@@ -123,6 +123,8 @@
       cursor = {
         inactive_timeout = 3;
         hide_on_key_press = true;
+        default_monitor = "";
+        no_hardware_cursors = false;
       };
       
       # Animations - follows default config structure
