@@ -113,3 +113,7 @@ The configuration reads secrets from a non-encrypted YAML file at `~/.secrets/se
 - Hyprland configuration is split between shared settings (`base-hyprland.nix`) and host-specific overrides
 - Waybar includes system monitoring (CPU, memory, temperature) and auto-starts with Hyprland
 - Multiple hosts are supported: `yoga` (laptop), `desktop`, and `lab`
+
+## Memory Management
+
+- **Rebuild Directive**: i will rebuild the system myself. do not attempt to rebuild
