@@ -39,6 +39,9 @@
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+  
+  # Hyprland window manager
+  programs.hyprland.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
 

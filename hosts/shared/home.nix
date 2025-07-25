@@ -90,8 +90,198 @@
     };
   };
 
+  # Wofi launcher configuration
+  programs.wofi = {
+    enable = true;
+    settings = {
+      width = 600;
+      height = 400;
+      location = "center";
+      show = "drun";
+      prompt = "Search...";
+      filter_rate = 100;
+      allow_markup = true;
+      no_actions = true;
+      halign = "fill";
+      orientation = "vertical";
+      content_halign = "fill";
+      insensitive = true;
+      allow_images = true;
+      image_size = 40;
+    };
+    style = ''
+      window {
+        margin: 0px;
+        border: 1px solid #1e1e2e;
+        background-color: #1e1e2e;
+        border-radius: 7px;
+      }
+
+      #input {
+        margin: 5px;
+        border: none;
+        color: #cdd6f4;
+        background-color: #313244;
+        border-radius: 5px;
+      }
+
+      #inner-box {
+        margin: 5px;
+        border: none;
+        background-color: #1e1e2e;
+      }
+
+      #outer-box {
+        margin: 5px;
+        border: none;
+        background-color: #1e1e2e;
+      }
+
+      #scroll {
+        margin: 0px;
+        border: none;
+      }
+
+      #text {
+        margin: 5px;
+        border: none;
+        color: #cdd6f4;
+      }
+
+      #entry:selected {
+        background-color: #585b70;
+      }
+
+      #entry:selected #text {
+        color: #cdd6f4;
+      }
+    '';
+  };
+
   programs.firefox.enable = true;
 
+  # Hyprland configuration
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      # Monitor configuration
+      monitor = ",preferred,auto,auto";
+      
+      # Input configuration
+      input = {
+        kb_layout = "us";
+        follow_mouse = 1;
+        touchpad = {
+          natural_scroll = "no";
+        };
+        sensitivity = 0;
+      };
+      
+      # General window management
+      general = {
+        gaps_in = 5;
+        gaps_out = 20;
+        border_size = 2;
+        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
+        layout = "dwindle";
+        allow_tearing = false;
+      };
+      
+      # Fast animations for responsive feel
+      animations = {
+        enabled = true;
+        bezier = "myBezier, 0.23, 1, 0.32, 1";
+        animation = [
+          "windows, 1, 2, myBezier"
+          "windowsOut, 1, 2, default, popin 80%"
+          "fade, 1, 2, default"
+          "workspaces, 1, 2, default"
+        ];
+      };
+      
+      # Dark theme and wallpaper
+      env = [
+        "GTK_THEME,Adwaita:dark"
+        "QT_STYLE_OVERRIDE,adwaita-dark"
+      ];
+      
+      exec-once = [
+        "hyprpaper"
+        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+        "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+      ];
+      
+      # Key bindings
+      "$mod" = "SUPER";
+      
+      bind = [
+        # Basic window management
+        "$mod, Q, exec, alacritty"
+        "$mod, C, killactive,"
+        "$mod, M, exit,"
+        "$mod, E, exec, nautilus"
+        "$mod, V, togglefloating,"
+        "$mod, R, exec, wofi --show drun --allow-images --prompt 'Search:'"
+        "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
+        "$mod SHIFT, R, exec, wofi --show window --allow-images --prompt 'Window:'"
+        
+        # Move focus with vim keys
+        "$mod, H, movefocus, l"
+        "$mod, L, movefocus, r"
+        "$mod, K, movefocus, u"
+        "$mod, J, movefocus, d"
+        
+        # Switch workspaces
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod, 6, workspace, 6"
+        "$mod, 7, workspace, 7"
+        "$mod, 8, workspace, 8"
+        "$mod, 9, workspace, 9"
+        "$mod, 0, workspace, 10"
+        
+        # Move active window to workspace
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod SHIFT, 6, movetoworkspace, 6"
+        "$mod SHIFT, 7, movetoworkspace, 7"
+        "$mod SHIFT, 8, movetoworkspace, 8"
+        "$mod SHIFT, 9, movetoworkspace, 9"
+        "$mod SHIFT, 0, movetoworkspace, 10"
+      ];
+      
+      # Mouse bindings
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+    };
+  };
+
+  # Hyprpaper wallpaper configuration
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
+      splash = false;
+      splash_offset = 2.0;
+      
+      preload = [
+        "~/Pictures/wallpapers/mountain-far.jpg"
+      ];
+      
+      wallpaper = [
+        ",~/Pictures/wallpapers/mountain-far.jpg"
+      ];
+    };
+  };
 
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
@@ -184,6 +374,14 @@
     foundry
     slither-analyzer
     solc
+    
+    # Hyprland/Wayland tools
+    wofi
+    waybar
+    mako
+    hyprpaper
+    grim
+    slurp
   ]);
 
 }
