@@ -47,7 +47,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.trbiv = import ./hosts/shared/home.nix;
+              home-manager.users.trbiv = import ./hosts/yoga/home.nix;
             }
           ];
         };
@@ -62,7 +62,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.trbiv = import ./hosts/shared/home.nix;
+              home-manager.users.trbiv = import ./hosts/desktop/home.nix;
             }
           ];
         };

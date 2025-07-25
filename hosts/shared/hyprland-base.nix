@@ -5,96 +5,7 @@
 }:
 
 {
-  imports = [
-    #../shared/nvf.nix
-  ];
-
-  home.username = "trbiv";
-  home.homeDirectory = "/home/trbiv";
-  home.stateVersion = "25.11";
-  home.enableNixpkgsReleaseCheck = false;
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-      ];
-      theme = "lambda";
-    };
-    shellAliases = {
-      lg = "lazygit";
-      z = "zellij";
-      y = "yazi";
-      nv = "nvim";
-      # Server SSH aliases - using wrapper scripts
-      suffix-ssh = "ssh-suffix-starknet";
-      ethchi-ssh = "ssh-ethchi-starknet";
-      # Alias management
-      aliases = "alias | fzf";
-    };
-    initContent = ''
-      export EDITOR=nvim
-    '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-  };
-
-  programs.ssh = {
-    enable = true;
-  };
-
-  programs.zellij = {
-    enable = true;
-    #enableZshIntegration = true;
-    settings = {
-      theme = "everforest-dark-medium";
-      default_layout = "compact";
-      pane_frames = false;
-      simplified_ui = true;
-      show_startup_tips = false;
-      themes = {
-        everforest-dark-medium = {
-          fg = "#d3c6aa";
-          bg = "#2d353b";
-          black = "#4a555b";
-          red = "#ec5f67";
-          green = "#a7c080";
-          yellow = "#dbbc7f";
-          blue = "#7fbbb3";
-          magenta = "#d699b6";
-          cyan = "#83c092";
-          white = "#d3c6aa";
-          orange = "#e67e80";
-        };
-      };
-    };
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        decorations = "None";
-        opacity = 0.85;
-      };
-      colors = {
-        transparent_background_colors = true;
-      };
-    };
-  };
-
-  # Wofi launcher configuration
+  # Wofi launcher configuration - shared across all hosts
   programs.wofi = {
     enable = true;
     settings = {
@@ -162,16 +73,11 @@
     '';
   };
 
-  programs.firefox.enable = true;
-
-  # Hyprland configuration
+  # Base Hyprland configuration - shared settings
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      # Monitor configuration
-      monitor = ",preferred,auto,auto";
-      
-      # Input configuration
+      # Input configuration - shared
       input = {
         kb_layout = "us";
         follow_mouse = 1;
@@ -181,7 +87,7 @@
         sensitivity = 0;
       };
       
-      # General window management
+      # General window management - shared
       general = {
         gaps_in = 5;
         gaps_out = 20;
@@ -192,7 +98,7 @@
         allow_tearing = false;
       };
       
-      # Fast animations for responsive feel
+      # Fast animations for responsive feel - shared
       animations = {
         enabled = true;
         bezier = "myBezier, 0.23, 1, 0.32, 1";
@@ -204,7 +110,7 @@
         ];
       };
       
-      # Dark theme and wallpaper
+      # Dark theme - shared
       env = [
         "GTK_THEME,Adwaita:dark"
         "QT_STYLE_OVERRIDE,adwaita-dark"
@@ -216,7 +122,7 @@
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
       
-      # Key bindings
+      # Key bindings - shared across all hosts
       "$mod" = "SUPER";
       
       bind = [
@@ -270,7 +176,7 @@
         "$mod CTRL, H, moveactive, exact 0 0"
         "$mod CTRL, L, moveactive, exact 50% 0"
         
-        # Direct window management (without adjustment mode for now)
+        # Direct window management
         "$mod ALT, H, movewindow, l"
         "$mod ALT, L, movewindow, r"
         "$mod ALT, K, movewindow, u"
@@ -281,7 +187,7 @@
         "$mod SHIFT, J, resizeactive, 0 50"
       ];
       
-      # Mouse bindings
+      # Mouse bindings - shared
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
@@ -289,25 +195,7 @@
     };
   };
 
-  # Hyprpaper wallpaper configuration
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      ipc = "on";
-      splash = false;
-      splash_offset = 2.0;
-      
-      preload = [
-        "~/Pictures/wallpapers/mountain-far.jpg"
-      ];
-      
-      wallpaper = [
-        ",~/Pictures/wallpapers/mountain-far.jpg"
-      ];
-    };
-  };
-
-  # Waybar configuration
+  # Shared Waybar configuration
   programs.waybar = {
     enable = true;
     settings = {
@@ -453,105 +341,13 @@
     '';
   };
 
-  # Create SSH wrapper scripts using writeShellScriptBin
-  home.packages = let
-    ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
-      IP=$(yq -r '.servers."suffix-labs"."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
-      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
-      if [ -z "$IP" ]; then
-        echo "Error: Could not read suffix-labs server IP from secrets"
-        exit 1
-      fi
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
-    '';
-    
-    ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
-      IP=$(yq -r '.servers.ethchi."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
-      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
-      if [ -z "$IP" ]; then
-        echo "Error: Could not read ethchi server IP from secrets"
-        exit 1
-      fi
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
-    '';
-  in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
-    yq-go
-    # essential
-    gcc
-    vim
-    git
-    htop
-    tmux
-    cryptsetup
-    openssl
-
-    # Terminal Programs
-    htop
-    helix
-    tmux
-    zellij
-    lazygit
-    lazydocker
-    yazi
-    fastfetch
-    unzip
-    fzf
-    gnumake
-    claude-code
-    asdf-vm
-    postgresql
-    wl-clipboard
-    ripgrep
-
-    # GUI Apps
-    brave
-    zed-editor
-    obs-studio
-    spotify
-    telegram-desktop
-    alacritty
-    ghostty
-    libreoffice-still
-    gimp3
-    discord
-    gedit
-    albert
-    zoom-us
-    ledger-live-desktop
-
-    #Nix
-    nixd
-    # Node/Typescript
-    nodejs_24
-    bun
-    yarn
-    pnpm
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    # Python
-    python3
-    uv
-    # Go
-    go
-    gopls
-    delve
-    golangci-lint
-    golangci-lint-langserver
-    # Rust
-    rustup
-    # EVM
-    foundry
-    slither-analyzer
-    solc
-    
-    # Hyprland/Wayland tools
+  # Hyprland/Wayland tools - shared packages
+  home.packages = with pkgs; [
     wofi
     waybar
     mako
     hyprpaper
     grim
     slurp
-  ]);
-
+  ];
 }
