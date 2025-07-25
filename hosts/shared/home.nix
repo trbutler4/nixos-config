@@ -212,7 +212,6 @@
       
       exec-once = [
         "hyprpaper"
-        "waybar"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -225,6 +224,7 @@
         "$mod, T, exec, alacritty"
         "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
+        "$mod, B, exec, brave-browser"
         "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
         "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
         "$mod SHIFT, Space, exec, wofi --show window --allow-images --prompt 'Window:'"
