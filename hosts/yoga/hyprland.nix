@@ -8,7 +8,7 @@
   # Yoga-specific Hyprland overrides
   wayland.windowManager.hyprland.settings = {
     # Monitor configuration - yoga specific (laptop display)
-    monitor = ",preferred,auto,auto";
+    monitor = ",preferred,auto,1";
   };
 
   # Yoga-specific Hyprpaper wallpaper configuration
@@ -20,11 +20,11 @@
       splash_offset = 2.0;
       
       preload = [
-        "~/Pictures/wallpapers/mountain-far.jpg"
+        "~/Pictures/wallpapers/zen-arch.jpg"
       ];
       
       wallpaper = [
-        ",~/Pictures/wallpapers/mountain-far.jpg"
+        ",~/Pictures/wallpapers/zen-arch.jpg"
       ];
     };
   };
