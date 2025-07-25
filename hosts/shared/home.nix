@@ -217,14 +217,12 @@
       
       bind = [
         # Basic window management
-        "$mod, Q, exec, alacritty"
-        "$mod, C, killactive,"
-        "$mod, M, exit,"
+        "$mod, T, exec, alacritty"
+        "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
-        "$mod, V, togglefloating,"
-        "$mod, R, exec, wofi --show drun --allow-images --prompt 'Search:'"
+        "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
         "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
-        "$mod SHIFT, R, exec, wofi --show window --allow-images --prompt 'Window:'"
+        "$mod SHIFT, Space, exec, wofi --show window --allow-images --prompt 'Window:'"
         
         # Move focus with vim keys
         "$mod, H, movefocus, l"
@@ -249,12 +247,30 @@
         "$mod SHIFT, 2, movetoworkspace, 2"
         "$mod SHIFT, 3, movetoworkspace, 3"
         "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod SHIFT, 5, movetoworkspace, 5"    
         "$mod SHIFT, 6, movetoworkspace, 6"
         "$mod SHIFT, 7, movetoworkspace, 7"
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
+        
+        # Window manipulation
+        "$mod, S, togglesplit,"
+        "$mod, O, layoutmsg, orientationnext"
+        "$mod, G, togglefloating,"
+        "$mod, M, fullscreen, 0"
+        "$mod CTRL, H, moveactive, exact 0 0"
+        "$mod CTRL, L, moveactive, exact 50% 0"
+        
+        # Direct window management (without adjustment mode for now)
+        "$mod ALT, H, movewindow, l"
+        "$mod ALT, L, movewindow, r"
+        "$mod ALT, K, movewindow, u"
+        "$mod ALT, J, movewindow, d"
+        "$mod SHIFT, H, resizeactive, -50 0"
+        "$mod SHIFT, L, resizeactive, 50 0"
+        "$mod SHIFT, K, resizeactive, 0 -50"
+        "$mod SHIFT, J, resizeactive, 0 50"
       ];
       
       # Mouse bindings
