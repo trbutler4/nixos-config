@@ -86,6 +86,10 @@
     settings = {
       window = {
         decorations = "None";
+        opacity = 0.85;
+      };
+      colors = {
+        transparent_background_colors = true;
       };
     };
   };
@@ -208,6 +212,7 @@
       
       exec-once = [
         "hyprpaper"
+        "waybar"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -223,6 +228,10 @@
         "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
         "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
         "$mod SHIFT, Space, exec, wofi --show window --allow-images --prompt 'Window:'"
+        
+        # Logout options
+        "$mod SHIFT, Q, exit,"
+        "$mod CTRL SHIFT, Q, exec, hyprctl dispatch exit"
         
         # Move focus with vim keys
         "$mod, H, movefocus, l"
@@ -297,6 +306,152 @@
         ",~/Pictures/wallpapers/mountain-far.jpg"
       ];
     };
+  };
+
+  # Waybar configuration
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 32;
+        spacing = 4;
+        
+        modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [ "tray" "network" "battery" "clock" ];
+        
+        "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+          format = "{icon}";
+          format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "";
+            "5" = "";
+            "urgent" = "";
+            "focused" = "";
+            "default" = "";
+          };
+        };
+        
+        "hyprland/window" = {
+          format = "{}";
+          max-length = 50;
+        };
+        
+        tray = {
+          spacing = 10;
+        };
+        
+        clock = {
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = "{:%Y-%m-%d}";
+        };
+        
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% ";
+          format-plugged = "{capacity}% ";
+          format-alt = "{time} {icon}";
+          format-icons = ["" "" "" "" ""];
+        };
+        
+        network = {
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "{ipaddr}/{cidr} ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          format-linked = "{ifname} (No IP) ";
+          format-disconnected = "Disconnected ⚠";
+          format-alt = "{ifname}. {bandwidthUpBits} / {bandwidthDownBits}";
+        };
+      };
+    };
+    
+    style = ''
+      * {
+        font-family: "0xProto Mono", monospace;
+        font-size: 13px;
+      }
+      
+      window#waybar {
+        background-color: rgba(43, 48, 59, 0.8);
+        border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+        color: #ffffff;
+        transition-property: background-color;
+        transition-duration: .5s;
+      }
+      
+      button {
+        box-shadow: inset 0 -3px transparent;
+        border: none;
+        border-radius: 0;
+      }
+      
+      #workspaces button {
+        padding: 0 5px;
+        background-color: transparent;
+        color: #ffffff;
+      }
+      
+      #workspaces button:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      
+      #workspaces button.focused {
+        background-color: #64727D;
+        box-shadow: inset 0 -3px #ffffff;
+      }
+      
+      #workspaces button.urgent {
+        background-color: #eb4d4b;
+      }
+      
+      #mode {
+        background-color: #64727D;
+        border-bottom: 3px solid #ffffff;
+      }
+      
+      #clock,
+      #battery,
+      #network,
+      #tray {
+        padding: 0 10px;
+        color: #ffffff;
+      }
+      
+      #window {
+        color: #64727D;
+      }
+      
+      #battery.charging, #battery.plugged {
+        color: #26A65B;
+      }
+      
+      #battery.critical:not(.charging) {
+        background-color: #f53c3c;
+        color: #ffffff;
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+      
+      @keyframes blink {
+        to {
+          background-color: #ffffff;
+          color: #000000;
+        }
+      }
+    '';
   };
 
   # Create SSH wrapper scripts using writeShellScriptBin

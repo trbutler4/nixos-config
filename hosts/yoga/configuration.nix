@@ -31,6 +31,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Font configuration
+  fonts = {
+    packages = with pkgs; [
+      # System will look for fonts in ~/.local/share/fonts automatically
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "0xProto" ];
+        sansSerif = [ "0xProto" ];
+        monospace = [ "0xProto Mono" ];
+      };
+    };
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
