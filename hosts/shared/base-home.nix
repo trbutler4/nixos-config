@@ -147,6 +147,7 @@
     postgresql
     wl-clipboard
     ripgrep
+    doctl # digital ocean cli
 
     # GUI Apps
     brave
