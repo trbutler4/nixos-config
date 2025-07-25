@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a NixOS configuration repository using flakes with Home Manager integration. The configuration includes:
 
 - **System**: NixOS with flakes enabled
-- **Desktop Environment**: GNOME with GDM
+- **Desktop Environment**: Hyprland (Wayland compositor) with Waybar, Wofi launcher
 - **Shell**: Zsh with Oh My Zsh (lambda theme)
 - **Editor**: Neovim configured via nvf (Neovim flake)
 - **Package Management**: Nix flakes with Home Manager for user packages
@@ -56,55 +56,47 @@ nix-env --list-generations --profile /nix/var/nix/profiles/system
 nixos-config/
 ├── flake.nix                     # Main flake configuration with inputs/outputs
 ├── flake.lock                    # Pinned versions of all inputs
-├── update.sh                     # System update script
+├── assets/
+│   └── hyprland-bg.jpg          # Hyprland background image
 └── hosts/
-    ├── shared/
-    │   └── nvf.nix               # Shared nvf (Neovim) configuration
-    └── yoga/                     # Host-specific configuration
+    ├── shared/                   # Shared configurations across hosts
+    │   ├── base-home.nix        # Base Home Manager configuration
+    │   ├── base-hyprland.nix    # Base Hyprland/Wayland configuration
+    │   └── nvf.nix              # Shared nvf (Neovim) configuration
+    ├── desktop/                  # Desktop host configuration
+    │   ├── configuration.nix    # Desktop system configuration
+    │   ├── hardware-configuration.nix
+    │   ├── home.nix
+    │   └── hyprland.nix
+    ├── lab/                      # Lab host configuration
+    │   └── configuration.nix
+    └── yoga/                     # Laptop host configuration
         ├── configuration.nix     # System-level NixOS configuration
         ├── hardware-configuration.nix # Hardware-specific settings
-        └── home.nix             # Home Manager user configuration
+        ├── home.nix             # Home Manager user configuration
+        └── hyprland.nix         # Host-specific Hyprland settings
 ```
 
 ### Key Components
 
 **Flake Configuration (`flake.nix`)**: Defines inputs (nixpkgs, home-manager, nvf, nix-ld) and outputs (nixosConfigurations, homeConfigurations). The yoga configuration integrates Home Manager directly into the NixOS system.
 
-**System Configuration (`hosts/yoga/configuration.nix`)**: NixOS system settings including bootloader, networking, services (X11, GDM, GNOME), user accounts, and system packages. Enables Docker and VirtualBox virtualization.
+**System Configuration (`hosts/yoga/configuration.nix`)**: NixOS system settings including bootloader, networking, Hyprland window manager, user accounts, and system packages. Enables Docker and VirtualBox virtualization.
 
-**User Configuration (`hosts/yoga/home.nix`)**: Home Manager configuration with user packages, shell configuration (zsh + oh-my-zsh), and application settings. Includes development tools for multiple languages.
+**User Configuration (`hosts/yoga/home.nix`)**: Home Manager configuration that imports shared base configurations for home packages and Hyprland setup, plus host-specific Hyprland settings.
+
+**Base Hyprland Configuration (`hosts/shared/base-hyprland.nix`)**: Shared Hyprland/Wayland configuration including window management, keybindings, Waybar status bar with system stats (CPU, memory, temperature), Wofi launcher, and theming. Features fast key repeat, cursor auto-hide, and optimized gaps.
 
 **nvf Configuration (`hosts/shared/nvf.nix`)**: Neovim configuration using the nvf flake with language support for Nix, TypeScript, Rust, Python, Go, and Astro. Features include LSP, Treesitter, Telescope, Git integration, and custom keybindings.
-
-## Language Support
-
-The configuration includes comprehensive language support:
-
-- **Nix**: nixd LSP server
-- **TypeScript/JavaScript**: typescript-language-server, vscode-langservers-extracted
-- **Python**: python3, uv package manager
-- **Go**: go, gopls, delve debugger, golangci-lint
-- **Rust**: rustup toolchain
-- **Solidity**: foundry, slither-analyzer, solc
-
-## Development Tools
-
-Available development tools include:
-- **Editors**: neovim (nvf), helix, zed-editor
-- **Terminal**: alacritty, ghostty, tmux, zellij
-- **Git**: lazygit, standard git
-- **File Management**: yazi, fzf
-- **Containers**: docker, lazydocker
-- **Databases**: postgresql
 
 ## Making Changes
 
 1. **System Changes**: Edit `hosts/yoga/configuration.nix` for system-level changes
-2. **User Packages**: Edit `hosts/yoga/home.nix` for user applications and shell config
-3. **Neovim**: Edit `hosts/shared/nvf.nix` for editor configuration
-4. **Flake Updates**: Edit `flake.nix` for input updates or new hosts
-
-All changes require running `bash update.sh yoga` to apply. The script automatically adds changes to git (required for flakes) and rebuilds the system.
+2. **User Packages**: Edit `hosts/shared/base-home.nix` for shared user packages and shell config
+3. **Hyprland Configuration**: Edit `hosts/shared/base-hyprland.nix` for window manager, Waybar, and Wayland settings
+4. **Host-specific Hyprland**: Edit `hosts/yoga/hyprland.nix` for host-specific Hyprland overrides
+5. **Neovim**: Edit `hosts/shared/nvf.nix` for editor configuration
+6. **Flake Updates**: Edit `flake.nix` for input updates or new hosts
 
 ## Secret Management
 
@@ -118,3 +110,10 @@ The configuration reads secrets from a non-encrypted YAML file at `~/.secrets/se
 - nvf provides extensive plugin and language support - check documentation for available options
 - Home Manager configuration is integrated directly into the NixOS system configuration
 - Secrets are stored in plain text YAML format in `~/.secrets/secrets.yaml`
+- Hyprland configuration is split between shared settings (`base-hyprland.nix`) and host-specific overrides
+- Waybar includes system monitoring (CPU, memory, temperature) and auto-starts with Hyprland
+- Multiple hosts are supported: `yoga` (laptop), `desktop`, and `lab`
+
+## Memory Management
+
+- **Rebuild Directive**: i will rebuild the system myself. do not attempt to rebuild
