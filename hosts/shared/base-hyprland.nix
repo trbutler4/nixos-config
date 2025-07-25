@@ -82,8 +82,8 @@
         kb_layout = "us";
         kb_options = "caps:escape";
         follow_mouse = 1;
-        repeat_rate = 50;
-        repeat_delay = 200;
+        repeat_rate = 40;
+        repeat_delay = 225;
         touchpad = {
           natural_scroll = "no";
         };
@@ -99,6 +99,12 @@
         "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
         allow_tearing = false;
+      };
+      
+      # Cursor configuration
+      cursor = {
+        inactive_timeout = 3;
+        hide_on_key_press = true;
       };
       
       # Fast animations for responsive feel - shared
@@ -120,6 +126,7 @@
       ];
       
       exec-once = [
+        "waybar"
         "hyprpaper"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
@@ -205,28 +212,12 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 32;
+        height = 24;
         spacing = 4;
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "tray" "network" "battery" "clock" ];
-        
-        "hyprland/workspaces" = {
-          disable-scroll = true;
-          all-outputs = true;
-          format = "{icon}";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "urgent" = "";
-            "focused" = "";
-            "default" = "";
-          };
-        };
+        modules-right = [ "cpu" "memory" "temperature" "tray" "network" "battery" "clock" ];
         
         "hyprland/window" = {
           format = "{}";
@@ -261,6 +252,25 @@
           format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ⚠";
           format-alt = "{ifname}. {bandwidthUpBits} / {bandwidthDownBits}";
+        };
+        
+        cpu = {
+          format = "{usage}% ";
+          tooltip = false;
+        };
+        
+        memory = {
+          format = "{}% ";
+          tooltip-format = "{used:0.1f}G/{total:0.1f}G used";
+        };
+        
+        temperature = {
+          thermal-zone = 2;
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          critical-threshold = 80;
+          format-critical = "{temperatureC}°C {icon}";
+          format = "{temperatureC}°C {icon}";
+          format-icons = ["" "" ""];
         };
       };
     };
@@ -312,6 +322,9 @@
       #clock,
       #battery,
       #network,
+      #cpu,
+      #memory,
+      #temperature,
       #tray {
         padding: 0 10px;
         color: #ffffff;
@@ -333,6 +346,11 @@
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         animation-direction: alternate;
+      }
+      
+      #temperature.critical {
+        background-color: #f53c3c;
+        color: #ffffff;
       }
       
       @keyframes blink {
