@@ -266,181 +266,179 @@
     };
   };
 
-  # Shared Waybar configuration
+  # Shared Waybar configuration - based on legacy-dotfiles
   programs.waybar = {
     enable = true;
     settings = {
       mainBar = {
-        layer = "top";
+        layer = "bottom";
         position = "top";
-        height = 24;
-        spacing = 4;
+        height = 30;
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "cpu" "memory" "temperature" "pulseaudio" "tray" "network" "battery" "clock" ];
+        modules-right = [ "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
         
-        "hyprland/window" = {
-          format = "{}";
-          max-length = 50;
+        "hyprland/mode" = {
+          format = " {}";
         };
         
-        tray = {
-          spacing = 10;
+        "hyprland/workspaces" = {
+          format = "{name}";
+          disable-scroll = true;
+        };
+        
+        "hyprland/window" = {
+          max-length = 80;
+          tooltip = false;
         };
         
         clock = {
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
+          format = "{:%a %d %b %H:%M}";
+          tooltip = false;
         };
         
         battery = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
           format = "{capacity}% {icon}";
-          format-charging = "{capacity}% ";
-          format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
           format-icons = ["" "" "" "" ""];
+          format-charging = "{capacity}% ";
+          interval = 30;
+          states = {
+            warning = 25;
+            critical = 10;
+          };
+          tooltip = false;
         };
         
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ipaddr}/{cidr} ";
-          tooltip-format = "{ifname} via {gwaddr} ";
-          format-linked = "{ifname} (No IP) ";
-          format-disconnected = "Disconnected ⚠";
-          format-alt = "{ifname}. {bandwidthUpBits} / {bandwidthDownBits}";
+          format = "{icon}";
+          format-alt = "{ipaddr}/{cidr} {icon}";
+          format-alt-click = "click-right";
+          format-icons = {
+            wifi = ["" "" ""];
+            ethernet = [""];
+            disconnected = [""];
+          };
+          tooltip = false;
+        };
+        
+        wireplumber = {
+          format = "{icon} {volume}%";
+          format-muted = " Muted";
+          format-icons = ["" "" "" ""];
+          scroll-step = 5;
+          on-click = "pavucontrol";
+          tooltip = false;
+        };
+        
+        backlight = {
+          format = "{icon}";
+          format-alt = "{percent}% {icon}";
+          format-alt-click = "click-right";
+          format-icons = ["" ""];
+          on-scroll-down = "light -A 1";
+          on-scroll-up = "light -U 1";
+        };
+        
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+          tooltip = false;
+        };
+        
+        tray = {
+          icon-size = 18;
         };
         
         cpu = {
-          format = "{usage}% ";
+          interval = 5;
+          format = "󰍛 {usage}%";
           tooltip = false;
         };
         
         memory = {
-          format = "{}% ";
-          tooltip-format = "{used:0.1f}G/{total:0.1f}G used";
+          interval = 5;
+          format = " {percentage}%";
+          tooltip-format = "Memory: {used:0.1f}G/{total:0.1f}G";
         };
         
         temperature = {
-          thermal-zone = 2;
+          interval = 5;
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 80;
-          format-critical = "{temperatureC}°C {icon}";
-          format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
-        };
-        
-        pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
-          format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["" "" ""];
-          };
-          on-click = "pavucontrol";
-          on-click-right = "pkill -f pavucontrol";
-          scroll-step = 1;
+          format = "{icon} {temperatureC}°C";
+          format-icons = ["" "" "" "" ""];
+          tooltip = false;
         };
       };
     };
     
     style = ''
       * {
-        font-family: "0xProto Mono", monospace;
-        font-size: 13px;
-      }
-      
-      window#waybar {
-        background-color: rgba(43, 48, 59, 0.8);
-        border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-        color: #ffffff;
-        transition-property: background-color;
-        transition-duration: .5s;
-      }
-      
-      button {
-        box-shadow: inset 0 -3px transparent;
         border: none;
         border-radius: 0;
+        font-family: Sans;
+        font-size: 15px;
+        box-shadow: none;
+        text-shadow: none;
+        transition-duration: 0s;
+      }
+      
+      window {
+        color: rgba(217, 216, 216, 1);
+        background: rgba(35, 31, 32, 0.85);
+      }
+      
+      #workspaces {
+        margin: 0 5px;
       }
       
       #workspaces button {
         padding: 0 5px;
-        background-color: transparent;
-        color: #ffffff;
+        color: rgba(217, 216, 216, 0.4);
       }
       
-      #workspaces button:hover {
-        background: rgba(0, 0, 0, 0.2);
+      #workspaces button.visible {
+        color: rgba(217, 216, 216, 1);
       }
       
       #workspaces button.focused {
-        background-color: #64727D;
-        box-shadow: inset 0 -3px #ffffff;
+        border-top: 3px solid rgba(217, 216, 216, 1);
+        border-bottom: 3px solid rgba(217, 216, 216, 0);
       }
       
       #workspaces button.urgent {
-        background-color: #eb4d4b;
+        color: rgba(238, 46, 36, 1);
       }
       
-      #mode {
-        background-color: #64727D;
-        border-bottom: 3px solid #ffffff;
+      #mode, #battery, #network, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature {
+        margin: 0px 6px 0px 10px;
+        min-width: 25px;
       }
       
-      #clock,
-      #battery,
-      #network,
-      #cpu,
-      #memory,
-      #temperature,
-      #pulseaudio,
-      #tray {
-        padding: 0 10px;
-        color: #ffffff;
+      #clock {
+        margin: 0px 16px 0px 10px;
+        min-width: 140px;
       }
       
-      #window {
-        color: #64727D;
+      #battery.warning {
+        color: rgba(255, 210, 4, 1);
       }
       
-      #battery.charging, #battery.plugged {
-        color: #26A65B;
+      #battery.critical {
+        color: rgba(238, 46, 36, 1);
       }
       
-      #battery.critical:not(.charging) {
-        background-color: #f53c3c;
-        color: #ffffff;
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+      #battery.charging {
+        color: rgba(217, 216, 216, 1);
       }
       
       #temperature.critical {
-        background-color: #f53c3c;
-        color: #ffffff;
-      }
-      
-      @keyframes blink {
-        to {
-          background-color: #ffffff;
-          color: #000000;
-        }
+        color: rgba(238, 46, 36, 1);
       }
     '';
   };
