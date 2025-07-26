@@ -191,7 +191,7 @@
         "$mod, T, exec, alacritty"
         "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
-        "$mod, B, exec, brave-browser"
+        "$mod, B, exec, brave"
         "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
         "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
         "$mod SHIFT, Space, exec, wofi --show window --allow-images --prompt 'Window:'"
