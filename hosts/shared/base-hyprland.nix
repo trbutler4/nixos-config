@@ -192,9 +192,9 @@
         "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
         "$mod, B, exec, brave"
-        "$mod, Space, exec, wofi --show drun --allow-images --prompt 'Search:'"
-        "$mod, D, exec, wofi --show run --allow-images --prompt 'Run:'"
-        "$mod SHIFT, Space, exec, wofi --show window --allow-images --prompt 'Window:'"
+        "$mod, Space, exec, pkill wofi || wofi --show drun --allow-images --prompt 'Search:'"
+        "$mod, D, exec, pkill wofi || wofi --show run --allow-images --prompt 'Run:'"
+        "$mod SHIFT, Space, exec, pkill wofi || wofi --show window --allow-images --prompt 'Window:'"
         
         # Logout options
         "$mod SHIFT, Q, exit,"
