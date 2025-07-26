@@ -197,52 +197,6 @@
               action = "vim.lsp.buf.declaration";
               desc = "[G]oto [D]eclaration";
             };
-
-            # Telescope keybindings
-            "<leader>sh" = {
-              action = "<cmd>Telescope help_tags<cr>";
-              desc = "[S]earch [H]elp";
-            };
-            "<leader>sk" = {
-              action = "<cmd>Telescope keymaps<cr>";
-              desc = "[S]earch [K]eymaps";
-            };
-            "<leader>sf" = {
-              action = "<cmd>Telescope find_files<cr>";
-              desc = "[S]earch [F]iles";
-            };
-            "<leader>ss" = {
-              action = "<cmd>Telescope builtin<cr>";
-              desc = "[S]earch [S]elect Telescope";
-            };
-            "<leader>sw" = {
-              action = "<cmd>Telescope grep_string<cr>";
-              desc = "[S]earch current [W]ord";
-            };
-            "<leader>sg" = {
-              action = "<cmd>Telescope live_grep<cr>";
-              desc = "[S]earch by [G]rep";
-            };
-            "<leader>sd" = {
-              action = "<cmd>Telescope diagnostics<cr>";
-              desc = "[S]earch [D]iagnostics";
-            };
-            "<leader>sr" = {
-              action = "<cmd>Telescope resume<cr>";
-              desc = "[S]earch [R]esume";
-            };
-            "<leader>s." = {
-              action = "<cmd>Telescope oldfiles<cr>";
-              desc = "[S]earch Recent Files";
-            };
-            "<leader><leader>" = {
-              action = "<cmd>Telescope buffers<cr>";
-              desc = "[ ] Find existing buffers";
-            };
-            "<leader>sn" = {
-              action = "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<cr>";
-              desc = "[S]earch [N]eovim files";
-            };
           };
         };
 
