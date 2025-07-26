@@ -97,7 +97,6 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      window-decoration = false;
       background-opacity = 0.85;
     };
   };
