@@ -479,12 +479,14 @@
   # Mako notification daemon configuration
   services.mako = {
     enable = true;
-    backgroundColor = "#1e1e2e";
-    borderColor = "#585b70";
-    textColor = "#cdd6f4";
-    borderRadius = 5;
-    borderSize = 1;
-    defaultTimeout = 5000;
+    settings = {
+      background-color = "#1e1e2e";
+      border-color = "#585b70";
+      text-color = "#cdd6f4";
+      border-radius = 5;
+      border-size = 1;
+      default-timeout = 5000;
+    };
     # Disable music/media notifications
     extraConfig = ''
       [app-name="Spotify"]
