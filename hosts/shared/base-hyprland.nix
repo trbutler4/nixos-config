@@ -277,7 +277,7 @@
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "mpris" "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
         
         "hyprland/mode" = {
           format = " {}";
@@ -290,6 +290,14 @@
         
         "hyprland/window" = {
           max-length = 80;
+          tooltip = false;
+        };
+        
+        mpris = {
+          format = " {artist} - {title}";
+          format-paused = " {artist} - {title}";
+          max-length = 50;
+          interval = 1;
           tooltip = false;
         };
         
@@ -420,6 +428,11 @@
         min-width: 25px;
       }
       
+      #mpris {
+        margin: 0px 10px;
+        color: rgba(217, 216, 216, 0.9);
+      }
+      
       #clock {
         margin: 0px 16px 0px 10px;
         min-width: 140px;
@@ -443,15 +456,43 @@
     '';
   };
 
+  # Mako notification daemon configuration
+  services.mako = {
+    enable = true;
+    backgroundColor = "#1e1e2e";
+    borderColor = "#585b70";
+    textColor = "#cdd6f4";
+    borderRadius = 5;
+    borderSize = 1;
+    defaultTimeout = 5000;
+    # Disable music/media notifications
+    extraConfig = ''
+      [app-name="Spotify"]
+      invisible=1
+      
+      [app-name="spotify"]
+      invisible=1
+      
+      [app-name="mpv"]
+      invisible=1
+      
+      [summary~=".*[Nn]ow [Pp]laying.*"]
+      invisible=1
+      
+      [summary~=".*[Mm]usic.*"]
+      invisible=1
+    '';
+  };
+
   # Hyprland/Wayland tools - shared packages
   home.packages = with pkgs; [
     wofi
     waybar
-    mako
     hyprpaper
     grim
     slurp
     pavucontrol
     libnotify
+    playerctl
   ];
 }
