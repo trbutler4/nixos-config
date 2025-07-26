@@ -132,29 +132,8 @@
 
         undoFile.enable = true;
 
-        # Add custom LSP keybindings and Mason-like functionality via extraPlugins
+        # Add custom plugins via extraPlugins
         extraPlugins = with pkgs.vimPlugins; {
-          # Mason for LSP server management
-          mason-nvim = {
-            package = mason-nvim;
-            setup = ''
-              require('mason').setup()
-            '';
-          };
-          
-          mason-lspconfig-nvim = {
-            package = mason-lspconfig-nvim;
-            setup = ''
-              require('mason-lspconfig').setup({
-                ensure_installed = { 'clangd', 'ruff', 'rust_analyzer', 'solidity', 'gopls', 'ts_ls', 'lua_ls' },
-                handlers = {
-                  function(server_name)
-                    require('lspconfig')[server_name].setup({})
-                  end,
-                }
-              })
-            '';
-          };
 
           # Conform for formatting
           conform-nvim = {
