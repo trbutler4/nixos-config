@@ -31,6 +31,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Font configuration
+  fonts = {
+    packages = with pkgs; [
+      # System will look for fonts in ~/.local/share/fonts automatically
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "0xProto" ];
+        sansSerif = [ "0xProto" ];
+        monospace = [ "0xProto Mono" ];
+      };
+    };
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -44,6 +58,16 @@
   programs.hyprland.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
+  
+  # Audio configuration - PipeWire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
 
   # manually setting timezone -- for some reason automatic timezone was having troubles.
   time.timeZone = "America/Chicago";
