@@ -279,9 +279,9 @@
         position = "top";
         height = 30;
         
-        modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/mode" "tray" "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "custom/wallpaper" "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
         
         "hyprland/mode" = {
           format = " {}";
