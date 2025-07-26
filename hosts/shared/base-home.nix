@@ -153,6 +153,7 @@
     postgresql
     wl-clipboard
     ripgrep
+    jq
     doctl # digital ocean cli
 
     # GUI Apps

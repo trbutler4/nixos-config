@@ -32,6 +32,9 @@ set_wallpaper() {
     hyprctl monitors -j | jq -r '.[].name' | while read -r monitor; do
         hyprctl hyprpaper wallpaper "$monitor,$wallpaper" 2>/dev/null
     done
+    
+    # Also set with empty monitor name as fallback (for default monitor)
+    hyprctl hyprpaper wallpaper ",$wallpaper" 2>/dev/null
 }
 
 # Get wallpaper name for display
