@@ -29,7 +29,7 @@
         margin: 0px;
         border: 1px solid #1e1e2e;
         background-color: #1e1e2e;
-        border-radius: 7px;
+        border-radius: 0px;
       }
 
       #input {
@@ -37,7 +37,7 @@
         border: none;
         color: #cdd6f4;
         background-color: #313244;
-        border-radius: 5px;
+        border-radius: 0px;
       }
 
       #inner-box {
