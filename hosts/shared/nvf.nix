@@ -69,7 +69,6 @@
 
         lsp = {
           enable = true;
-          formatOnSave = false; # We'll use conform for formatting
         };
 
         languages = {
