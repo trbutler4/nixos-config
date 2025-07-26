@@ -247,6 +247,10 @@
         "$mod SHIFT, L, resizeactive, 50 0"
         "$mod SHIFT, K, resizeactive, 0 -50"
         "$mod SHIFT, J, resizeactive, 0 50"
+        
+        # Wallpaper switching
+        "$mod, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next"
+        "$mod SHIFT, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev"
       ];
       
       # Audio control bindings
@@ -277,7 +281,7 @@
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "mpris" "custom/wallpaper" "tray" "cpu" "memory" "temperature" "backlight" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
         
         "hyprland/mode" = {
           format = " {}";
@@ -387,6 +391,17 @@
           format-icons = ["" "" "" "" ""];
           tooltip = false;
         };
+        
+        "custom/wallpaper" = {
+          format = "🖼️ {}";
+          exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
+          on-click = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next && pkill -SIGRTMIN+8 waybar";
+          on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev && pkill -SIGRTMIN+8 waybar";
+          on-click-middle = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh random && pkill -SIGRTMIN+8 waybar";
+          signal = 8;
+          interval = "once";
+          tooltip-format = "Left click: Next wallpaper\nRight click: Previous wallpaper\nMiddle click: Random wallpaper";
+        };
       };
     };
     
@@ -428,7 +443,7 @@
         color: rgba(238, 46, 36, 1);
       }
       
-      #mode, #battery, #network, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature {
+      #mode, #battery, #network, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper {
         margin: 0px 6px 0px 10px;
         min-width: 25px;
       }
@@ -487,6 +502,23 @@
       [summary~=".*[Mm]usic.*"]
       invisible=1
     '';
+  };
+
+  # Hyprpaper configuration - wallpaper daemon
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
+      splash = false;
+      
+      preload = [
+        "/home/trbiv/nixos-config/assets/wallpapers/hyprland-bg.jpg"
+      ];
+      
+      wallpaper = [
+        ",/home/trbiv/nixos-config/assets/wallpapers/hyprland-bg.jpg"
+      ];
+    };
   };
 
   # Hyprland/Wayland tools - shared packages
