@@ -395,12 +395,12 @@
         "custom/wallpaper" = {
           format = "  {}";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
-          on-click = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next && pkill -SIGRTMIN+8 waybar";
-          on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev && pkill -SIGRTMIN+8 waybar";
-          on-click-middle = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh random && pkill -SIGRTMIN+8 waybar";
+          on-click = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
+          on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
+          on-click-middle = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
           signal = 8;
           interval = "once";
-          tooltip-format = "Left click: Next wallpaper\nRight click: Previous wallpaper\nMiddle click: Random wallpaper";
+          tooltip-format = "Click: Open wallpaper selector";
         };
       };
     };
