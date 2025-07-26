@@ -18,7 +18,7 @@
         preventJunkFiles = true;
 
         # Custom vim options to match current config
-        o = {
+        options = {
           tabstop = 4;
           softtabstop = 4;
           shiftwidth = 2;
@@ -49,9 +49,9 @@
         treesitter = {
           enable = true;
           fold = true;
-          grammars = [
-            "bash" "c" "html" "lua" "luadoc" "markdown" "vim" "vimdoc" 
-            "python" "nix" "typescript" "javascript" "rust" "go"
+          grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            bash c html lua luadoc markdown vim vimdoc 
+            python nix typescript javascript rust go
           ];
         };
 
@@ -67,7 +67,6 @@
           python.enable = true;
           go.enable = true;
           astro.enable = true;
-          c.enable = true;
           lua.enable = true;
         };
 
@@ -178,7 +177,7 @@
               })
               
               -- Format keybinding
-              vim.keymap.set('', '<leader>f', function()
+              vim.keymap.set('n', '<leader>f', function()
                 require('conform').format({ async = true, lsp_fallback = true })
               end, { desc = '[F]ormat buffer' })
             '';
@@ -213,143 +212,101 @@
         };
 
         # Custom LSP and Telescope keybindings
-        keymaps = [
-          # LSP keybindings
-          {
-            key = "gd";
-            mode = "n";
-            action = "<cmd>Telescope lsp_definitions<cr>";
-            options.desc = "[G]oto [D]efinition";
-          }
-          {
-            key = "gr";
-            mode = "n";
-            action = "<cmd>Telescope lsp_references<cr>";
-            options.desc = "[G]oto [R]eferences";
-          }
-          {
-            key = "gI";
-            mode = "n";
-            action = "<cmd>Telescope lsp_implementations<cr>";
-            options.desc = "[G]oto [I]mplementation";
-          }
-          {
-            key = "<leader>D";
-            mode = "n";
-            action = "<cmd>Telescope lsp_type_definitions<cr>";
-            options.desc = "Type [D]efinition";
-          }
-          {
-            key = "<leader>ds";
-            mode = "n";
-            action = "<cmd>Telescope lsp_document_symbols<cr>";
-            options.desc = "[D]ocument [S]ymbols";
-          }
-          {
-            key = "<leader>ws";
-            mode = "n";
-            action = "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>";
-            options.desc = "[W]orkspace [S]ymbols";
-          }
-          {
-            key = "<leader>rn";
-            mode = "n";
-            action = "vim.lsp.buf.rename";
-            options.desc = "[R]e[n]ame";
-          }
-          {
-            key = "<leader>ca";
-            mode = "n";
-            action = "vim.lsp.buf.code_action";
-            options.desc = "[C]ode [A]ction";
-          }
-          {
-            key = "<leader>k";
-            mode = "n";
-            action = "vim.lsp.buf.hover";
-            options.desc = "Hover Documentation";
-          }
-          {
-            key = "<leader>K";
-            mode = "n";
-            action = "vim.diagnostic.open_float";
-            options.desc = "Hover Diagnostics";
-          }
-          {
-            key = "gD";
-            mode = "n";
-            action = "vim.lsp.buf.declaration";
-            options.desc = "[G]oto [D]eclaration";
-          }
+        maps = {
+          normal = {
+            # LSP keybindings
+            "gd" = {
+              action = "<cmd>Telescope lsp_definitions<cr>";
+              desc = "[G]oto [D]efinition";
+            };
+            "gr" = {
+              action = "<cmd>Telescope lsp_references<cr>";
+              desc = "[G]oto [R]eferences";
+            };
+            "gI" = {
+              action = "<cmd>Telescope lsp_implementations<cr>";
+              desc = "[G]oto [I]mplementation";
+            };
+            "<leader>D" = {
+              action = "<cmd>Telescope lsp_type_definitions<cr>";
+              desc = "Type [D]efinition";
+            };
+            "<leader>ds" = {
+              action = "<cmd>Telescope lsp_document_symbols<cr>";
+              desc = "[D]ocument [S]ymbols";
+            };
+            "<leader>ws" = {
+              action = "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>";
+              desc = "[W]orkspace [S]ymbols";
+            };
+            "<leader>rn" = {
+              action = "vim.lsp.buf.rename";
+              desc = "[R]e[n]ame";
+            };
+            "<leader>ca" = {
+              action = "vim.lsp.buf.code_action";
+              desc = "[C]ode [A]ction";
+            };
+            "<leader>k" = {
+              action = "vim.lsp.buf.hover";
+              desc = "Hover Documentation";
+            };
+            "<leader>K" = {
+              action = "vim.diagnostic.open_float";
+              desc = "Hover Diagnostics";
+            };
+            "gD" = {
+              action = "vim.lsp.buf.declaration";
+              desc = "[G]oto [D]eclaration";
+            };
 
-          # Telescope keybindings
-          {
-            key = "<leader>sh";
-            mode = "n";
-            action = "<cmd>Telescope help_tags<cr>";
-            options.desc = "[S]earch [H]elp";
-          }
-          {
-            key = "<leader>sk";
-            mode = "n";
-            action = "<cmd>Telescope keymaps<cr>";
-            options.desc = "[S]earch [K]eymaps";
-          }
-          {
-            key = "<leader>sf";
-            mode = "n";
-            action = "<cmd>Telescope find_files<cr>";
-            options.desc = "[S]earch [F]iles";
-          }
-          {
-            key = "<leader>ss";
-            mode = "n";
-            action = "<cmd>Telescope builtin<cr>";
-            options.desc = "[S]earch [S]elect Telescope";
-          }
-          {
-            key = "<leader>sw";
-            mode = "n";
-            action = "<cmd>Telescope grep_string<cr>";
-            options.desc = "[S]earch current [W]ord";
-          }
-          {
-            key = "<leader>sg";
-            mode = "n";
-            action = "<cmd>Telescope live_grep<cr>";
-            options.desc = "[S]earch by [G]rep";
-          }
-          {
-            key = "<leader>sd";
-            mode = "n";
-            action = "<cmd>Telescope diagnostics<cr>";
-            options.desc = "[S]earch [D]iagnostics";
-          }
-          {
-            key = "<leader>sr";
-            mode = "n";
-            action = "<cmd>Telescope resume<cr>";
-            options.desc = "[S]earch [R]esume";
-          }
-          {
-            key = "<leader>s.";
-            mode = "n";
-            action = "<cmd>Telescope oldfiles<cr>";
-            options.desc = "[S]earch Recent Files";
-          }
-          {
-            key = "<leader><leader>";
-            mode = "n";
-            action = "<cmd>Telescope buffers<cr>";
-            options.desc = "[ ] Find existing buffers";
-          }
-          {
-            key = "<leader>sn";
-            mode = "n";
-            action = "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<cr>";
-            options.desc = "[S]earch [N]eovim files";
-          }
-        ];
+            # Telescope keybindings
+            "<leader>sh" = {
+              action = "<cmd>Telescope help_tags<cr>";
+              desc = "[S]earch [H]elp";
+            };
+            "<leader>sk" = {
+              action = "<cmd>Telescope keymaps<cr>";
+              desc = "[S]earch [K]eymaps";
+            };
+            "<leader>sf" = {
+              action = "<cmd>Telescope find_files<cr>";
+              desc = "[S]earch [F]iles";
+            };
+            "<leader>ss" = {
+              action = "<cmd>Telescope builtin<cr>";
+              desc = "[S]earch [S]elect Telescope";
+            };
+            "<leader>sw" = {
+              action = "<cmd>Telescope grep_string<cr>";
+              desc = "[S]earch current [W]ord";
+            };
+            "<leader>sg" = {
+              action = "<cmd>Telescope live_grep<cr>";
+              desc = "[S]earch by [G]rep";
+            };
+            "<leader>sd" = {
+              action = "<cmd>Telescope diagnostics<cr>";
+              desc = "[S]earch [D]iagnostics";
+            };
+            "<leader>sr" = {
+              action = "<cmd>Telescope resume<cr>";
+              desc = "[S]earch [R]esume";
+            };
+            "<leader>s." = {
+              action = "<cmd>Telescope oldfiles<cr>";
+              desc = "[S]earch Recent Files";
+            };
+            "<leader><leader>" = {
+              action = "<cmd>Telescope buffers<cr>";
+              desc = "[ ] Find existing buffers";
+            };
+            "<leader>sn" = {
+              action = "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<cr>";
+              desc = "[S]earch [N]eovim files";
+            };
+          };
+        };
 
         extraPackages = [
           pkgs.ripgrep
