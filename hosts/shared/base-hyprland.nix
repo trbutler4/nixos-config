@@ -188,7 +188,7 @@
       
       bind = [
         # Basic window management
-        "$mod, T, exec, alacritty"
+        "$mod, T, exec, ghostty"
         "$mod, Q, killactive,"
         "$mod, E, exec, nautilus"
         "$mod, B, exec, brave"
