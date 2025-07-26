@@ -294,9 +294,14 @@
         };
         
         mpris = {
-          format = " {artist} - {title}";
-          format-paused = " {artist} - {title}";
-          max-length = 50;
+          format = "{player_icon} {artist} - {title}";
+          format-paused = "{player_icon} {artist} - {title}";
+          player-icons = {
+            default = "🎵";
+            mpv = "🎬";
+            vlc = "🎬";
+          };
+          max-length = 60;
           interval = 1;
           tooltip = false;
         };
