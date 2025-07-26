@@ -148,57 +148,6 @@
 
         undoFile.enable = true;
 
-        # Custom LSP and Telescope keybindings
-        maps = {
-          normal = {
-            # LSP keybindings
-            "gd" = {
-              action = "<cmd>Telescope lsp_definitions<cr>";
-              desc = "[G]oto [D]efinition";
-            };
-            "gr" = {
-              action = "<cmd>Telescope lsp_references<cr>";
-              desc = "[G]oto [R]eferences";
-            };
-            "gI" = {
-              action = "<cmd>Telescope lsp_implementations<cr>";
-              desc = "[G]oto [I]mplementation";
-            };
-            "<leader>D" = {
-              action = "<cmd>Telescope lsp_type_definitions<cr>";
-              desc = "Type [D]efinition";
-            };
-            "<leader>ds" = {
-              action = "<cmd>Telescope lsp_document_symbols<cr>";
-              desc = "[D]ocument [S]ymbols";
-            };
-            "<leader>ws" = {
-              action = "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>";
-              desc = "[W]orkspace [S]ymbols";
-            };
-            "<leader>rn" = {
-              action = "vim.lsp.buf.rename";
-              desc = "[R]e[n]ame";
-            };
-            "<leader>ca" = {
-              action = "vim.lsp.buf.code_action";
-              desc = "[C]ode [A]ction";
-            };
-            "<leader>k" = {
-              action = "vim.lsp.buf.hover";
-              desc = "Hover Documentation";
-            };
-            "<leader>K" = {
-              action = "vim.diagnostic.open_float";
-              desc = "Hover Diagnostics";
-            };
-            "gD" = {
-              action = "vim.lsp.buf.declaration";
-              desc = "[G]oto [D]eclaration";
-            };
-          };
-        };
-
         extraPackages = [
           pkgs.ripgrep
           pkgs.stylua
