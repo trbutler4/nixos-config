@@ -86,7 +86,7 @@
     settings = {
       window = {
         decorations = "None";
-        opacity = 0.85;
+        opacity = 0.90;
       };
       colors = {
         transparent_background_colors = true;
