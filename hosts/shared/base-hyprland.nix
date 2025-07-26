@@ -393,7 +393,7 @@
         };
         
         "custom/wallpaper" = {
-          format = " {}";
+          format = "  {}";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
           on-click = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next && pkill -SIGRTMIN+8 waybar";
           on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev && pkill -SIGRTMIN+8 waybar";
