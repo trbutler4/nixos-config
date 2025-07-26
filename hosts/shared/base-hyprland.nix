@@ -301,9 +301,9 @@
           format = "{player_icon} {artist} - {title}";
           format-paused = "{player_icon} {artist} - {title}";
           player-icons = {
-            default = "🎵";
-            mpv = "🎬";
-            vlc = "🎬";
+            default = "♪";
+            mpv = "▶";
+            vlc = "▶";
           };
           max-length = 60;
           interval = 1;
@@ -318,8 +318,8 @@
         battery = {
           format = "{capacity}% {icon}";
           format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
-          format-charging = "{capacity}% ";
+          format-icons = ["" "" "" "" ""];
+          format-charging = "{capacity}% ";
           interval = 30;
           states = {
             warning = 25;
@@ -333,17 +333,17 @@
           format-alt = "{ipaddr}/{cidr} {icon}";
           format-alt-click = "click-right";
           format-icons = {
-            wifi = ["" "" ""];
-            ethernet = [""];
-            disconnected = [""];
+            wifi = ["" "" ""];
+            ethernet = [""];
+            disconnected = [""];
           };
           tooltip = false;
         };
         
         wireplumber = {
           format = "{icon} {volume}%";
-          format-muted = " Muted";
-          format-icons = ["" "" "" ""];
+          format-muted = " Muted";
+          format-icons = ["" "" "" ""];
           scroll-step = 5;
           on-click = "pavucontrol";
           tooltip = false;
@@ -353,7 +353,7 @@
           format = "{icon}";
           format-alt = "{percent}% {icon}";
           format-alt-click = "click-right";
-          format-icons = ["" ""];
+          format-icons = ["" ""];
           on-scroll-down = "light -A 1";
           on-scroll-up = "light -U 1";
         };
@@ -361,8 +361,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = "";
+            deactivated = "";
           };
           tooltip = false;
         };
@@ -373,13 +373,13 @@
         
         cpu = {
           interval = 5;
-          format = "󰍛 {usage}%";
+          format = " {usage}%";
           tooltip = false;
         };
         
         memory = {
           interval = 5;
-          format = " {percentage}%";
+          format = " {percentage}%";
           tooltip-format = "Memory: {used:0.1f}G/{total:0.1f}G";
         };
         
@@ -388,12 +388,12 @@
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 80;
           format = "{icon} {temperatureC}°C";
-          format-icons = ["" "" "" "" ""];
+          format-icons = ["" "" "" "" ""];
           tooltip = false;
         };
         
         "custom/wallpaper" = {
-          format = "🖼️ {}";
+          format = " {}";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
           on-click = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next && pkill -SIGRTMIN+8 waybar";
           on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev && pkill -SIGRTMIN+8 waybar";
