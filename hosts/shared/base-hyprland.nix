@@ -178,6 +178,7 @@
       
       exec-once = [
         "hyprpaper"
+        "waybar"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -248,6 +249,15 @@
         "$mod SHIFT, J, resizeactive, 0 50"
       ];
       
+      # Audio control bindings
+      bindl = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "$mod, F12, exec, /home/trbiv/nixos-config/scripts/audio-source-switch.sh"
+      ];
+      
       # Mouse bindings - shared
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -268,7 +278,7 @@
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "cpu" "memory" "temperature" "tray" "network" "battery" "clock" ];
+        modules-right = [ "cpu" "memory" "temperature" "pulseaudio" "tray" "network" "battery" "clock" ];
         
         "hyprland/window" = {
           format = "{}";
@@ -323,6 +333,27 @@
           format = "{temperatureC}°C {icon}";
           format-icons = ["" "" ""];
         };
+        
+        pulseaudio = {
+          format = "{volume}% {icon} {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-muted = " {format_source}";
+          format-source = "{volume}% ";
+          format-source-muted = "";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+          on-click = "pavucontrol";
+          on-click-right = "pkill -f pavucontrol";
+          scroll-step = 1;
+        };
       };
     };
     
@@ -376,6 +407,7 @@
       #cpu,
       #memory,
       #temperature,
+      #pulseaudio,
       #tray {
         padding: 0 10px;
         color: #ffffff;
@@ -421,5 +453,7 @@
     hyprpaper
     grim
     slurp
+    pavucontrol
+    libnotify
   ];
 }

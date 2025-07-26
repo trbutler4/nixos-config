@@ -58,6 +58,16 @@
   programs.hyprland.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
+  
+  # Audio configuration - PipeWire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
 
   # manually setting timezone -- for some reason automatic timezone was having troubles.
   time.timeZone = "America/Chicago";
