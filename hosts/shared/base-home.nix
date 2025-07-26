@@ -58,7 +58,7 @@
     enable = true;
     #enableZshIntegration = true;
     settings = {
-      theme = "everforest-dark-medium";
+      theme = "gruvbox-dark";
       default_layout = "compact";
       pane_frames = false;
       simplified_ui = true;
@@ -76,6 +76,19 @@
           cyan = "#83c092";
           white = "#d3c6aa";
           orange = "#e67e80";
+        };
+        gruvbox-dark = {
+          fg = "#ebdbb2";
+          bg = "#282828";
+          black = "#282828";
+          red = "#cc241d";
+          green = "#98971a";
+          yellow = "#d79921";
+          blue = "#458588";
+          magenta = "#b16286";
+          cyan = "#689d6a";
+          white = "#a89984";
+          orange = "#d65d0e";
         };
       };
     };
