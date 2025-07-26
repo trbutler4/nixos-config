@@ -50,8 +50,20 @@
           enable = true;
           fold = true;
           grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-            bash c html lua luadoc markdown vim vimdoc 
-            python nix typescript javascript rust go
+            bash
+            c
+            html
+            lua
+            luadoc
+            markdown
+            vim
+            vimdoc
+            python
+            nix
+            typescript
+            javascript
+            rust
+            go
           ];
         };
 
@@ -79,7 +91,12 @@
               keymap.preset = "default";
               appearance.nerd_font_variant = "mono";
               completion.documentation.auto_show = false;
-              sources.default = ["lsp" "path" "snippets" "buffer"];
+              sources.default = [
+                "lsp"
+                "path"
+                "snippets"
+                "buffer"
+              ];
               fuzzy.implementation = "prefer_rust_with_warning";
             };
           };
@@ -113,7 +130,7 @@
         binds = {
           whichKey = {
             enable = true;
-            setupOpts = {};
+            setupOpts = { };
           };
         };
 
@@ -131,64 +148,6 @@
         };
 
         undoFile.enable = true;
-
-        # Add custom plugins via extraPlugins
-        extraPlugins = with pkgs.vimPlugins; {
-
-          # Conform for formatting
-          conform-nvim = {
-            package = conform-nvim;
-            setup = ''
-              require('conform').setup({
-                notify_on_error = false,
-                format_on_save = function(bufnr)
-                  local disable_filetypes = { c = true, cpp = true }
-                  return {
-                    timeout_ms = 500,
-                    lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-                  }
-                end,
-                formatters_by_ft = {
-                  lua = { "stylua" },
-                  python = { "isort", "black" },
-                  javascript = { { "prettierd", "prettier" } },
-                },
-              })
-              
-              -- Format keybinding
-              vim.keymap.set('n', '<leader>f', function()
-                require('conform').format({ async = true, lsp_fallback = true })
-              end, { desc = '[F]ormat buffer' })
-            '';
-          };
-
-          # Fidget for LSP progress
-          fidget-nvim = {
-            package = fidget-nvim;
-            setup = ''require('fidget').setup({})'';
-          };
-
-          # Neodev for Lua LSP
-          neodev-nvim = {
-            package = neodev-nvim;
-            setup = ''require('neodev').setup({})'';
-          };
-
-          # Telescope extensions
-          telescope-fzf-native-nvim = {
-            package = telescope-fzf-native-nvim;
-            setup = ''
-              require('telescope').load_extension('fzf')
-            '';
-          };
-
-          telescope-ui-select-nvim = {
-            package = telescope-ui-select-nvim;
-            setup = ''
-              require('telescope').load_extension('ui-select')
-            '';
-          };
-        };
 
         # Custom LSP and Telescope keybindings
         maps = {
