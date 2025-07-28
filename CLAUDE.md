@@ -12,6 +12,8 @@ This is a NixOS configuration repository using flakes with Home Manager integrat
 - **Editor**: Neovim configured via nvf (Neovim flake)
 - **Package Management**: Nix flakes with Home Manager for user packages
 
+All config files (neovim, zellij, hyprland, etc.) are managed through nix. 
+
 ## Common Commands
 
 ### System Updates and Rebuilds
