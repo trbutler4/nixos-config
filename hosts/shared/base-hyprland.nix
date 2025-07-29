@@ -282,7 +282,7 @@
         
         modules-left = [ "hyprland/workspaces" "hyprland/mode"  "cpu" "memory" "temperature" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "tray" "battery" "clock" ];
+        modules-right = [ "custom/wallpaper"  "wireplumber"  "battery" "tray" "clock" ];
         
         "hyprland/mode" = {
           format = " {}";
@@ -295,19 +295,6 @@
         
         "hyprland/window" = {
           max-length = 80;
-          tooltip = false;
-        };
-        
-        mpris = {
-          format = "{player_icon} {artist} - {title}";
-          format-paused = "{player_icon} {artist} - {title}";
-          player-icons = {
-            default = "♪";
-            mpv = "▶";
-            vlc = "▶";
-          };
-          max-length = 20;
-          interval = 1;
           tooltip = false;
         };
         
