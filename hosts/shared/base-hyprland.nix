@@ -306,7 +306,7 @@
             mpv = "▶";
             vlc = "▶";
           };
-          max-length = 40;
+          max-length = 20;
           interval = 1;
           tooltip = false;
         };
