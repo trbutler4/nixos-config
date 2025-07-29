@@ -179,6 +179,7 @@
       exec-once = [
         "hyprpaper"
         "waybar"
+        "nm-applet"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -279,9 +280,9 @@
         position = "top";
         height = 30;
         
-        modules-left = [ "hyprland/workspaces" "hyprland/mode" "tray" "cpu" "memory" "temperature" "backlight" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/mode"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "tray" "battery" "clock" ];
         
         "hyprland/mode" = {
           format = " {}";
@@ -328,18 +329,6 @@
           tooltip = false;
         };
         
-        network = {
-          format = "{icon}";
-          format-alt = "{ipaddr}/{cidr} {icon}";
-          format-alt-click = "click-right";
-          format-icons = {
-            wifi = ["" "" ""];
-            ethernet = [""];
-            disconnected = [""];
-          };
-          tooltip = false;
-        };
-        
         wireplumber = {
           format = "{icon} {volume}%";
           format-muted = " Muted";
@@ -356,15 +345,6 @@
           format-icons = ["" ""];
           on-scroll-down = "light -A 1";
           on-scroll-up = "light -U 1";
-        };
-        
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          tooltip = false;
         };
         
         tray = {
@@ -443,7 +423,7 @@
         color: rgba(238, 46, 36, 1);
       }
       
-      #mode, #battery, #network, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper {
+      #mode, #battery, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper {
         margin: 0px 6px 0px 10px;
         min-width: 25px;
       }

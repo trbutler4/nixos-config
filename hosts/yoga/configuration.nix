@@ -101,6 +101,9 @@
   environment.systemPackages = with pkgs; [
     wget
 
+    # Network management
+    networkmanagerapplet
+
     # GNOME stuff
     gnome-themes-extra
     gnome-tweaks
