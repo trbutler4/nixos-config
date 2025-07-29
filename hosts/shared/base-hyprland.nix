@@ -447,36 +447,6 @@
     '';
   };
 
-  # Mako notification daemon configuration
-  services.mako = {
-    enable = true;
-    settings = {
-      background-color = "#1e1e2e";
-      border-color = "#585b70";
-      text-color = "#cdd6f4";
-      border-radius = 5;
-      border-size = 1;
-      default-timeout = 5000;
-    };
-    # Disable music/media notifications
-    extraConfig = ''
-      [app-name="Spotify"]
-      invisible=1
-      
-      [app-name="spotify"]
-      invisible=1
-      
-      [app-name="mpv"]
-      invisible=1
-      
-      [summary~=".*[Nn]ow [Pp]laying.*"]
-      invisible=1
-      
-      [summary~=".*[Mm]usic.*"]
-      invisible=1
-    '';
-  };
-
   # Hyprpaper configuration - wallpaper daemon
   services.hyprpaper = {
     enable = true;
