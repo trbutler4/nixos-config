@@ -280,7 +280,7 @@
         position = "top";
         height = 30;
         
-        modules-left = [ "hyprland/workspaces" "hyprland/mode"  "cpu" "memory" "temperature" "backlight" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/mode"  "cpu" "memory" "temperature" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "tray" "battery" "clock" ];
         
@@ -336,15 +336,6 @@
           scroll-step = 5;
           on-click = "pavucontrol";
           tooltip = false;
-        };
-        
-        backlight = {
-          format = "{icon}";
-          format-alt = "{percent}% {icon}";
-          format-alt-click = "click-right";
-          format-icons = ["" ""];
-          on-scroll-down = "light -A 1";
-          on-scroll-up = "light -U 1";
         };
         
         tray = {
