@@ -109,9 +109,6 @@
 
   programs.ghostty = {
     enable = true;
-    settings = {
-      background-opacity = 0.85;
-    };
   };
 
   programs.firefox.enable = true;
