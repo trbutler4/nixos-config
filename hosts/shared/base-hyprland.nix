@@ -381,7 +381,7 @@
       }
       
       #workspaces {
-        margin: 0 5px;
+        margin: 0px 8px;
       }
       
       #workspaces button {
@@ -402,18 +402,18 @@
         color: rgba(238, 46, 36, 1);
       }
       
-      #mode, #battery, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper {
-        margin: 0px 6px 0px 10px;
+      #mode, #battery, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper, #tray {
+        margin: 0px 8px;
         min-width: 25px;
       }
       
       #mpris {
-        margin: 0px 10px;
+        margin: 0px 8px;
         color: rgba(217, 216, 216, 0.9);
       }
       
       #clock {
-        margin: 0px 16px 0px 10px;
+        margin: 0px 8px;
         min-width: 140px;
       }
       
