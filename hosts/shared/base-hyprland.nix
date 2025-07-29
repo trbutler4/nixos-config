@@ -306,7 +306,7 @@
             mpv = "▶";
             vlc = "▶";
           };
-          max-length = 60;
+          max-length = 40;
           interval = 1;
           tooltip = false;
         };
@@ -364,7 +364,7 @@
         };
         
         "custom/wallpaper" = {
-          format = "  {}";
+          format = "   ";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
           on-click = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
           on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
