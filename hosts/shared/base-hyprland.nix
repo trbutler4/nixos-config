@@ -179,6 +179,7 @@
       exec-once = [
         "hyprpaper"
         "waybar"
+        "nm-applet"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -294,19 +295,6 @@
           tooltip = false;
         };
         
-        mpris = {
-          format = "{player_icon} {artist} - {title}";
-          format-paused = "{player_icon} {artist} - {title}";
-          player-icons = {
-            default = "♪";
-            mpv = "▶";
-            vlc = "▶";
-          };
-          max-length = 60;
-          interval = 1;
-          tooltip = false;
-        };
-        
         clock = {
           format = "{:%a %d %b %H:%M}";
           tooltip = false;
@@ -325,18 +313,6 @@
           tooltip = false;
         };
         
-        network = {
-          format = "{icon}";
-          format-alt = "{ipaddr}/{cidr} {icon}";
-          format-alt-click = "click-right";
-          format-icons = {
-            wifi = ["" "" ""];
-            ethernet = [""];
-            disconnected = [""];
-          };
-          tooltip = false;
-        };
-        
         wireplumber = {
           format = "{icon} {volume}%";
           format-muted = " Muted";
@@ -346,27 +322,9 @@
           tooltip = false;
         };
         
-        backlight = {
-          format = "{icon}";
-          format-alt = "{percent}% {icon}";
-          format-alt-click = "click-right";
-          format-icons = ["" ""];
-          on-scroll-down = "light -A 1";
-          on-scroll-up = "light -U 1";
-        };
-        
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          tooltip = false;
-        };
-        
         tray = {
           icon-size = 18;
-          spacing = 10;
+          spacing = 6;
         };
         
         cpu = {
@@ -391,7 +349,7 @@
         };
         
         "custom/wallpaper" = {
-          format = "  {}";
+          format = "   ";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
           on-click = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
           on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
@@ -433,7 +391,7 @@
       }
       
       #workspaces {
-        margin: 0 5px;
+        margin: 0px 8px;
       }
       
       #workspaces button {
@@ -454,18 +412,18 @@
         color: rgba(238, 46, 36, 1);
       }
       
-      #mode, #battery, #network, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper {
-        margin: 0px 6px 0px 10px;
+      #mode, #battery, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper, #tray {
+        margin: 0px 8px;
         min-width: 25px;
       }
       
       #mpris {
-        margin: 0px 10px;
+        margin: 0px 8px;
         color: rgba(217, 216, 216, 0.9);
       }
       
       #clock {
-        margin: 0px 16px 0px 10px;
+        margin: 0px 8px;
         min-width: 140px;
       }
       
@@ -484,36 +442,6 @@
       #temperature.critical {
         color: rgba(238, 46, 36, 1);
       }
-    '';
-  };
-
-  # Mako notification daemon configuration
-  services.mako = {
-    enable = true;
-    settings = {
-      background-color = "#1e1e2e";
-      border-color = "#585b70";
-      text-color = "#cdd6f4";
-      border-radius = 5;
-      border-size = 1;
-      default-timeout = 5000;
-    };
-    # Disable music/media notifications
-    extraConfig = ''
-      [app-name="Spotify"]
-      invisible=1
-      
-      [app-name="spotify"]
-      invisible=1
-      
-      [app-name="mpv"]
-      invisible=1
-      
-      [summary~=".*[Nn]ow [Pp]laying.*"]
-      invisible=1
-      
-      [summary~=".*[Mm]usic.*"]
-      invisible=1
     '';
   };
 
