@@ -27,6 +27,7 @@
     };
     shellAliases = {
       lg = "lazygit";
+      ldo = "lazydocker";
       z = "zellij";
       y = "yazi";
       nv = "nvim";
