@@ -102,7 +102,7 @@ nixos-config/
 
 ## Secret Management
 
-The configuration reads secrets from a non-encrypted YAML file at `~/.secrets/secrets.yaml`. Secrets are read directly using `yq` in shell scripts.
+The configuration uses environment variables for secrets, loaded from `~/.secrets/.env`. The `.env` file is automatically sourced in the shell initialization. Scripts and aliases reference environment variables directly.
 
 ## Important Notes
 
@@ -111,7 +111,7 @@ The configuration reads secrets from a non-encrypted YAML file at `~/.secrets/se
 - Hardware configuration is host-specific and rarely needs changes
 - nvf provides extensive plugin and language support - check documentation for available options
 - Home Manager configuration is integrated directly into the NixOS system configuration
-- Secrets are stored in plain text YAML format in `~/.secrets/secrets.yaml`
+- Secrets are stored as environment variables in `~/.secrets/.env`
 - Hyprland configuration is split between shared settings (`base-hyprland.nix`) and host-specific overrides
 - Waybar includes system monitoring (CPU, memory, temperature) and auto-starts with Hyprland
 - Multiple hosts are supported: `yoga` (laptop), `desktop`, and `lab`

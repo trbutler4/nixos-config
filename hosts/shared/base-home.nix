@@ -38,6 +38,11 @@
     };
     initContent = ''
       export EDITOR=nvim
+
+      # Source environment variables from .env file if it exists
+      if [ -f "$HOME/.secrets/.env" ]; then
+        source "$HOME/.secrets/.env"
+      fi
     '';
   };
 
@@ -120,26 +125,35 @@
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
     ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
-      IP=$(yq -r '.servers."suffix-labs"."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
-      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
-      if [ -z "$IP" ]; then
-        echo "Error: Could not read suffix-labs server IP from secrets"
+      # Source environment variables from .env file
+      if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
+        source "${config.home.homeDirectory}/.secrets/.env"
+      fi
+
+      if [ -z "$SUFFIX_STARKNET_IP" ]; then
+        echo "Error: SUFFIX_STARKNET_IP environment variable not set"
         exit 1
       fi
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
+
+      USER=''${SERVERS_DEFAULT_USER:-root}
+      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$SUFFIX_STARKNET_IP" "$@"
     '';
-    
+
     ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
-      IP=$(yq -r '.servers.ethchi."starknet-node".ip' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "")
-      USER=$(yq -r '.servers.defaultUser' "${config.home.homeDirectory}/.secrets/secrets.yaml" 2>/dev/null || echo "root")
-      if [ -z "$IP" ]; then
-        echo "Error: Could not read ethchi server IP from secrets"
+      # Source environment variables from .env file
+      if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
+        source "${config.home.homeDirectory}/.secrets/.env"
+      fi
+
+      if [ -z "$ETHCHI_STARKNET_IP" ]; then
+        echo "Error: ETHCHI_STARKNET_IP environment variable not set"
         exit 1
       fi
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$IP" "$@"
+
+      USER=''${SERVERS_DEFAULT_USER:-root}
+      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$ETHCHI_STARKNET_IP" "$@"
     '';
   in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
-    yq-go
     # essential
     gcc
     vim
@@ -184,7 +198,7 @@
     albert
     zoom-us
     ledger-live-desktop
-    
+
     # Bluetooth
     blueman
 
@@ -213,10 +227,10 @@
     foundry
     slither-analyzer
     solc
-    
+
     # Cursor theme
     vanilla-dmz
-    
+
   ]);
 
   # Cursor theme configuration
