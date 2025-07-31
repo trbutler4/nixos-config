@@ -184,6 +184,9 @@
     albert
     zoom-us
     ledger-live-desktop
+    
+    # Bluetooth
+    blueman
 
     #Nix
     nixd

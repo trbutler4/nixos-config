@@ -69,6 +69,13 @@
     wireplumber.enable = true;
   };
 
+  # Bluetooth configuration
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
   # manually setting timezone -- for some reason automatic timezone was having troubles.
   time.timeZone = "America/Chicago";
   services.automatic-timezoned.enable = false;

@@ -279,13 +279,10 @@
         position = "top";
         height = 30;
         
-        modules-left = [ "hyprland/workspaces" "hyprland/mode" "tray" "cpu" "memory" "temperature" "backlight" ];
+        modules-left = [ "hyprland/workspaces" "tray" "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "custom/wallpaper"  "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "mpris" "custom/wallpaper" "bluetooth" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
         
-        "hyprland/mode" = {
-          format = " {}";
-        };
         
         "hyprland/workspaces" = {
           format = "{name}";
@@ -369,6 +366,7 @@
         
         tray = {
           icon-size = 18;
+          spacing = 10;
         };
         
         cpu = {
@@ -401,6 +399,19 @@
           signal = 8;
           interval = "once";
           tooltip-format = "Click: Open wallpaper selector";
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-off = "󰂲";
+          format-no-controller = "󰂲";
+          interval = 30;
+          on-click = "blueman-manager";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
       };
     };
@@ -533,5 +544,6 @@
     pavucontrol
     libnotify
     playerctl
+    blueman
   ];
 }
