@@ -34,32 +34,28 @@
   # Enable Docker for Kubernetes
   virtualisation.docker.enable = true;
 
-  # Configure Kubernetes
-  services.kubernetes = {
-    roles = ["master" "node"];
-    masterAddress = "127.0.0.1";
-    easyCerts = true;
-    
-    kubelet = {
-      extraOpts = "--fail-swap-on=false";
-    };
-    
-    clusterCidr = "10.1.0.0/16";
+  # Configure k3s
+  services.k3s = {
+    enable = true;
+    role = "server";
+    extraFlags = toString [
+      "--write-kubeconfig-mode 0644"
+      "--cluster-init"
+      "--disable=traefik"
+    ];
   };
 
-  # Open necessary ports for Kubernetes
+  # Set KUBECONFIG environment variable
+  environment.variables = {
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+  };
+
+  # Open necessary ports for k3s
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      6443  # Kubernetes API server
-      2379  # etcd client
-      2380  # etcd peer
+      6443  # k3s API server
       10250 # kubelet
-      10251 # kube-scheduler
-      10252 # kube-controller-manager
-    ];
-    allowedUDPPorts = [
-      8472  # flannel
     ];
   };
 
