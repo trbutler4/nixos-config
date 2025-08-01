@@ -37,12 +37,37 @@
   # Configure Kubernetes
   services.kubernetes = {
     roles = ["master" "node"];
-    masterAddress = "lab.local";
+    masterAddress = "127.0.0.1";
     easyCerts = true;
     
     kubelet = {
       extraOpts = "--fail-swap-on=false";
     };
+    
+    # Configure etcd
+    etcd = {
+      listenClientUrls = ["http://127.0.0.1:2379"];
+      advertiseClientUrls = ["http://127.0.0.1:2379"];
+      listenPeerUrls = ["http://127.0.0.1:2380"];
+      initialAdvertisePeerUrls = ["http://127.0.0.1:2380"];
+      initialCluster = ["default=http://127.0.0.1:2380"];
+    };
+  };
+
+  # Open necessary ports for Kubernetes
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      6443  # Kubernetes API server
+      2379  # etcd client
+      2380  # etcd peer
+      10250 # kubelet
+      10251 # kube-scheduler
+      10252 # kube-controller-manager
+    ];
+    allowedUDPPorts = [
+      8472  # flannel
+    ];
   };
 
   time.timeZone = "America/Chicago";
