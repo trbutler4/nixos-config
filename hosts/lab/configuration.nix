@@ -127,6 +127,7 @@
     kubectl
     k9s
     kubernetes-helm
+    k3s
   ];
 
   system.stateVersion = "25.05";
