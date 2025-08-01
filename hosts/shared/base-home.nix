@@ -69,6 +69,12 @@
       pane_frames = false;
       simplified_ui = true;
       show_startup_tips = false;
+      keybinds = {
+        session = {
+          bind = "Ctrl y";
+        };
+        unbind = "Ctrl o";
+      };
       themes = {
         everforest-dark-medium = {
           fg = "#d3c6aa";
