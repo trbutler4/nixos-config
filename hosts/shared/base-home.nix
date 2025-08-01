@@ -158,6 +158,31 @@
     };
   };
 
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "typescript"
+      "rust"
+      "go"
+      "nix"
+      "html"
+    ];
+    userSettings = {
+      telemetry = {
+        metrics = false;
+        diagnostics = false;
+      };
+      vim_mode = true;
+      ui_font_size = 16;
+      buffer_font_size = 16;
+      theme = {
+        mode = "dark";
+        light = "One Light";
+        dark = "Gruvbox Dark Hard";
+      };
+    };
+  };
+
 
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
