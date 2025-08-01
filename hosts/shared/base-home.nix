@@ -251,7 +251,6 @@
       lazygit
       lazydocker
       yazi
-      fastfetch
       unzip
       fzf
       gnumake
