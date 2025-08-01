@@ -127,7 +127,7 @@
       editor = {
         line-number = "relative";
         color-modes = true;
-        rulers = [ 80 120 ];
+        # rulers = [ 80 120 ];
         
         cursor-shape = {
           insert = "bar";
