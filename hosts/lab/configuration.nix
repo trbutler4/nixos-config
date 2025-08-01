@@ -52,9 +52,7 @@
     advertiseClientUrls = ["http://127.0.0.1:2379"];
     listenPeerUrls = ["http://127.0.0.1:2380"];
     initialAdvertisePeerUrls = ["http://127.0.0.1:2380"];
-    initialCluster = {
-      "default" = "http://127.0.0.1:2380";
-    };
+    initialCluster = ["default=http://127.0.0.1:2380"];
   };
 
   # Open necessary ports for Kubernetes
