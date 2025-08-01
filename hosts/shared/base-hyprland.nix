@@ -280,9 +280,9 @@
         position = "top";
         height = 30;
         
-        modules-left = [ "hyprland/workspaces" "tray" "cpu" "memory" "temperature" "backlight" ];
+        modules-left = [ "hyprland/workspaces"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpris" "custom/wallpaper" "bluetooth" "wireplumber" "network" "idle_inhibitor" "battery" "clock" ];
+        modules-right = [ "custom/wallpaper" "bluetooth" "wireplumber" "battery" "tray" "clock" ];
         
         
         "hyprland/workspaces" = {
