@@ -43,14 +43,17 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
     };
-    
-    # Configure etcd
-    etcd = {
-      listenClientUrls = ["http://127.0.0.1:2379"];
-      advertiseClientUrls = ["http://127.0.0.1:2379"];
-      listenPeerUrls = ["http://127.0.0.1:2380"];
-      initialAdvertisePeerUrls = ["http://127.0.0.1:2380"];
-      initialCluster = ["default=http://127.0.0.1:2380"];
+  };
+
+  # Configure etcd separately
+  services.etcd = {
+    enable = true;
+    listenClientUrls = ["http://127.0.0.1:2379"];
+    advertiseClientUrls = ["http://127.0.0.1:2379"];
+    listenPeerUrls = ["http://127.0.0.1:2380"];
+    initialAdvertisePeerUrls = ["http://127.0.0.1:2380"];
+    initialCluster = {
+      "default" = "http://127.0.0.1:2380";
     };
   };
 
