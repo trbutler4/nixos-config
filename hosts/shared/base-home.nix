@@ -123,26 +123,37 @@
     enable = true;
     settings = {
       theme = "gruvbox_dark_hard";
-      
+
       editor = {
         line-number = "relative";
         color-modes = true;
         # rulers = [ 80 120 ];
-        
+
         cursor-shape = {
           insert = "bar";
           normal = "block";
           select = "underline";
         };
-        
+
         file-picker = {
           hidden = false;
         };
-        
+
         statusline = {
-          left = [ "mode" "spinner" "register" ];
+          left = [
+            "mode"
+            "spinner"
+            "register"
+          ];
           center = [ "file-name" ];
-          right = [ "diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
+          right = [
+            "diagnostics"
+            "selections"
+            "position"
+            "file-encoding"
+            "file-line-ending"
+            "file-type"
+          ];
           separator = "│";
           mode = {
             normal = "NORMAL";
@@ -150,7 +161,7 @@
             select = "SELECT";
           };
         };
-        
+
         lsp = {
           display-messages = true;
         };
@@ -164,6 +175,8 @@
       "typescript"
       "rust"
       "go"
+      "solidity"
+      "cairo"
       "nix"
       "html"
     ];
@@ -183,118 +196,123 @@
     };
   };
 
-
   # Create SSH wrapper scripts using writeShellScriptBin
-  home.packages = let
-    ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
-      # Source environment variables from .env file
-      if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
-        source "${config.home.homeDirectory}/.secrets/.env"
-      fi
+  home.packages =
+    let
+      ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
+        # Source environment variables from .env file
+        if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
+          source "${config.home.homeDirectory}/.secrets/.env"
+        fi
 
-      if [ -z "$SUFFIX_STARKNET_IP" ]; then
-        echo "Error: SUFFIX_STARKNET_IP environment variable not set"
-        exit 1
-      fi
+        if [ -z "$SUFFIX_STARKNET_IP" ]; then
+          echo "Error: SUFFIX_STARKNET_IP environment variable not set"
+          exit 1
+        fi
 
-      USER=''${SERVERS_DEFAULT_USER:-root}
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$SUFFIX_STARKNET_IP" "$@"
-    '';
+        USER=''${SERVERS_DEFAULT_USER:-root}
+        exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$SUFFIX_STARKNET_IP" "$@"
+      '';
 
-    ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
-      # Source environment variables from .env file
-      if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
-        source "${config.home.homeDirectory}/.secrets/.env"
-      fi
+      ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
+        # Source environment variables from .env file
+        if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
+          source "${config.home.homeDirectory}/.secrets/.env"
+        fi
 
-      if [ -z "$ETHCHI_STARKNET_IP" ]; then
-        echo "Error: ETHCHI_STARKNET_IP environment variable not set"
-        exit 1
-      fi
+        if [ -z "$ETHCHI_STARKNET_IP" ]; then
+          echo "Error: ETHCHI_STARKNET_IP environment variable not set"
+          exit 1
+        fi
 
-      USER=''${SERVERS_DEFAULT_USER:-root}
-      exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$ETHCHI_STARKNET_IP" "$@"
-    '';
-  in [ ssh-suffix-starknet ssh-ethchi-starknet ] ++ (with pkgs; [
-    # essential
-    gcc
-    vim
-    git
-    htop
-    tmux
-    cryptsetup
-    openssl
+        USER=''${SERVERS_DEFAULT_USER:-root}
+        exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$ETHCHI_STARKNET_IP" "$@"
+      '';
+    in
+    [
+      ssh-suffix-starknet
+      ssh-ethchi-starknet
+    ]
+    ++ (with pkgs; [
+      # essential
+      gcc
+      vim
+      git
+      htop
+      tmux
+      cryptsetup
+      openssl
 
-    # Terminal Programs
-    htop
-    helix
-    tmux
-    zellij
-    lazygit
-    lazydocker
-    yazi
-    fastfetch
-    unzip
-    fzf
-    gnumake
-    claude-code
-    asdf-vm
-    postgresql
-    wl-clipboard
-    ripgrep
-    jq
-    doctl # digital ocean cli
+      # Terminal Programs
+      htop
+      helix
+      tmux
+      zellij
+      lazygit
+      lazydocker
+      yazi
+      fastfetch
+      unzip
+      fzf
+      gnumake
+      claude-code
+      asdf-vm
+      postgresql
+      wl-clipboard
+      ripgrep
+      jq
+      doctl # digital ocean cli
 
-    # GUI Apps
-    brave
-    zed-editor
-    obs-studio
-    spotify
-    telegram-desktop
-    alacritty
-    ghostty
-    libreoffice-still
-    gimp3
-    discord
-    gedit
-    albert
-    zoom-us
-    ledger-live-desktop
+      # GUI Apps
+      brave
+      zed-editor
+      obs-studio
+      spotify
+      telegram-desktop
+      alacritty
+      ghostty
+      libreoffice-still
+      gimp3
+      discord
+      gedit
+      albert
+      zoom-us
+      ledger-live-desktop
 
-    # Bluetooth
-    blueman
+      # Bluetooth
+      blueman
 
-    #Nix
-    nixd
-    nil
-    # Node/Typescript
-    nodejs_24
-    bun
-    yarn
-    pnpm
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    # Python
-    python3
-    uv
-    # Go
-    go
-    gopls
-    delve
-    golangci-lint
-    golangci-lint-langserver
-    # Rust
-    rustup
-    # EVM
-    foundry
-    slither-analyzer
-    solc
+      #Nix
+      nixd
+      nil
+      # Node/Typescript
+      nodejs_24
+      bun
+      yarn
+      pnpm
+      typescript
+      typescript-language-server
+      vscode-langservers-extracted
+      # Python
+      python3
+      uv
+      # Go
+      go
+      gopls
+      delve
+      golangci-lint
+      golangci-lint-langserver
+      # Rust
+      rustup
+      # EVM
+      foundry
+      slither-analyzer
+      solc
 
-    # Cursor theme
-    vanilla-dmz
+      # Cursor theme
+      vanilla-dmz
 
-  ]);
+    ]);
 
   # Cursor theme configuration
   home.pointerCursor = {
