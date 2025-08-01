@@ -31,6 +31,20 @@
     };
   };
 
+  # Enable Docker for Kubernetes
+  virtualisation.docker.enable = true;
+
+  # Configure Kubernetes
+  services.kubernetes = {
+    roles = ["master" "node"];
+    masterAddress = "lab.local";
+    easyCerts = true;
+    
+    kubelet = {
+      extraOpts = "--fail-swap-on=false";
+    };
+  };
+
   time.timeZone = "America/Chicago";
 
   # Define a user account
@@ -40,6 +54,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNmAMyn+wZCQo8QrH1VoZSfJlgq77wR+duA/Ho+m08X trbiv@nixos"
@@ -89,6 +104,11 @@
     
     # Process management
     nodePackages.pm2
+    
+    # Kubernetes tools
+    kubectl
+    k9s
+    kubernetes-helm
   ];
 
   system.stateVersion = "25.05";
