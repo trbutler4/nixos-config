@@ -266,6 +266,7 @@
 
     #Nix
     nixd
+    nil
     # Node/Typescript
     nodejs_24
     bun
