@@ -119,6 +119,45 @@
 
   programs.firefox.enable = true;
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "gruvbox_dark_hard";
+      
+      editor = {
+        line-number = "relative";
+        color-modes = true;
+        rulers = [ 80 120 ];
+        
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        
+        file-picker = {
+          hidden = false;
+        };
+        
+        statusline = {
+          left = [ "mode" "spinner" "register" ];
+          center = [ "file-name" ];
+          right = [ "diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
+          separator = "│";
+          mode = {
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
+          };
+        };
+        
+        lsp = {
+          display-messages = true;
+        };
+      };
+    };
+  };
+
 
   # Create SSH wrapper scripts using writeShellScriptBin
   home.packages = let
