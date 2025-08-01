@@ -44,9 +44,7 @@
       extraOpts = "--fail-swap-on=false";
     };
     
-    # Use single-node cluster mode
     clusterCidr = "10.1.0.0/16";
-    serviceCidr = "10.0.0.0/24";
   };
 
   # Open necessary ports for Kubernetes
