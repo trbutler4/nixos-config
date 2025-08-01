@@ -43,16 +43,10 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
     };
-  };
-
-  # Configure etcd separately
-  services.etcd = {
-    enable = true;
-    listenClientUrls = ["http://127.0.0.1:2379"];
-    advertiseClientUrls = ["http://127.0.0.1:2379"];
-    listenPeerUrls = ["http://127.0.0.1:2380"];
-    initialAdvertisePeerUrls = ["http://127.0.0.1:2380"];
-    initialCluster = ["default=http://127.0.0.1:2380"];
+    
+    # Use single-node cluster mode
+    clusterCidr = "10.1.0.0/16";
+    serviceCidr = "10.0.0.0/24";
   };
 
   # Open necessary ports for Kubernetes
