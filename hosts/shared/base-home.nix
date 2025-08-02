@@ -272,6 +272,8 @@
       ripgrep
       jq
       doctl # digital ocean cli
+      kubectl # kubernetes cli
+      k9s
 
       # GUI Apps
       brave
