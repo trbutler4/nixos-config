@@ -89,10 +89,10 @@
       
       # General window management - follows default config
       general = {
-        gaps_in = 5;
+        gaps_in = 3;
         gaps_out = 2;
-        border_size = 1;
-        "col.active_border" = "rgba(888888cc)";
+        border_size = 3;
+        "col.active_border" = "rgba(ffffffff)";
         "col.inactive_border" = "rgba(44444488)";
         resize_on_border = false;
         allow_tearing = false;
@@ -281,7 +281,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
-        height = 18;
+        height = 26;
         
         modules-left = [ "hyprland/workspaces"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
