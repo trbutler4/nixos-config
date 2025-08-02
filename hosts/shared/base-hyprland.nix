@@ -252,7 +252,7 @@
         "$mod SHIFT, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev"
         
         # Toggle waybar
-        "$mod, F11, exec, pkill -SIGUSR1 waybar"
+        "$mod, V, exec, pkill -SIGUSR1 waybar"
       ];
       
       # Audio control bindings
