@@ -90,7 +90,7 @@
       # General window management - follows default config
       general = {
         gaps_in = 5;
-        gaps_out = 8;
+        gaps_out = 2;
         border_size = 1;
         "col.active_border" = "rgba(888888cc)";
         "col.inactive_border" = "rgba(44444488)";
@@ -278,7 +278,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
-        height = 30;
+        height = 24;
         
         modules-left = [ "hyprland/workspaces"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
@@ -377,70 +377,168 @@
     style = ''
       * {
         border: none;
-        border-radius: 0;
-        font-family: Sans;
-        font-size: 15px;
+        border-radius: 6px;
+        font-family: "SF Pro Display", "Helvetica Neue", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
         box-shadow: none;
         text-shadow: none;
-        transition-duration: 0s;
+        transition-duration: 200ms;
       }
       
       window {
-        color: rgba(217, 216, 216, 1);
-        background: rgba(35, 31, 32, 0.85);
+        color: #d4d4d8;
+        background: transparent;
+        border-radius: 0;
       }
       
+      /* Left modules with separators */
       #workspaces {
-        margin: 0px 8px;
+        margin: 1px 6px 1px 4px;
+        padding: 0 3px;
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        border-radius: 6px;
       }
       
       #workspaces button {
-        padding: 0 5px;
-        color: rgba(217, 216, 216, 0.4);
+        padding: 2px 6px;
+        margin: 0 1px;
+        color: rgba(212, 212, 216, 0.6);
+        border-radius: 3px;
+        transition: all 200ms ease;
       }
       
       #workspaces button.visible {
-        color: rgba(217, 216, 216, 1);
+        color: #d4d4d8;
+        background: rgba(63, 63, 70, 0.6);
       }
       
       #workspaces button.focused {
-        border-top: 3px solid rgba(217, 216, 216, 1);
-        border-bottom: 3px solid rgba(217, 216, 216, 0);
+        color: #ffffff;
+        background: rgba(99, 102, 241, 0.8);
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
       }
       
       #workspaces button.urgent {
-        color: rgba(238, 46, 36, 1);
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.2);
       }
       
-      #mode, #battery, #wireplumber, #idle_inhibitor, #backlight, #cpu, #memory, #temperature, #custom-wallpaper, #tray {
-        margin: 0px 8px;
-        min-width: 25px;
+      /* System info modules - left side */
+      #cpu, #memory, #temperature, #backlight {
+        margin: 1px 1px;
+        padding: 0 3px;
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        border-radius: 4px;
+        min-width: 40px;
+        color: #d4d4d8;
       }
       
-      #mpris {
-        margin: 0px 8px;
-        color: rgba(217, 216, 216, 0.9);
+      #cpu {
+        color: #d4d4d8;
+      }
+      
+      #memory {
+        color: #d4d4d8;
+      }
+      
+      #temperature {
+        color: #d4d4d8;
+      }
+      
+      #backlight {
+        color: #d4d4d8;
+      }
+      
+      /* Center window title */
+      #window {
+        margin: 1px 8px;
+        padding: 0 6px;
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        border-radius: 4px;
+        color: #a1a1aa;
+        font-weight: 400;
+      }
+      
+      /* Right modules with separators */
+      #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock {
+        margin: 1px 1px;
+        padding: 0 3px;
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        border-radius: 4px;
+        min-width: 32px;
+        color: #d4d4d8;
+      }
+      
+      #custom-wallpaper {
+        color: #d4d4d8;
+        margin-left: 4px;
+      }
+      
+      #bluetooth {
+        color: #d4d4d8;
+      }
+      
+      #wireplumber {
+        color: #d4d4d8;
+      }
+      
+      #battery {
+        color: #d4d4d8;
+        min-width: 60px;
+      }
+      
+      #tray {
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        padding: 0 3px;
       }
       
       #clock {
-        margin: 0px 8px;
-        min-width: 140px;
+        margin-right: 4px;
+        padding: 0 6px;
+        background: rgba(39, 39, 42, 0.8);
+        border: 1px solid rgba(63, 63, 70, 0.3);
+        color: #d4d4d8;
+        font-weight: 600;
+        min-width: 100px;
       }
       
+      /* Battery states */
       #battery.warning {
-        color: rgba(255, 210, 4, 1);
+        color: #f59e0b;
+        border-color: rgba(245, 158, 11, 0.8);
+        border-width: 2px;
       }
       
       #battery.critical {
-        color: rgba(238, 46, 36, 1);
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.8);
+        border-width: 2px;
+        animation: blink 1s linear infinite alternate;
       }
       
       #battery.charging {
-        color: rgba(217, 216, 216, 1);
+        color: #10b981;
+        border-color: rgba(16, 185, 129, 0.8);
+        border-width: 2px;
       }
       
       #temperature.critical {
-        color: rgba(238, 46, 36, 1);
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.8);
+        border-width: 2px;
+        animation: blink 1s linear infinite alternate;
+      }
+      
+      @keyframes blink {
+        to {
+          opacity: 0.5;
+        }
       }
     '';
   };
