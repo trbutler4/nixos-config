@@ -90,10 +90,8 @@
       # General window management - follows default config
       general = {
         gaps_in = 3;
-        gaps_out = 2;
-        border_size = 3;
-        "col.active_border" = "rgba(ffffffff)";
-        "col.inactive_border" = "rgba(44444488)";
+        gaps_out = 6;
+        border_size = 0;
         resize_on_border = false;
         allow_tearing = false;
         layout = "master";
@@ -102,7 +100,7 @@
       # Decoration - follows default config
       decoration = {
         active_opacity = 1.0;
-        inactive_opacity = 1.0;
+        inactive_opacity = 0.9;
         
         shadow = {
           enabled = true;
@@ -271,6 +269,12 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+
+      # Window rules for clean appearance
+      windowrulev2 = [
+        "bordersize 0,class:.*"
+        "rounding 8,class:.*"
+      ];
     };
   };
 
@@ -397,18 +401,18 @@
       
       /* Left modules with separators */
       #workspaces {
-        margin: 0px 4px 0px 2px;
+        margin: 4px 10px 0px 6px;
         padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 2px;
+        border-radius: 8px;
       }
       
       #workspaces button {
         padding: 0px 3px;
         margin: 0;
         color: rgba(212, 212, 216, 0.6);
-        border-radius: 1px;
+        border-radius: 6px;
         transition: all 200ms ease;
       }
       
@@ -430,11 +434,11 @@
       
       /* System info modules - left side */
       #cpu, #memory, #temperature, #backlight {
-        margin: 0px;
+        margin: 4px 4px 0px 4px;
         padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 1px;
+        border-radius: 8px;
         min-width: 26px;
         color: #d4d4d8;
       }
@@ -457,29 +461,29 @@
       
       /* Center window title */
       #window {
-        margin: 0px 6px;
+        margin: 4px 12px 0px 12px;
         padding: 0 4px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 1px;
+        border-radius: 8px;
         color: #a1a1aa;
         font-weight: 400;
       }
       
       /* Right modules with separators */
       #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock {
-        margin: 0px;
+        margin: 4px 4px 0px 4px;
         padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 1px;
+        border-radius: 8px;
         min-width: 20px;
         color: #d4d4d8;
       }
       
       #custom-wallpaper {
         color: #d4d4d8;
-        margin-left: 2px;
+        margin: 4px 4px 0px 6px;
       }
       
       #bluetooth {
@@ -502,7 +506,7 @@
       }
       
       #clock {
-        margin-right: 2px;
+        margin: 4px 6px 0px 4px;
         padding: 0 3px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
