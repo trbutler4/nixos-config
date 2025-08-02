@@ -197,8 +197,8 @@
         diagnostics = false;
       };
       vim_mode = true;
-      ui_font_size = 16;
-      buffer_font_size = 18;
+      ui_font_size = 14;
+      buffer_font_size = 16;
       theme = {
         mode = "dark";
         light = "One Light";
