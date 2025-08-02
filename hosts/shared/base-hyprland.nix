@@ -285,7 +285,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
-        height = 26;
+        height = 30;
         
         modules-left = [ "hyprland/workspaces"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
