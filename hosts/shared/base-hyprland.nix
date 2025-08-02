@@ -177,7 +177,8 @@
       exec-once = [
         "hyprpaper"
         "waybar"
-        "nm-applet"
+        "nm-applet" 
+        "swayidle -w timeout 1200 'swaylock' timeout 1800 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock'"
         "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
       ];
@@ -253,6 +254,9 @@
         
         # Toggle waybar
         "$mod, F11, exec, pkill -SIGUSR1 waybar"
+        
+        # Lock screen
+        "$mod, X, exec, swaylock"
       ];
       
       # Audio control bindings
@@ -578,5 +582,6 @@
     libnotify
     playerctl
     blueman
+    swayidle
   ];
 }

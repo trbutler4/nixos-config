@@ -59,6 +59,24 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   
+  # Enable swaylock with PAM support
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
+
+  # Add setuid wrapper for swaylock
+  security.wrappers = {
+    swaylock = {
+      source = "${pkgs.swaylock-effects}/bin/swaylock";
+      capabilities = "cap_sys_admin+ep";
+      owner = "root";
+      group = "root";
+      permissions = "u+rx,g+x,o+x";
+    };
+  };
+  
   # Audio configuration - PipeWire
   security.rtkit.enable = true;
   services.pipewire = {

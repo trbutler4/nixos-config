@@ -59,6 +59,8 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   
+  
+  
   # Audio configuration - PipeWire
   security.rtkit.enable = true;
   services.pipewire = {
