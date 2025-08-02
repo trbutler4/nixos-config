@@ -252,6 +252,9 @@
         # Wallpaper switching
         "$mod, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next"
         "$mod SHIFT, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev"
+        
+        # Toggle waybar
+        "$mod, F11, exec, pkill -SIGUSR1 waybar"
       ];
       
       # Audio control bindings
@@ -278,7 +281,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
-        height = 24;
+        height = 18;
         
         modules-left = [ "hyprland/workspaces"  "cpu" "memory" "temperature" "backlight" ];
         modules-center = [ "hyprland/window" ];
@@ -377,9 +380,9 @@
     style = ''
       * {
         border: none;
-        border-radius: 6px;
-        font-family: "SF Pro Display", "Helvetica Neue", sans-serif;
-        font-size: 13px;
+        border-radius: 1px;
+        font-family: "0xProto", monospace;
+        font-size: 16px;
         font-weight: 500;
         box-shadow: none;
         text-shadow: none;
@@ -394,18 +397,18 @@
       
       /* Left modules with separators */
       #workspaces {
-        margin: 1px 6px 1px 4px;
-        padding: 0 3px;
+        margin: 0px 4px 0px 2px;
+        padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 6px;
+        border-radius: 2px;
       }
       
       #workspaces button {
-        padding: 2px 6px;
-        margin: 0 1px;
+        padding: 0px 3px;
+        margin: 0;
         color: rgba(212, 212, 216, 0.6);
-        border-radius: 3px;
+        border-radius: 1px;
         transition: all 200ms ease;
       }
       
@@ -427,12 +430,12 @@
       
       /* System info modules - left side */
       #cpu, #memory, #temperature, #backlight {
-        margin: 1px 1px;
-        padding: 0 3px;
+        margin: 0px;
+        padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 4px;
-        min-width: 40px;
+        border-radius: 1px;
+        min-width: 26px;
         color: #d4d4d8;
       }
       
@@ -454,29 +457,29 @@
       
       /* Center window title */
       #window {
-        margin: 1px 8px;
-        padding: 0 6px;
+        margin: 0px 6px;
+        padding: 0 4px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 4px;
+        border-radius: 1px;
         color: #a1a1aa;
         font-weight: 400;
       }
       
       /* Right modules with separators */
       #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock {
-        margin: 1px 1px;
-        padding: 0 3px;
+        margin: 0px;
+        padding: 0 2px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 4px;
-        min-width: 32px;
+        border-radius: 1px;
+        min-width: 20px;
         color: #d4d4d8;
       }
       
       #custom-wallpaper {
         color: #d4d4d8;
-        margin-left: 4px;
+        margin-left: 2px;
       }
       
       #bluetooth {
@@ -495,17 +498,17 @@
       #tray {
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
-        padding: 0 3px;
+        padding: 0 2px;
       }
       
       #clock {
-        margin-right: 4px;
-        padding: 0 6px;
+        margin-right: 2px;
+        padding: 0 3px;
         background: rgba(39, 39, 42, 0.8);
         border: 1px solid rgba(63, 63, 70, 0.3);
         color: #d4d4d8;
         font-weight: 600;
-        min-width: 100px;
+        min-width: 70px;
       }
       
       /* Battery states */
