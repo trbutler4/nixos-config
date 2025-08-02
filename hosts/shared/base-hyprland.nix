@@ -308,8 +308,8 @@
         };
         
         battery = {
-          format = "{capacity}% {icon}";
-          format-alt = "{time} {icon}";
+          format = "{capacity}% {icon} ";
+          format-alt = "{time} {icon} ";
           format-icons = ["" "" "" "" ""];
           format-charging = "{capacity}% ";
           interval = 30;
