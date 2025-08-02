@@ -66,7 +66,7 @@
     settings = {
       theme = "gruvbox-dark";
       default_layout = "compact";
-      pane_frames = false;
+      #pane_frames = false;
       simplified_ui = true;
       show_startup_tips = false;
       keybinds.normal._children = [
