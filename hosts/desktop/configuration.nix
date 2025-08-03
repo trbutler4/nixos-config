@@ -100,6 +100,16 @@
     shell = pkgs.zsh;
   };
 
+  users.users.guest = {
+    isNormalUser = true;
+    description = "Guest User";
+    extraGroups = [
+      "networkmanager"
+    ];
+    shell = pkgs.zsh;
+    hashedPassword = "";
+  };
+
   # needed for udev rules to connect to ledger device
   hardware.ledger.enable = true;
 

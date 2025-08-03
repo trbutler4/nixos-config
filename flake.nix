@@ -64,6 +64,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.trbiv = import ./hosts/desktop/home.nix;
+              home-manager.users.guest = import ./hosts/desktop/guest-home.nix;
             }
           ];
         };
