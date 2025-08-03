@@ -253,10 +253,7 @@
         "$mod SHIFT, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev"
         
         # Toggle waybar
-        "$mod, F11, exec, pkill -SIGUSR1 waybar"
-        
-        # Lock screen
-        "$mod, X, exec, swaylock"
+        "$mod, V, exec, pkill -SIGUSR1 waybar"
       ];
       
       # Audio control bindings
@@ -312,8 +309,8 @@
         };
         
         battery = {
-          format = "{capacity}% {icon}";
-          format-alt = "{time} {icon}";
+          format = "{capacity}% {icon} ";
+          format-alt = "{time} {icon} ";
           format-icons = ["" "" "" "" ""];
           format-charging = "{capacity}% ";
           interval = 30;

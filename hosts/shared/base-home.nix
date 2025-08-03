@@ -81,19 +81,6 @@
       ];
       keybinds.unbind = [ "Ctrl o" ];
       themes = {
-        everforest-dark-medium = {
-          fg = "#d3c6aa";
-          bg = "#2d353b";
-          black = "#4a555b";
-          red = "#ec5f67";
-          green = "#a7c080";
-          yellow = "#dbbc7f";
-          blue = "#7fbbb3";
-          magenta = "#d699b6";
-          cyan = "#83c092";
-          white = "#d3c6aa";
-          orange = "#e67e80";
-        };
         gruvbox-dark = {
           fg = "#ebdbb2";
           bg = "#282828";
@@ -116,7 +103,7 @@
     settings = {
       window = {
         decorations = "None";
-        opacity = 0.90;
+        opacity = 0.95;
       };
       colors = {
         transparent_background_colors = true;
@@ -197,8 +184,8 @@
         diagnostics = false;
       };
       vim_mode = true;
-      ui_font_size = 16;
-      buffer_font_size = 18;
+      ui_font_size = 14;
+      buffer_font_size = 14;
       theme = {
         mode = "dark";
         light = "One Light";
