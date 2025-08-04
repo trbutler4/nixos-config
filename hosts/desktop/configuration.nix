@@ -54,10 +54,6 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   
-  # COSMIC desktop environment
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-  
   # Hyprland window manager
   programs.hyprland.enable = true;
   services.printing.enable = true;
