@@ -107,11 +107,11 @@
   users.users.guest = {
     isNormalUser = true;
     description = "Guest User";
-    extraGroups = [
-      "networkmanager"
-    ];
+    extraGroups = [ "networkmanager" ];
     shell = pkgs.zsh;
-    hashedPassword = "";
+    hashedPassword = null; # No password login (more secure than empty string)
+    home = "/home/guest";
+    createHome = true;
   };
 
   # needed for udev rules to connect to ledger device

@@ -11,4 +11,8 @@
     ../shared/nvf.nix
     ./hyprland.nix
   ];
+
+  home.username = "trbiv";
+  home.homeDirectory = "/home/trbiv";
+  home.stateVersion = "25.05";
 }

@@ -9,8 +9,7 @@
     #../shared/nvf.nix
   ];
 
-  home.username = "trbiv";
-  home.homeDirectory = "/home/trbiv";
+  # Username and homeDirectory should be set by the importing configuration
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
 
