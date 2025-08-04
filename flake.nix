@@ -2,8 +2,9 @@
   description = "NixOS configuration for multiple hosts";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "nixos-cosmic/nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +20,7 @@
     {
       nixpkgs,
       nixpkgs-stable,
+      nixos-cosmic,
       home-manager,
       nvf,
       ...
@@ -57,6 +59,13 @@
         desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
             ./hosts/desktop/configuration.nix
             home-manager.nixosModules.default
             {
