@@ -102,10 +102,6 @@
     settings = {
       window = {
         decorations = "None";
-        opacity = 0.95;
-      };
-      colors = {
-        transparent_background_colors = true;
       };
     };
   };
