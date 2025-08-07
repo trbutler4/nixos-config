@@ -53,6 +53,8 @@
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  services.udev.packages = with pkgs; [ vial via gnome-settings-daemon ];
   
   # COSMIC desktop environment
   services.desktopManager.cosmic.enable = true;
@@ -139,7 +141,6 @@
     home-manager
   ];
 
-  services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
   virtualisation.docker = {
     enable = true;
