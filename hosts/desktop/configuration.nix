@@ -51,8 +51,6 @@
   ];
 
   services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
   
   # COSMIC desktop environment
   services.desktopManager.cosmic.enable = true;
@@ -130,16 +128,13 @@
     # Network management
     networkmanagerapplet
 
-    # GNOME stuff
-    gnome-themes-extra
-    gnome-tweaks
+    # Desktop theming
     adwaita-icon-theme
 
     # Nix stuff
     home-manager
   ];
 
-  services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
   virtualisation.docker = {
     enable = true;
