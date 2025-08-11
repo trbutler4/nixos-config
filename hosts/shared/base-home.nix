@@ -54,12 +54,9 @@
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host suffix-lab-internal
-        HostName $SUFFIX_LAB_IP_INTERNAL
-        User $SUFFIX_LAB_USER
-    '';
   };
+
+  home.file.".ssh/config".source = "${config.home.homeDirectory}/.secrets/ssh_config";
 
   programs.zellij = {
     enable = true;
