@@ -55,13 +55,9 @@
   programs.ssh = {
     enable = true;
     extraConfig = ''
-      Host suffix-lab
-        HostName $SUFFIX_LAB_IP
+      Host suffix-lab-internal
+        HostName $SUFFIX_LAB_IP_INTERNAL
         User $SUFFIX_LAB_USER
-
-      Host ethchi-starknet
-        HostName $ETHCHI_STARKNET_IP
-        User $SERVERS_DEFAULT_USER
     '';
   };
 
