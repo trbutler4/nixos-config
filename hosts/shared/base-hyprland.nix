@@ -220,7 +220,6 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
 
         # Window manipulation
-        "$mod, S, togglesplit,"
         "$mod, O, layoutmsg, orientationnext"
         "$mod, G, togglefloating,"
         "$mod, M, fullscreen, 0"
@@ -243,6 +242,9 @@
 
         # Toggle waybar
         "$mod, V, exec, pkill -SIGUSR1 waybar"
+        
+        # Screenshots
+        "$mod, S, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
       ];
 
       # Audio control bindings
