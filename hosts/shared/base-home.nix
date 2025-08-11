@@ -30,9 +30,6 @@
       z = "zellij";
       y = "yazi";
       nv = "nvim";
-      # Server SSH aliases - using wrapper scripts
-      suffix-ssh = "ssh-suffix-starknet";
-      ethchi-ssh = "ssh-ethchi-starknet";
       # Alias management
       aliases = "alias | fzf";
     };
@@ -57,6 +54,19 @@
 
   programs.ssh = {
     enable = true;
+    extraConfig = ''
+      Host suffix-starknet
+        HostName $SUFFIX_STARKNET_IP
+        User $SERVERS_DEFAULT_USER
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+
+      Host ethchi-starknet
+        HostName $ETHCHI_STARKNET_IP
+        User $SERVERS_DEFAULT_USER
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+    '';
   };
 
   programs.zellij = {
@@ -210,124 +220,86 @@
     };
   };
 
-  # Create SSH wrapper scripts using writeShellScriptBin
-  home.packages =
-    let
-      ssh-suffix-starknet = pkgs.writeShellScriptBin "ssh-suffix-starknet" ''
-        # Source environment variables from .env file
-        if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
-          source "${config.home.homeDirectory}/.secrets/.env"
-        fi
+  home.packages = with pkgs; [
+    # essential
+    gcc
+    vim
+    git
+    htop
+    tmux
+    cryptsetup
+    openssl
 
-        if [ -z "$SUFFIX_STARKNET_IP" ]; then
-          echo "Error: SUFFIX_STARKNET_IP environment variable not set"
-          exit 1
-        fi
+    # Terminal Programs
+    htop
+    helix
+    tmux
+    zellij
+    lazygit
+    lazydocker
+    yazi
+    unzip
+    fzf
+    gnumake
+    claude-code
+    asdf-vm
+    postgresql
+    wl-clipboard
+    ripgrep
+    jq
+    doctl # digital ocean cli
+    kubectl # kubernetes cli
+    k9s
 
-        USER=''${SERVERS_DEFAULT_USER:-root}
-        exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$SUFFIX_STARKNET_IP" "$@"
-      '';
+    # GUI Apps
+    brave
+    zed-editor
+    obs-studio
+    spotify
+    telegram-desktop
+    alacritty
+    ghostty
+    libreoffice-still
+    gimp3
+    discord
+    gedit
+    albert
+    zoom-us
+    ledger-live-desktop
 
-      ssh-ethchi-starknet = pkgs.writeShellScriptBin "ssh-ethchi-starknet" ''
-        # Source environment variables from .env file
-        if [ -f "${config.home.homeDirectory}/.secrets/.env" ]; then
-          source "${config.home.homeDirectory}/.secrets/.env"
-        fi
+    # Bluetooth
+    blueman
 
-        if [ -z "$ETHCHI_STARKNET_IP" ]; then
-          echo "Error: ETHCHI_STARKNET_IP environment variable not set"
-          exit 1
-        fi
+    #Nix
+    nixd
+    nil
+    # Node/Typescript
+    nodejs_24
+    bun
+    yarn
+    pnpm
+    typescript
+    typescript-language-server
+    vscode-langservers-extracted
+    # Python
+    python3
+    uv
+    # Go
+    go
+    gopls
+    delve
+    golangci-lint
+    golangci-lint-langserver
+    # Rust
+    rustup
+    # EVM
+    foundry
+    slither-analyzer
+    solc
 
-        USER=''${SERVERS_DEFAULT_USER:-root}
-        exec ${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$USER"@"$ETHCHI_STARKNET_IP" "$@"
-      '';
-    in
-    [
-      ssh-suffix-starknet
-      ssh-ethchi-starknet
-    ]
-    ++ (with pkgs; [
-      # essential
-      gcc
-      vim
-      git
-      htop
-      tmux
-      cryptsetup
-      openssl
-
-      # Terminal Programs
-      htop
-      helix
-      tmux
-      zellij
-      lazygit
-      lazydocker
-      yazi
-      unzip
-      fzf
-      gnumake
-      claude-code
-      asdf-vm
-      postgresql
-      wl-clipboard
-      ripgrep
-      jq
-      doctl # digital ocean cli
-      kubectl # kubernetes cli
-      k9s
-
-      # GUI Apps
-      brave
-      zed-editor
-      obs-studio
-      spotify
-      telegram-desktop
-      alacritty
-      ghostty
-      libreoffice-still
-      gimp3
-      discord
-      gedit
-      albert
-      zoom-us
-      ledger-live-desktop
-
-      # Bluetooth
-      blueman
-
-      #Nix
-      nixd
-      nil
-      # Node/Typescript
-      nodejs_24
-      bun
-      yarn
-      pnpm
-      typescript
-      typescript-language-server
-      vscode-langservers-extracted
-      # Python
-      python3
-      uv
-      # Go
-      go
-      gopls
-      delve
-      golangci-lint
-      golangci-lint-langserver
-      # Rust
-      rustup
-      # EVM
-      foundry
-      slither-analyzer
-      solc
-
-      # Cursor theme
-      vanilla-dmz
-
-    ]);
+    # Cursor theme
+    vanilla-dmz
+  ];
 
   # Cursor theme configuration
   home.pointerCursor = {
