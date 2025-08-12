@@ -577,14 +577,6 @@
     settings = {
       ipc = "on";
       splash = false;
-
-      preload = [
-        "/home/trbiv/nixos-config/assets/wallpapers/hyprland-bg.jpg"
-      ];
-
-      wallpaper = [
-        ",/home/trbiv/nixos-config/assets/wallpapers/hyprland-bg.jpg"
-      ];
     };
   };
 
