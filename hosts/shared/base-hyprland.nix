@@ -277,7 +277,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
-        height = 30;
+        height = 24;
 
         modules-left = [
           "hyprland/workspaces"
@@ -407,34 +407,35 @@
         border: none;
         border-radius: 1px;
         font-family: "0xProto", monospace;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         box-shadow: none;
         text-shadow: none;
         transition-duration: 200ms;
       }
 
-      window {
+      window#waybar {
         color: #d4d4d8;
-        background: transparent;
+        background: rgba(39, 39, 42, 0.9);
+        border: 1px solid rgba(63, 63, 70, 0.3);
         border-radius: 0;
+        margin: 2px;
       }
 
-      /* Left modules with separators */
+      /* Left modules */
       #workspaces {
-        margin: 4px 10px 0px 6px;
-        padding: 0 2px;
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 8px;
+        margin: 0 8px 0 4px;
+        padding: 0 1px;
+        background: transparent;
       }
 
       #workspaces button {
-        padding: 0px 3px;
+        padding: 0px 2px;
         margin: 0;
         color: rgba(212, 212, 216, 0.6);
-        border-radius: 6px;
+        border-radius: 4px;
         transition: all 200ms ease;
+        background: transparent;
       }
 
       #workspaces button.visible {
@@ -455,111 +456,61 @@
 
       /* System info modules - left side */
       #cpu, #memory, #temperature, #backlight {
-        margin: 4px 4px 0px 4px;
-        padding: 0 2px;
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 8px;
-        min-width: 26px;
-        color: #d4d4d8;
-      }
-
-      #cpu {
-        color: #d4d4d8;
-      }
-
-      #memory {
-        color: #d4d4d8;
-      }
-
-      #temperature {
-        color: #d4d4d8;
-      }
-
-      #backlight {
+        margin: 0 3px;
+        padding: 0 4px;
+        background: transparent;
+        min-width: 20px;
         color: #d4d4d8;
       }
 
       /* Center window title */
       #window {
-        margin: 4px 12px 0px 12px;
-        padding: 0 4px;
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 8px;
+        margin: 0 8px;
+        padding: 0 6px;
+        background: transparent;
         color: #a1a1aa;
         font-weight: 400;
       }
 
-      /* Right modules with separators */
+      /* Right modules */
       #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock {
-        margin: 4px 4px 0px 4px;
-        padding: 0 2px;
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        border-radius: 8px;
-        min-width: 20px;
+        margin: 0 3px;
+        padding: 0 4px;
+        background: transparent;
+        min-width: 16px;
         color: #d4d4d8;
       }
 
       #custom-wallpaper {
-        color: #d4d4d8;
-        margin: 4px 4px 0px 6px;
-      }
-
-      #bluetooth {
-        color: #d4d4d8;
-      }
-
-      #wireplumber {
-        color: #d4d4d8;
+        margin: 0 3px 0 4px;
       }
 
       #battery {
-        color: #d4d4d8;
-        min-width: 60px;
-      }
-
-      #tray {
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        padding: 0 2px;
+        min-width: 50px;
       }
 
       #clock {
-        margin: 4px 6px 0px 4px;
-        padding: 0 3px;
-        background: rgba(39, 39, 42, 0.8);
-        border: 1px solid rgba(63, 63, 70, 0.3);
-        color: #d4d4d8;
+        margin: 0 4px 0 3px;
         font-weight: 600;
-        min-width: 70px;
+        min-width: 60px;
       }
 
       /* Battery states */
       #battery.warning {
         color: #f59e0b;
-        border-color: rgba(245, 158, 11, 0.8);
-        border-width: 2px;
       }
 
       #battery.critical {
         color: #ef4444;
-        border-color: rgba(239, 68, 68, 0.8);
-        border-width: 2px;
         animation: blink 1s linear infinite alternate;
       }
 
       #battery.charging {
         color: #10b981;
-        border-color: rgba(16, 185, 129, 0.8);
-        border-width: 2px;
       }
 
       #temperature.critical {
         color: #ef4444;
-        border-color: rgba(239, 68, 68, 0.8);
-        border-width: 2px;
         animation: blink 1s linear infinite alternate;
       }
 
