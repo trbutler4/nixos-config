@@ -52,6 +52,17 @@
     enable = true;
   };
 
+  programs.git = {
+    enable = true;
+    userName = "Thomas Butler";
+    userEmail = "trbiv@proton.me";
+    extraConfig = {
+      pull = {
+        rebase = false;
+      };
+    };
+  };
+
   programs.ssh = {
     enable = true;
   };
