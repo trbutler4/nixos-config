@@ -125,7 +125,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox_dark_hard";
+      theme = "gruvbox";
 
       editor = {
         line-number = "relative";
