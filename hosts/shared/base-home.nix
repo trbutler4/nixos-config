@@ -323,6 +323,12 @@
     cryptsetup
     openssl
 
+    # additional COSMIC stuff
+    cosmic-bg
+    cosmic-wallpapers
+    cosmic-screenshot
+    cosmic-randr
+
     # Terminal Programs
     htop
     helix
@@ -358,7 +364,7 @@
     gedit
     zoom-us
     ledger-live-desktop
-    gparted
+    gnome-disk-utility 
 
     # Bluetooth
     blueman
