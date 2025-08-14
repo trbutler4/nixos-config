@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    inputs.nvf.homeManagerModules.default
+    #inputs.nvf.homeManagerModules.default
   ];
 
   programs.nvf = {
