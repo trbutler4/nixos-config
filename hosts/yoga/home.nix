@@ -8,7 +8,7 @@
   imports = [
     ../shared/base-home.nix
     ../shared/base-hyprland.nix
-    ../shared/nvf.nix
+    #../shared/nvf.nix
     ./hyprland.nix
   ];
 
