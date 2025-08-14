@@ -356,7 +356,6 @@
     gimp3
     discord
     gedit
-    albert
     zoom-us
     ledger-live-desktop
 
