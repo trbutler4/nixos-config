@@ -136,6 +136,12 @@
 
     # Nix stuff
     home-manager
+
+    # COSMIC stuff
+    cosmic-bg
+    cosmic-cosmic-wallpapers
+    cosmic-screenshot
+    cosmic-randr
   ];
 
 
