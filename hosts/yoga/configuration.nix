@@ -139,7 +139,7 @@
 
     # COSMIC stuff
     cosmic-bg
-    cosmic-cosmic-wallpapers
+    cosmic-wallpapers
     cosmic-screenshot
     cosmic-randr
   ];
