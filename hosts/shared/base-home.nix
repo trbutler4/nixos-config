@@ -323,6 +323,12 @@
     cryptsetup
     openssl
 
+    # additional COSMIC stuff
+    cosmic-bg
+    cosmic-wallpapers
+    cosmic-screenshot
+    cosmic-randr
+
     # Terminal Programs
     htop
     helix
