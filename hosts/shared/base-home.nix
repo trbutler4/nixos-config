@@ -349,6 +349,7 @@
     doctl # digital ocean cli
     kubectl # kubernetes cli
     k9s
+    bat
 
     # GUI Apps
     brave
