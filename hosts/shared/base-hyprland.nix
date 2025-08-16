@@ -99,7 +99,7 @@
 
       # Decoration - follows default config
       decoration = {
-        active_opacity = 1.0;
+        active_opacity = 0.98;
         inactive_opacity = 0.95;
 
         shadow = {
