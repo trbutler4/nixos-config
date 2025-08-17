@@ -350,6 +350,7 @@
     kubectl # kubernetes cli
     k9s
     bat
+    awscli
 
     # GUI Apps
     brave
