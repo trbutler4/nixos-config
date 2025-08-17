@@ -366,7 +366,7 @@
     gedit
     zoom-us
     ledger-live-desktop
-    gnome-disk-utility 
+    gnome-disk-utility
 
     # Bluetooth
     blueman
