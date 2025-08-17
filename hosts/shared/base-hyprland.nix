@@ -189,13 +189,17 @@
         "$mod SHIFT, Q, exit,"
         "$mod CTRL SHIFT, Q, exec, hyprctl dispatch exit"
 
-        # Move focus with vim keys
+        # PopOS-style window focus (vim keys)
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
 
-        # Switch workspaces
+        # PopOS-style workspace navigation (using Page Up/Down to avoid conflicts)
+        "$mod, Page_Up, workspace, e+1"
+        "$mod, Page_Down, workspace, e-1"
+
+        # Direct workspace access (keep existing)
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
@@ -207,7 +211,11 @@
         "$mod, 9, workspace, 9"
         "$mod, 0, workspace, 10"
 
-        # Move active window to workspace
+        # PopOS-style window movement between workspaces (using Page Up/Down)
+        "$mod SHIFT, Page_Up, movetoworkspace, e+1"
+        "$mod SHIFT, Page_Down, movetoworkspace, e-1"
+
+        # Direct window movement (keep existing)
         "$mod SHIFT, 1, movetoworkspace, 1"
         "$mod SHIFT, 2, movetoworkspace, 2"
         "$mod SHIFT, 3, movetoworkspace, 3"
@@ -219,22 +227,23 @@
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
 
-        # Window manipulation
+        # PopOS-style adjustment mode and tiling controls
+        "$mod, A, submap, adjustment"
+        "$mod, Y, exec, hyprctl keyword general:layout master && notify-send 'Auto-tiling enabled'"
+        "$mod SHIFT, Y, exec, hyprctl keyword general:layout dwindle && notify-send 'Auto-tiling disabled'"
         "$mod, O, layoutmsg, orientationnext"
         "$mod, G, togglefloating,"
         "$mod, M, fullscreen, 0"
-        "$mod CTRL, H, moveactive, exact 0 0"
-        "$mod CTRL, L, moveactive, exact 50% 0"
 
-        # Direct window management
+        # Window movement (vim keys)
         "$mod ALT, H, movewindow, l"
         "$mod ALT, L, movewindow, r"
         "$mod ALT, K, movewindow, u"
         "$mod ALT, J, movewindow, d"
+
+        # Window resizing (vim keys)
         "$mod SHIFT, H, resizeactive, -50 0"
         "$mod SHIFT, L, resizeactive, 50 0"
-        "$mod SHIFT, K, resizeactive, 0 -50"
-        "$mod SHIFT, J, resizeactive, 0 50"
 
         # Wallpaper switching
         "$mod, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next"
@@ -243,8 +252,14 @@
         # Toggle waybar
         "$mod, V, exec, pkill -SIGUSR1 waybar"
         
-        # Screenshots
-        "$mod, S, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
+        # Screenshots (moved from S to Print since S is used for stacking)
+        ", Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
+        "$mod, Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
+
+        # PopOS-style stacking (using S key)
+        "$mod, S, togglegroup,"
+        "$mod CTRL, H, changegroupactive, b"
+        "$mod CTRL, L, changegroupactive, f"
       ];
 
       # Audio control bindings

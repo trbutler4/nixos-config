@@ -67,9 +67,6 @@
     enable = true;
   };
 
-  # NOTE: this is redundant, remote probably
-  home.file.".ssh/config".source = "${config.home.homeDirectory}/.secrets/ssh_config";
-
   programs.zellij = {
     enable = true;
     #enableZshIntegration = true;
