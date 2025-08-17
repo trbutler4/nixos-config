@@ -179,7 +179,7 @@
         # Basic window management
         "$mod, T, exec, alacritty"
         "$mod, Q, killactive,"
-        "$mod, E, exec, nautilus"
+        "$mod, E, exec, cosmic-files"
         "$mod, B, exec, brave"
         "$mod, Space, exec, pkill wofi || wofi --show drun --allow-images --prompt 'Search:'"
         "$mod, D, exec, pkill wofi || wofi --show run --allow-images --prompt 'Run:'"
@@ -251,7 +251,7 @@
 
         # Toggle waybar
         "$mod, V, exec, pkill -SIGUSR1 waybar"
-        
+
         # Screenshots (moved from S to Print since S is used for stacking)
         ", Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
         "$mod, Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
