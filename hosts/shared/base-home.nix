@@ -350,6 +350,7 @@
     kubectl # kubernetes cli
     k9s
     bat
+    aws-sam-cli
 
     # GUI Apps
     brave
