@@ -171,36 +171,93 @@
     themes = {
       gruvbox-dark-hard-transparent = {
         # Base colors (gruvbox dark hard palette)
-        "ui.background" = { };  # Transparent background
+        "ui.background" = { }; # Transparent background
         "ui.background.separator" = "#1d2021";
-        "ui.cursor" = { fg = "#1d2021"; bg = "#ebdbb2"; };
-        "ui.cursor.normal" = { fg = "#1d2021"; bg = "#ebdbb2"; };
-        "ui.cursor.insert" = { fg = "#1d2021"; bg = "#83a598"; };
-        "ui.cursor.select" = { fg = "#1d2021"; bg = "#d3869b"; };
-        "ui.cursor.match" = { fg = "#1d2021"; bg = "#fe8019"; modifiers = ["bold"]; };
-        "ui.cursor.primary" = { fg = "#1d2021"; bg = "#ebdbb2"; };
-        "ui.cursorline.primary" = { bg = "#3c3836"; };
-        "ui.cursorline.secondary" = { bg = "#3c3836"; };
-        "ui.selection" = { bg = "#504945"; };
-        "ui.selection.primary" = { bg = "#504945"; };
+        "ui.cursor" = {
+          fg = "#1d2021";
+          bg = "#ebdbb2";
+        };
+        "ui.cursor.normal" = {
+          fg = "#1d2021";
+          bg = "#ebdbb2";
+        };
+        "ui.cursor.insert" = {
+          fg = "#1d2021";
+          bg = "#83a598";
+        };
+        "ui.cursor.select" = {
+          fg = "#1d2021";
+          bg = "#d3869b";
+        };
+        "ui.cursor.match" = {
+          fg = "#1d2021";
+          bg = "#fe8019";
+          modifiers = [ "bold" ];
+        };
+        "ui.cursor.primary" = {
+          fg = "#1d2021";
+          bg = "#ebdbb2";
+        };
+        "ui.cursorline.primary" = {
+          bg = "#3c3836";
+        };
+        "ui.cursorline.secondary" = {
+          bg = "#3c3836";
+        };
+        "ui.selection" = {
+          bg = "#504945";
+        };
+        "ui.selection.primary" = {
+          bg = "#504945";
+        };
         "ui.linenr" = "#665c54";
         "ui.linenr.selected" = "#ebdbb2";
-        "ui.statusline" = { fg = "#ebdbb2"; bg = "#3c3836"; };
-        "ui.statusline.inactive" = { fg = "#a89984"; bg = "#282828"; };
-        "ui.statusline.normal" = { fg = "#1d2021"; bg = "#a89984"; };
-        "ui.statusline.insert" = { fg = "#1d2021"; bg = "#83a598"; };
-        "ui.statusline.select" = { fg = "#1d2021"; bg = "#d3869b"; };
+        "ui.statusline" = {
+          fg = "#ebdbb2";
+          bg = "#3c3836";
+        };
+        "ui.statusline.inactive" = {
+          fg = "#a89984";
+          bg = "#282828";
+        };
+        "ui.statusline.normal" = {
+          fg = "#1d2021";
+          bg = "#a89984";
+        };
+        "ui.statusline.insert" = {
+          fg = "#1d2021";
+          bg = "#83a598";
+        };
+        "ui.statusline.select" = {
+          fg = "#1d2021";
+          bg = "#d3869b";
+        };
         "ui.statusline.separator" = "#504945";
-        "ui.popup" = { fg = "#ebdbb2"; bg = "#3c3836"; };
+        "ui.popup" = {
+          fg = "#ebdbb2";
+          bg = "#3c3836";
+        };
         "ui.window" = "#504945";
-        "ui.help" = { fg = "#ebdbb2"; bg = "#3c3836"; };
+        "ui.help" = {
+          fg = "#ebdbb2";
+          bg = "#3c3836";
+        };
         "ui.text" = "#ebdbb2";
         "ui.text.focus" = "#ebdbb2";
-        "ui.menu" = { fg = "#ebdbb2"; bg = "#3c3836"; };
-        "ui.menu.selected" = { fg = "#1d2021"; bg = "#83a598"; };
+        "ui.menu" = {
+          fg = "#ebdbb2";
+          bg = "#3c3836";
+        };
+        "ui.menu.selected" = {
+          fg = "#1d2021";
+          bg = "#83a598";
+        };
         "ui.virtual.whitespace" = "#504945";
         "ui.virtual.ruler" = "#504945";
-        "ui.virtual.inlay-hint" = { fg = "#928374"; bg = "#3c3836"; };
+        "ui.virtual.inlay-hint" = {
+          fg = "#928374";
+          bg = "#3c3836";
+        };
 
         # Syntax highlighting
         "comment" = "#928374";
@@ -238,10 +295,30 @@
         "special" = "#fe8019";
 
         # Diagnostics
-        "diagnostic.error" = { underline = { color = "#fb4934"; style = "curl"; }; };
-        "diagnostic.warning" = { underline = { color = "#fabd2f"; style = "curl"; }; };
-        "diagnostic.info" = { underline = { color = "#83a598"; style = "curl"; }; };
-        "diagnostic.hint" = { underline = { color = "#8ec07c"; style = "curl"; }; };
+        "diagnostic.error" = {
+          underline = {
+            color = "#fb4934";
+            style = "curl";
+          };
+        };
+        "diagnostic.warning" = {
+          underline = {
+            color = "#fabd2f";
+            style = "curl";
+          };
+        };
+        "diagnostic.info" = {
+          underline = {
+            color = "#83a598";
+            style = "curl";
+          };
+        };
+        "diagnostic.hint" = {
+          underline = {
+            color = "#8ec07c";
+            style = "curl";
+          };
+        };
 
         # Diff
         "diff.plus" = "#b8bb26";
@@ -251,10 +328,21 @@
         # Git
         "markup.heading" = "#b8bb26";
         "markup.list" = "#fb4934";
-        "markup.bold" = { fg = "#ebdbb2"; modifiers = ["bold"]; };
-        "markup.italic" = { fg = "#ebdbb2"; modifiers = ["italic"]; };
-        "markup.strikethrough" = { modifiers = ["crossed_out"]; };
-        "markup.link.url" = { fg = "#83a598"; modifiers = ["underlined"]; };
+        "markup.bold" = {
+          fg = "#ebdbb2";
+          modifiers = [ "bold" ];
+        };
+        "markup.italic" = {
+          fg = "#ebdbb2";
+          modifiers = [ "italic" ];
+        };
+        "markup.strikethrough" = {
+          modifiers = [ "crossed_out" ];
+        };
+        "markup.link.url" = {
+          fg = "#83a598";
+          modifiers = [ "underlined" ];
+        };
         "markup.link.text" = "#d3869b";
         "markup.quote" = "#928374";
         "markup.raw" = "#8ec07c";

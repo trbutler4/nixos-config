@@ -285,7 +285,6 @@
     };
   };
 
-  # Shared Waybar configuration - based on legacy-dotfiles
   programs.waybar = {
     enable = true;
     settings = {
@@ -537,7 +536,6 @@
     '';
   };
 
-  # Hyprpaper configuration - wallpaper daemon
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -546,7 +544,6 @@
     };
   };
 
-  # Hyprland/Wayland tools - shared packages
   home.packages = with pkgs; [
     wofi
     waybar
