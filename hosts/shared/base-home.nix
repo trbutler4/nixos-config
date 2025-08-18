@@ -482,5 +482,9 @@
     foundry
     slither-analyzer
     solc
+
+    # misc tooling
+    biome
+    husky
   ];
 }
