@@ -51,6 +51,8 @@
   ];
 
   services.xserver.enable = true;
+
+  programs.nix-ld.enable = true;
   
   # COSMIC desktop environment
   services.desktopManager.cosmic.enable = true;
