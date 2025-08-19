@@ -308,6 +308,7 @@
           "battery"
           "tray"
           "clock"
+          "custom/power"
         ];
 
         "hyprland/workspaces" = {
@@ -413,6 +414,12 @@
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
+
+        "custom/power" = {
+          format = "⏻";
+          on-click = "/home/trbiv/nixos-config/scripts/power-menu.sh";
+          tooltip-format = "Power Options: Lock, Logout, Shutdown";
+        };
       };
     };
 
@@ -487,7 +494,7 @@
       }
 
       /* Right modules */
-      #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock {
+      #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock, #custom-power {
         margin: 0 3px;
         padding: 0 4px;
         background: transparent;
@@ -504,9 +511,22 @@
       }
 
       #clock {
-        margin: 0 4px 0 3px;
+        margin: 0 3px;
         font-weight: 600;
         min-width: 60px;
+      }
+
+      #custom-power {
+        margin: 0 4px 0 3px;
+        color: #ef4444;
+        font-size: 16px;
+        transition: all 200ms ease;
+      }
+
+      #custom-power:hover {
+        color: #dc2626;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 4px;
       }
 
       /* Battery states */
