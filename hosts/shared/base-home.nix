@@ -40,6 +40,15 @@
       if [ -f "$HOME/.secrets/.env" ]; then
         source "$HOME/.secrets/.env"
       fi
+
+      # Claude Code directory-based config switching
+      claude() {
+        if [[ $PWD == */Projects/oku/* || $PWD == */Projects/oku ]]; then
+          CLAUDE_CODE_CONFIG_DIR="/etc/claude-code" command claude "$@"
+        else
+          command claude "$@"
+        fi
+      }
     '';
   };
 
