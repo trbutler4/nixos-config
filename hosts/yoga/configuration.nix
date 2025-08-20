@@ -139,9 +139,6 @@
     # Screen locking
     swaylock
 
-    # Brightness control
-    brightnessctl
-
   ];
 
 
