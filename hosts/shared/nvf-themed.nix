@@ -11,7 +11,7 @@ in
 
 {
   imports = [
-    #inputs.nvf.homeManagerModules.default
+    inputs.nvf.homeManagerModules.default
   ];
 
   programs.nvf = {
@@ -39,7 +39,7 @@ in
         theme = {
           enable = true;
           name = currentTheme.nvf.name;
-          style = currentTheme.nvf.style;
+          style = "medium";
           transparent = true;
         };
 
@@ -85,6 +85,7 @@ in
           go.enable = true;
           astro.enable = true;
           lua.enable = true;
+          clang.enable = true;
         };
 
         # Use blink.cmp instead of nvim-cmp
@@ -139,11 +140,77 @@ in
           };
         };
 
+        keymaps = [
+          # Telescope keybindings
+          {
+            mode = "n";
+            key = "<leader>sh";
+            action = "<cmd>Telescope help_tags<CR>";
+            desc = "[S]earch [H]elp";
+          }
+          {
+            mode = "n";
+            key = "<leader>sk";
+            action = "<cmd>Telescope keymaps<CR>";
+            desc = "[S]earch [K]eymaps";
+          }
+          {
+            mode = "n";
+            key = "<leader>sf";
+            action = "<cmd>Telescope find_files<CR>";
+            desc = "[S]earch [F]iles";
+          }
+          {
+            mode = "n";
+            key = "<leader>ss";
+            action = "<cmd>Telescope builtin<CR>";
+            desc = "[S]earch [S]elect Telescope";
+          }
+          {
+            mode = "n";
+            key = "<leader>sw";
+            action = "<cmd>Telescope grep_string<CR>";
+            desc = "[S]earch current [W]ord";
+          }
+          {
+            mode = "n";
+            key = "<leader>sg";
+            action = "<cmd>Telescope live_grep<CR>";
+            desc = "[S]earch by [G]rep";
+          }
+          {
+            mode = "n";
+            key = "<leader>sd";
+            action = "<cmd>Telescope diagnostics<CR>";
+            desc = "[S]earch [D]iagnostics";
+          }
+          {
+            mode = "n";
+            key = "<leader>sr";
+            action = "<cmd>Telescope resume<CR>";
+            desc = "[S]earch [R]esume";
+          }
+          {
+            mode = "n";
+            key = "<leader>s.";
+            action = "<cmd>Telescope oldfiles<CR>";
+            desc = "[S]earch Recent Files";
+          }
+          {
+            mode = "n";
+            key = "<leader><leader>";
+            action = "<cmd>Telescope buffers<CR>";
+            desc = "[ ] Find existing buffers";
+          }
+          {
+            mode = "n";
+            key = "<leader>sn";
+            action = "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<CR>";
+            desc = "[S]earch [N]eovim files";
+          }
+        ];
+
         utility = {
-          yazi-nvim = {
-            enable = true;
-            setupOpts.open_for_directories = true;
-          };
           surround.enable = true;
         };
 
@@ -161,6 +228,7 @@ in
           pkgs.isort
           pkgs.prettierd
         ];
+
 
       };
     };
