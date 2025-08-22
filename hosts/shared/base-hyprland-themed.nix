@@ -4,8 +4,13 @@
   ...
 }:
 
+let
+  themes = import ./themes/default.nix;
+  currentTheme = themes.${themes.current};
+in
+
 {
-  # Wofi launcher configuration - shared across all hosts
+  # Wofi launcher configuration - themed
   programs.wofi = {
     enable = true;
     settings = {
@@ -27,29 +32,29 @@
     style = ''
       window {
         margin: 0px;
-        border: 1px solid #1e1e2e;
-        background-color: #1e1e2e;
+        border: 1px solid ${currentTheme.wofi.window_border};
+        background-color: ${currentTheme.wofi.window_bg};
         border-radius: 0px;
       }
 
       #input {
         margin: 5px;
         border: none;
-        color: #cdd6f4;
-        background-color: #313244;
+        color: ${currentTheme.wofi.input_fg};
+        background-color: ${currentTheme.wofi.input_bg};
         border-radius: 0px;
       }
 
       #inner-box {
         margin: 5px;
         border: none;
-        background-color: #1e1e2e;
+        background-color: ${currentTheme.wofi.window_bg};
       }
 
       #outer-box {
         margin: 5px;
         border: none;
-        background-color: #1e1e2e;
+        background-color: ${currentTheme.wofi.window_bg};
       }
 
       #scroll {
@@ -60,15 +65,15 @@
       #text {
         margin: 5px;
         border: none;
-        color: #cdd6f4;
+        color: ${currentTheme.wofi.text_fg};
       }
 
       #entry:selected {
-        background-color: #585b70;
+        background-color: ${currentTheme.wofi.entry_selected_bg};
       }
 
       #entry:selected #text {
-        color: #cdd6f4;
+        color: ${currentTheme.wofi.entry_selected_fg};
       }
     '';
   };
@@ -186,6 +191,9 @@
         "$mod, D, exec, pkill wofi || wofi --show run --allow-images --prompt 'Run:'"
         "$mod SHIFT, Space, exec, pkill wofi || wofi --show window --allow-images --prompt 'Window:'"
 
+        # Theme switcher via Wofi
+        "$mod, C, exec, /home/trbiv/nixos-config/scripts/theme-switcher.sh wofi"
+
         # Logout options
         "$mod SHIFT, Q, exit,"
         "$mod CTRL SHIFT, Q, exec, hyprctl dispatch exit"
@@ -195,9 +203,6 @@
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
-        
-        # Switch to last accessed window (across workspaces)
-        "$mod, Tab, focuscurrentorlast,"
 
         # PopOS-style workspace navigation (using Page Up/Down to avoid conflicts)
         "$mod, Page_Up, workspace, e+1"
@@ -273,6 +278,9 @@
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         "$mod, F12, exec, /home/trbiv/nixos-config/scripts/audio-source-switch.sh"
+        # Brightness controls
+        ", F5, exec, brightnessctl set 5%-"
+        ", F6, exec, brightnessctl set 5%+"
       ];
 
       # Mouse bindings - shared
@@ -307,6 +315,7 @@
         modules-center = [ "hyprland/window" ];
         modules-right = [
           "custom/wallpaper"
+          "custom/theme"
           "bluetooth"
           "wireplumber"
           "battery"
@@ -334,13 +343,13 @@
           format = "{capacity}% {icon} ";
           format-alt = "{time} {icon} ";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
-          format-charging = "{capacity}% ";
+          format-charging = "{capacity}% ";
           interval = 30;
           states = {
             warning = 25;
@@ -351,12 +360,12 @@
 
         wireplumber = {
           format = "{icon} {volume}%";
-          format-muted = " Muted";
+          format-muted = " Muted";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
           ];
           scroll-step = 5;
           on-click = "pavucontrol";
@@ -370,13 +379,13 @@
 
         cpu = {
           interval = 5;
-          format = " {usage}%";
+          format = " {usage}%";
           tooltip = false;
         };
 
         memory = {
           interval = 5;
-          format = " {percentage}%";
+          format = " {percentage}%";
           tooltip-format = "Memory: {used:0.1f}G/{total:0.1f}G";
         };
 
@@ -386,17 +395,17 @@
           critical-threshold = 80;
           format = "{icon} {temperatureC}°C";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
           tooltip = false;
         };
 
         "custom/wallpaper" = {
-          format = "   ";
+          format = "   ";
           exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
           on-click = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
           on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
@@ -404,6 +413,15 @@
           signal = 8;
           interval = "once";
           tooltip-format = "Click: Open wallpaper selector";
+        };
+
+        "custom/theme" = {
+          format = "  ";
+          exec = "/home/trbiv/nixos-config/scripts/theme-switcher.sh current | cut -d: -f2 | tr -d ' '";
+          on-click = "/home/trbiv/nixos-config/scripts/theme-switcher.sh wofi";
+          signal = 9;
+          interval = "once";
+          tooltip-format = "Current theme: {}\nClick: Switch theme";
         };
 
         bluetooth = {
@@ -440,9 +458,9 @@
       }
 
       window#waybar {
-        color: #d4d4d8;
-        background: rgba(39, 39, 42, 0.9);
-        border: 1px solid rgba(63, 63, 70, 0.3);
+        color: ${currentTheme.waybar.foreground};
+        background: ${currentTheme.waybar.background};
+        border: 1px solid ${currentTheme.waybar.border};
         border-radius: 0;
         margin: 2px;
       }
@@ -457,25 +475,25 @@
       #workspaces button {
         padding: 0px 2px;
         margin: 0;
-        color: rgba(212, 212, 216, 0.6);
+        color: ${currentTheme.waybar.workspace_inactive};
         border-radius: 4px;
         transition: all 200ms ease;
         background: transparent;
       }
 
       #workspaces button.visible {
-        color: #d4d4d8;
-        background: rgba(63, 63, 70, 0.6);
+        color: ${currentTheme.waybar.foreground};
+        background: ${currentTheme.waybar.workspace_visible};
       }
 
       #workspaces button.focused {
         color: #ffffff;
-        background: rgba(99, 102, 241, 0.8);
+        background: ${currentTheme.waybar.workspace_active};
         box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
       }
 
       #workspaces button.urgent {
-        color: #ef4444;
+        color: ${currentTheme.waybar.critical};
         background: rgba(239, 68, 68, 0.2);
       }
 
@@ -485,7 +503,7 @@
         padding: 0 4px;
         background: transparent;
         min-width: 20px;
-        color: #d4d4d8;
+        color: ${currentTheme.waybar.foreground};
       }
 
       /* Center window title */
@@ -493,21 +511,32 @@
         margin: 0 8px;
         padding: 0 6px;
         background: transparent;
-        color: #a1a1aa;
+        color: ${currentTheme.waybar.foreground};
         font-weight: 400;
+        opacity: 0.7;
       }
 
       /* Right modules */
-      #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock, #custom-power {
+      #custom-wallpaper, #custom-theme, #bluetooth, #wireplumber, #battery, #tray, #clock, #custom-power {
         margin: 0 3px;
         padding: 0 4px;
         background: transparent;
         min-width: 16px;
-        color: #d4d4d8;
+        color: ${currentTheme.waybar.foreground};
       }
 
       #custom-wallpaper {
         margin: 0 3px 0 4px;
+      }
+
+      #custom-theme {
+        margin: 0 3px;
+        transition: all 200ms ease;
+      }
+
+      #custom-theme:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
       }
 
       #battery {
@@ -522,33 +551,33 @@
 
       #custom-power {
         margin: 0 4px 0 3px;
-        color: #ef4444;
+        color: ${currentTheme.waybar.power_button};
         font-size: 16px;
         transition: all 200ms ease;
       }
 
       #custom-power:hover {
-        color: #dc2626;
+        color: ${currentTheme.waybar.power_button_hover};
         background: rgba(239, 68, 68, 0.1);
         border-radius: 4px;
       }
 
       /* Battery states */
       #battery.warning {
-        color: #f59e0b;
+        color: ${currentTheme.waybar.warning};
       }
 
       #battery.critical {
-        color: #ef4444;
+        color: ${currentTheme.waybar.critical};
         animation: blink 1s linear infinite alternate;
       }
 
       #battery.charging {
-        color: #10b981;
+        color: ${currentTheme.waybar.charging};
       }
 
       #temperature.critical {
-        color: #ef4444;
+        color: ${currentTheme.waybar.critical};
         animation: blink 1s linear infinite alternate;
       }
 
@@ -579,5 +608,6 @@
     playerctl
     blueman
     swayidle
+    brightnessctl
   ];
 }
