@@ -505,34 +505,13 @@
     blueman
 
     #Nix
-    nixd
-    nil
-    # Node/Typescript
     nodejs_24
     bun
     yarn
     pnpm
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    # Python
     python3
-    uv
-    # Go
     go
-    gopls
-    delve
-    golangci-lint
-    golangci-lint-langserver
-    # Rust
     rustup
-    # EVM
     foundry
-    slither-analyzer
-    solc
-
-    # misc tooling
-    biome
-    husky
   ];
 }
