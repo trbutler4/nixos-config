@@ -525,7 +525,6 @@
     pnpm
     python3
     go
-    rustup
-    foundry
+    solc
   ];
 }
