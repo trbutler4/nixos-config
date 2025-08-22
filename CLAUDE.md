@@ -9,7 +9,7 @@ This is a NixOS configuration repository using flakes with Home Manager integrat
 - **System**: NixOS with flakes enabled
 - **Desktop Environment**: Hyprland (Wayland compositor) with Waybar, Wofi launcher
 - **Shell**: Zsh with Oh My Zsh (lambda theme)
-- **Editor**: Neovim configured through nix
+- **Editor**: Neovim configured via nvf (Neovim flake)
 - **Package Management**: Nix flakes with Home Manager for user packages
 
 All config files (neovim, zellij, hyprland, etc.) are managed through nix. 
@@ -38,8 +38,8 @@ nix shell nixpkgs#package-name
 # Run applications without installing
 nix run nixpkgs#package-name
 
-# Check flake status
-nix flake check
+# Check what's available in nvf
+nix flake show github:notashelf/nvf
 ```
 
 ### Rollback and Recovery
@@ -64,7 +64,7 @@ nixos-config/
     ├── shared/                   # Shared configurations across hosts
     │   ├── base-home.nix        # Base Home Manager configuration
     │   ├── base-hyprland.nix    # Base Hyprland/Wayland configuration
-    │   └── neovim.nix           # Shared Neovim configuration
+    │   └── nvf.nix              # Shared nvf (Neovim) configuration
     ├── desktop/                  # Desktop host configuration
     │   ├── configuration.nix    # Desktop system configuration
     │   ├── hardware-configuration.nix
@@ -81,7 +81,7 @@ nixos-config/
 
 ### Key Components
 
-**Flake Configuration (`flake.nix`)**: Defines inputs (nixpkgs, home-manager, nix-ld) and outputs (nixosConfigurations, homeConfigurations). The yoga configuration integrates Home Manager directly into the NixOS system.
+**Flake Configuration (`flake.nix`)**: Defines inputs (nixpkgs, home-manager, nvf, nix-ld) and outputs (nixosConfigurations, homeConfigurations). The yoga configuration integrates Home Manager directly into the NixOS system.
 
 **System Configuration (`hosts/yoga/configuration.nix`)**: NixOS system settings including bootloader, networking, Hyprland window manager, user accounts, and system packages. Enables Docker and VirtualBox virtualization.
 
@@ -89,7 +89,7 @@ nixos-config/
 
 **Base Hyprland Configuration (`hosts/shared/base-hyprland.nix`)**: Shared Hyprland/Wayland configuration including window management, keybindings, Waybar status bar with system stats (CPU, memory, temperature), Wofi launcher, and theming. Features fast key repeat, cursor auto-hide, and optimized gaps.
 
-**Neovim Configuration (`hosts/shared/neovim.nix`)**: Neovim configuration with language support for Nix, TypeScript, Rust, Python, Go, and Astro. Features include LSP, Treesitter, Telescope, Git integration, and custom keybindings.
+**nvf Configuration (`hosts/shared/nvf.nix`)**: Neovim configuration using the nvf flake with language support for Nix, TypeScript, Rust, Python, Go, and Astro. Features include LSP, Treesitter, Telescope, Git integration, and custom keybindings.
 
 ## Making Changes
 
@@ -97,7 +97,7 @@ nixos-config/
 2. **User Packages**: Edit `hosts/shared/base-home.nix` for shared user packages and shell config
 3. **Hyprland Configuration**: Edit `hosts/shared/base-hyprland.nix` for window manager, Waybar, and Wayland settings
 4. **Host-specific Hyprland**: Edit `hosts/yoga/hyprland.nix` for host-specific Hyprland overrides
-5. **Neovim**: Edit `hosts/shared/neovim.nix` for editor configuration
+5. **Neovim**: Edit `hosts/shared/nvf.nix` for editor configuration
 6. **Flake Updates**: Edit `flake.nix` for input updates or new hosts
 
 ## Secret Management
@@ -109,7 +109,7 @@ The configuration uses environment variables for secrets, loaded from `~/.secret
 - All files must be tracked in git before rebuilding (flakes requirement)
 - The update script requires a hostname argument (`yoga` for this system)
 - Hardware configuration is host-specific and rarely needs changes
-- Neovim provides extensive plugin and language support through nix packages
+- nvf provides extensive plugin and language support - check documentation for available options
 - Home Manager configuration is integrated directly into the NixOS system configuration
 - Secrets are stored as environment variables in `~/.secrets/.env`
 - Hyprland configuration is split between shared settings (`base-hyprland.nix`) and host-specific overrides
