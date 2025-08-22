@@ -106,7 +106,7 @@ in
         '';
       }
       {
-        plugin = everforest-nvim;
+        plugin = everforest;
         config = ''
           lua << EOF
           require("everforest").setup({
