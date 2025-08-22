@@ -446,6 +446,20 @@
     };
   };
 
+  # Custom desktop entries
+  xdg.desktopEntries = {
+    screenshot-utility = {
+      name = "Screenshot Utility";
+      comment = "Interactive screenshot tool with various capture options";
+      icon = "camera-photo";
+      exec = "/home/trbiv/nixos-config/scripts/screenshot-utility.sh";
+      terminal = false;
+      categories = [ "Graphics" "Photography" "Utility" ];
+      keywords = [ "screenshot" "capture" "image" "screen" "grab" ];
+      startupNotify = true;
+    };
+  };
+
   home.packages = with pkgs; [
     # essential
     gcc

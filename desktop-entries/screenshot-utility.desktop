@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Screenshot Utility
+Comment=Interactive screenshot tool with various capture options
+Icon=camera-photo
+Exec=/home/trbiv/nixos-config/scripts/screenshot-utility.sh
+Terminal=false
+Categories=Graphics;Photography;Utility;
+Keywords=screenshot;capture;image;screen;grab;
+StartupNotify=true
