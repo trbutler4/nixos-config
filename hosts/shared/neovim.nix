@@ -42,7 +42,7 @@ in
       {
         plugin = blink-cmp;
         config = ''
-          lua << EOF
+          lua << END
           require('blink.cmp').setup({
             keymap = { preset = "default" },
             appearance = {
@@ -54,7 +54,7 @@ in
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
           })
-          EOF
+          END
         '';
       }
       friendly-snippets
@@ -63,7 +63,7 @@ in
       {
         plugin = conform-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require("conform").setup({
             notify_on_error = false,
             format_on_save = function(bufnr)
@@ -82,7 +82,7 @@ in
           vim.keymap.set("", "<leader>f", function()
             require("conform").format({ async = true, lsp_fallback = true })
           end, { desc = "[F]ormat buffer" })
-          EOF
+          END
         '';
       }
 
@@ -98,30 +98,21 @@ in
       {
         plugin = gruvbox-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require("gruvbox").setup({
             transparent_mode = true,
           })
-          EOF
+          END
         '';
       }
-      {
-        plugin = everforest;
-        config = ''
-          lua << EOF
-          require("everforest").setup({
-            background = "hard",
-            transparent_background_level = 1,
-          })
-          EOF
-        '';
-      }
+
+      everforest
 
       # Git
       {
         plugin = gitsigns-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require('gitsigns').setup({
             signs = {
               add = { text = "+" },
@@ -131,24 +122,16 @@ in
               changedelete = { text = "~" },
             },
           })
-          EOF
+          END
         '';
       }
 
-      # Lazygit integration
-      {
-        plugin = lazygit-nvim;
-        config = ''
-          vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-        '';
-      }
-      plenary-nvim # dependency for lazygit
 
       # LSP Configuration
       {
         plugin = nvim-lspconfig;
         config = ''
-          lua << EOF
+          lua << END
           -- LSP keymaps
           vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -221,7 +204,7 @@ in
           
           -- Solidity
           lspconfig.solidity.setup({ capabilities = capabilities })
-          EOF
+          END
         '';
       }
       fidget-nvim
@@ -231,13 +214,13 @@ in
       {
         plugin = lualine-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require("lualine").setup({
             options = {
               theme = "${if currentTheme.name == "gruvbox" then "gruvbox" else "everforest"}",
             },
           })
-          EOF
+          END
         '';
       }
       nvim-web-devicons
@@ -261,7 +244,7 @@ in
       {
         plugin = telescope-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require("telescope").setup({
             extensions = {
               ["ui-select"] = {
@@ -322,7 +305,7 @@ in
           vim.keymap.set("n", "<leader>sn", function()
             builtin.find_files({ cwd = vim.fn.stdpath("config") })
           end, { desc = "[S]earch [N]eovim files" })
-          EOF
+          END
         '';
       }
       telescope-fzf-native-nvim
@@ -332,7 +315,7 @@ in
       {
         plugin = nvim-treesitter.withAllGrammars;
         config = ''
-          lua << EOF
+          lua << END
           require("nvim-treesitter.configs").setup({
             highlight = {
               enable = true,
@@ -340,7 +323,7 @@ in
             },
             indent = { enable = true, disable = { "ruby" } },
           })
-          EOF
+          END
         '';
       }
 
@@ -348,36 +331,66 @@ in
       {
         plugin = which-key-nvim;
         config = ''
-          lua << EOF
+          lua << END
           require("which-key").setup({})
           vim.keymap.set("n", "<leader>?", function()
             require("which-key").show({ global = false })
           end, { desc = "Buffer Local Keymaps (which-key)" })
-          EOF
+          END
         '';
       }
 
-      # Yazi file manager
+      # Oil file manager
       {
-        plugin = yazi-nvim;
+        plugin = oil-nvim;
         config = ''
-          lua << EOF
-          require("yazi").setup({
-            open_for_directories = true,
+          lua << END
+          require("oil").setup({
+            default_file_explorer = true,
+            view_options = {
+              show_hidden = false,
+              is_hidden_file = function(name, bufnr)
+                return vim.startswith(name, ".")
+              end,
+              is_always_hidden = function(name, bufnr)
+                return false
+              end,
+            },
+            float = {
+              padding = 2,
+              max_width = 0,
+              max_height = 0,
+              border = "rounded",
+              win_options = {
+                winblend = 0,
+              },
+            },
             keymaps = {
-              show_help = "<f1>",
+              ["g?"] = "actions.show_help",
+              ["<CR>"] = "actions.select",
+              ["<C-s>"] = "actions.select_vsplit",
+              ["<C-h>"] = "actions.select_split",
+              ["<C-t>"] = "actions.select_tab",
+              ["<C-p>"] = "actions.preview",
+              ["<C-c>"] = "actions.close",
+              ["<C-l>"] = "actions.refresh",
+              ["-"] = "actions.parent",
+              ["_"] = "actions.open_cwd",
+              ["`"] = "actions.cd",
+              ["~"] = "actions.tcd",
+              ["gs"] = "actions.change_sort",
+              ["gx"] = "actions.open_external",
+              ["g."] = "actions.toggle_hidden",
+              ["g\\"] = "actions.toggle_trash",
             },
           })
           
-          vim.keymap.set({ "n", "v" }, "<leader>-", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" })
-          vim.keymap.set("n", "<leader>cw", "<cmd>Yazi cwd<cr>", { desc = "Open the file manager in nvim's working directory" })
-          vim.keymap.set("n", "<c-up>", "<cmd>Yazi toggle<cr>", { desc = "Resume the last yazi session" })
-          
-          vim.g.loaded_netrw = 1
-          EOF
+          vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+          vim.keymap.set("n", "<leader>-", "<CMD>Oil --float<CR>", { desc = "Open parent directory in floating window" })
+          END
         '';
       }
-      snacks-nvim # dependency for yazi
+
     ];
 
     # Extra configuration (init.lua content)
