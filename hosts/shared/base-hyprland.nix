@@ -97,26 +97,6 @@
         layout = "master";
       };
 
-      # Group styling for better tab visibility
-      group = {
-        col.border_active = "rgba(6366f1ee)";
-        col.border_inactive = "rgba(3f3f46aa)";
-        
-        groupbar = {
-          enabled = true;
-          font_family = "0xProto";
-          font_size = 10;
-          gradients = false;
-          render_titles = true;
-          scrolling = true;
-          text_color = "rgba(d4d4d8ff)";
-          col.active = "rgba(6366f1ee)";
-          col.inactive = "rgba(27272aaa)";
-          col.locked_active = "rgba(f59e0bee)";
-          col.locked_inactive = "rgba(52525baa)";
-        };
-      };
-
       # Decoration - follows default config
       decoration = {
         active_opacity = 0.98;
