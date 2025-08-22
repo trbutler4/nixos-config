@@ -128,12 +128,6 @@
       # Web devicons (explicitly enable to avoid warnings)
       web-devicons.enable = true;
 
-      # File manager
-      yazi = {
-        enable = true;
-        settings.open_for_directories = true;
-      };
-
       # Surround
       nvim-surround.enable = true;
 
