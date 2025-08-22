@@ -164,6 +164,7 @@
       ];
 
       exec-once = [
+        "foot --server"
         "hyprpaper"
         "waybar"
         "nm-applet"
@@ -177,7 +178,7 @@
 
       bind = [
         # Basic window management
-        "$mod, T, exec, alacritty"
+        "$mod, T, exec, footclient"
         "$mod, Q, killactive,"
         "$mod, E, exec, cosmic-files"
         "$mod, B, exec, brave"
