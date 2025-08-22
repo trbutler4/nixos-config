@@ -62,9 +62,6 @@ in
     enableZshIntegration = true;
   };
 
-  programs.neovim = {
-    enable = true;
-  };
 
   programs.git = {
     enable = true;
@@ -460,7 +457,6 @@ in
       exec = "/home/trbiv/nixos-config/scripts/screenshot-utility.sh";
       terminal = false;
       categories = [ "Graphics" "Photography" "Utility" ];
-      keywords = [ "screenshot" "capture" "image" "screen" "grab" ];
       startupNotify = true;
     };
   };
