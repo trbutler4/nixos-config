@@ -4,5 +4,5 @@
   everforest = import ./everforest.nix;
   
   # Theme selection - change this to switch themes globally
-  current = "everforest";
+  current = "gruvbox";
 }
