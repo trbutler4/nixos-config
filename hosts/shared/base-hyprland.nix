@@ -194,6 +194,9 @@
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
+        
+        # Switch to last accessed window (across workspaces)
+        "$mod, Tab, focuscurrentorlast,"
 
         # PopOS-style workspace navigation (using Page Up/Down to avoid conflicts)
         "$mod, Page_Up, workspace, e+1"
