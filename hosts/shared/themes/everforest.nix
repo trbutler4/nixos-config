@@ -101,4 +101,8 @@
   zed = {
     dark = "Everforest Dark";
   };
+  
+  neovim = {
+    colorscheme = "everforest";
+  };
 }

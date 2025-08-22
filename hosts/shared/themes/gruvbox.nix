@@ -113,4 +113,8 @@
   zed = {
     dark = "Gruvbox Dark Hard";
   };
+  
+  neovim = {
+    colorscheme = "gruvbox";
+  };
 }

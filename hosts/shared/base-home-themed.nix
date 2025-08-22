@@ -11,7 +11,7 @@ in
 
 {
   imports = [
-    #../shared/nvf.nix
+    ./neovim.nix
   ];
 
   # Username and homeDirectory should be set by the importing configuration
@@ -64,9 +64,6 @@ in
     enableZshIntegration = true;
   };
 
-  programs.neovim = {
-    enable = true;
-  };
 
   programs.git = {
     enable = true;
