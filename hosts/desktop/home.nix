@@ -7,9 +7,9 @@
 
 {
   imports = [
-    ../shared/base-home-themed.nix
-    ../shared/base-hyprland-themed.nix
-    #../shared/nvf-themed.nix
+    ../shared/base-home.nix
+    ../shared/base-hyprland.nix
+    ../shared/nvf.nix
     ./hyprland.nix
   ];
 
