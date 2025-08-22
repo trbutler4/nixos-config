@@ -37,6 +37,8 @@ in
       nv = "nvim";
       # Alias management
       aliases = "alias | fzf";
+      # Theme switching alias
+      theme = "/home/trbiv/nixos-config/scripts/theme-switcher.sh";
     };
     initContent = ''
       export EDITOR=nvim
@@ -85,7 +87,7 @@ in
     enable = true;
     #enableZshIntegration = true;
     settings = {
-      theme = "gruvbox-dark";
+      theme = currentTheme.zellij.theme_name;
       default_layout = "compact";
       pane_frames = false;
       simplified_ui = true;
@@ -114,6 +116,19 @@ in
           cyan = "#689d6a";
           white = "#a89984";
           orange = "#d65d0e";
+        };
+        everforest-dark = {
+          fg = "#d3c6aa";
+          bg = "#2d353b";
+          black = "#2d353b";
+          red = "#e67e80";
+          green = "#a7c080";
+          yellow = "#dbbc7f";
+          blue = "#7fbbb3";
+          magenta = "#d699b6";
+          cyan = "#83c092";
+          white = "#9da9a0";
+          orange = "#e69875";
         };
       };
     };
@@ -146,27 +161,26 @@ in
       };
 
       colors = {
-        # Gruvbox dark theme
-        background = "282828";
-        foreground = "ebdbb2";
+        background = currentTheme.foot.background;
+        foreground = currentTheme.foot.foreground;
 
-        regular0 = "282828";   # black
-        regular1 = "cc241d";   # red
-        regular2 = "98971a";   # green
-        regular3 = "d79921";   # yellow
-        regular4 = "458588";   # blue
-        regular5 = "b16286";   # magenta
-        regular6 = "689d6a";   # cyan
-        regular7 = "a89984";   # white
+        regular0 = currentTheme.foot.regular0;
+        regular1 = currentTheme.foot.regular1;
+        regular2 = currentTheme.foot.regular2;
+        regular3 = currentTheme.foot.regular3;
+        regular4 = currentTheme.foot.regular4;
+        regular5 = currentTheme.foot.regular5;
+        regular6 = currentTheme.foot.regular6;
+        regular7 = currentTheme.foot.regular7;
 
-        bright0 = "928374";    # bright black
-        bright1 = "fb4934";    # bright red
-        bright2 = "b8bb26";    # bright green
-        bright3 = "fabd2f";    # bright yellow
-        bright4 = "83a598";    # bright blue
-        bright5 = "d3869b";    # bright magenta
-        bright6 = "8ec07c";    # bright cyan
-        bright7 = "ebdbb2";    # bright white
+        bright0 = currentTheme.foot.bright0;
+        bright1 = currentTheme.foot.bright1;
+        bright2 = currentTheme.foot.bright2;
+        bright3 = currentTheme.foot.bright3;
+        bright4 = currentTheme.foot.bright4;
+        bright5 = currentTheme.foot.bright5;
+        bright6 = currentTheme.foot.bright6;
+        bright7 = currentTheme.foot.bright7;
       };
     };
   };
@@ -176,7 +190,7 @@ in
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox-dark-hard-transparent";
+      theme = currentTheme.helix.name;
 
       editor = {
         line-number = "relative";
@@ -400,6 +414,186 @@ in
         "markup.quote" = "#928374";
         "markup.raw" = "#8ec07c";
       };
+      
+      # Everforest dark theme
+      everforest_dark = {
+        # Base colors (everforest dark palette)
+        "ui.background" = { }; # Transparent background
+        "ui.background.separator" = "#2d353b";
+        "ui.cursor" = {
+          fg = "#2d353b";
+          bg = "#d3c6aa";
+        };
+        "ui.cursor.normal" = {
+          fg = "#2d353b";
+          bg = "#d3c6aa";
+        };
+        "ui.cursor.insert" = {
+          fg = "#2d353b";
+          bg = "#7fbbb3";
+        };
+        "ui.cursor.select" = {
+          fg = "#2d353b";
+          bg = "#d699b6";
+        };
+        "ui.cursor.match" = {
+          fg = "#2d353b";
+          bg = "#e69875";
+          modifiers = [ "bold" ];
+        };
+        "ui.cursor.primary" = {
+          fg = "#2d353b";
+          bg = "#d3c6aa";
+        };
+        "ui.cursorline.primary" = {
+          bg = "#343f44";
+        };
+        "ui.cursorline.secondary" = {
+          bg = "#343f44";
+        };
+        "ui.selection" = {
+          bg = "#475258";
+        };
+        "ui.selection.primary" = {
+          bg = "#475258";
+        };
+        "ui.linenr" = "#7a8478";
+        "ui.linenr.selected" = "#d3c6aa";
+        "ui.statusline" = {
+          fg = "#d3c6aa";
+          bg = "#343f44";
+        };
+        "ui.statusline.inactive" = {
+          fg = "#9da9a0";
+          bg = "#2d353b";
+        };
+        "ui.statusline.normal" = {
+          fg = "#2d353b";
+          bg = "#9da9a0";
+        };
+        "ui.statusline.insert" = {
+          fg = "#2d353b";
+          bg = "#7fbbb3";
+        };
+        "ui.statusline.select" = {
+          fg = "#2d353b";
+          bg = "#d699b6";
+        };
+        "ui.statusline.separator" = "#475258";
+        "ui.popup" = {
+          fg = "#d3c6aa";
+          bg = "#343f44";
+        };
+        "ui.window" = "#475258";
+        "ui.help" = {
+          fg = "#d3c6aa";
+          bg = "#343f44";
+        };
+        "ui.text" = "#d3c6aa";
+        "ui.text.focus" = "#d3c6aa";
+        "ui.menu" = {
+          fg = "#d3c6aa";
+          bg = "#343f44";
+        };
+        "ui.menu.selected" = {
+          fg = "#2d353b";
+          bg = "#7fbbb3";
+        };
+        "ui.virtual.whitespace" = "#475258";
+        "ui.virtual.ruler" = "#475258";
+        "ui.virtual.inlay-hint" = {
+          fg = "#7a8478";
+          bg = "#343f44";
+        };
+
+        # Syntax highlighting
+        "comment" = "#7a8478";
+        "constant" = "#d699b6";
+        "constant.numeric" = "#d699b6";
+        "constant.builtin" = "#d699b6";
+        "constant.character.escape" = "#e69875";
+        "string" = "#a7c080";
+        "string.regexp" = "#a7c080";
+        "string.special" = "#e69875";
+        "character" = "#d699b6";
+        "type" = "#dbbc7f";
+        "type.builtin" = "#dbbc7f";
+        "constructor" = "#7fbbb3";
+        "function" = "#a7c080";
+        "function.builtin" = "#e69875";
+        "function.macro" = "#83c092";
+        "variable" = "#d3c6aa";
+        "variable.builtin" = "#e69875";
+        "variable.parameter" = "#d3c6aa";
+        "variable.other.member" = "#d3c6aa";
+        "label" = "#e67e80";
+        "punctuation" = "#7a8478";
+        "punctuation.delimiter" = "#7a8478";
+        "punctuation.bracket" = "#d3c6aa";
+        "keyword" = "#e67e80";
+        "keyword.control" = "#e67e80";
+        "keyword.operator" = "#e69875";
+        "keyword.directive" = "#83c092";
+        "operator" = "#e69875";
+        "tag" = "#7fbbb3";
+        "attribute" = "#dbbc7f";
+        "namespace" = "#dbbc7f";
+        "module" = "#dbbc7f";
+        "special" = "#e69875";
+
+        # Diagnostics
+        "diagnostic.error" = {
+          underline = {
+            color = "#e67e80";
+            style = "curl";
+          };
+        };
+        "diagnostic.warning" = {
+          underline = {
+            color = "#dbbc7f";
+            style = "curl";
+          };
+        };
+        "diagnostic.info" = {
+          underline = {
+            color = "#7fbbb3";
+            style = "curl";
+          };
+        };
+        "diagnostic.hint" = {
+          underline = {
+            color = "#83c092";
+            style = "curl";
+          };
+        };
+
+        # Diff
+        "diff.plus" = "#a7c080";
+        "diff.minus" = "#e67e80";
+        "diff.delta" = "#e69875";
+
+        # Git
+        "markup.heading" = "#a7c080";
+        "markup.list" = "#e67e80";
+        "markup.bold" = {
+          fg = "#d3c6aa";
+          modifiers = [ "bold" ];
+        };
+        "markup.italic" = {
+          fg = "#d3c6aa";
+          modifiers = [ "italic" ];
+        };
+        "markup.strikethrough" = {
+          modifiers = [ "crossed_out" ];
+        };
+        "markup.link.url" = {
+          fg = "#7fbbb3";
+          modifiers = [ "underlined" ];
+        };
+        "markup.link.text" = "#d699b6";
+        "markup.quote" = "#7a8478";
+        "markup.raw" = "#83c092";
+      };
     };
   };
 
@@ -425,7 +619,7 @@ in
       theme = {
         mode = "dark";
         light = "One Light";
-        dark = "Gruvbox Dark Hard";
+        dark = currentTheme.zed.dark;
       };
     };
   };
@@ -460,7 +654,15 @@ in
       exec = "/home/trbiv/nixos-config/scripts/screenshot-utility.sh";
       terminal = false;
       categories = [ "Graphics" "Photography" "Utility" ];
-      keywords = [ "screenshot" "capture" "image" "screen" "grab" ];
+      startupNotify = true;
+    };
+    theme-switcher = {
+      name = "Theme Switcher";
+      comment = "Switch between different desktop themes";
+      icon = "preferences-desktop-theme";
+      exec = "/home/trbiv/nixos-config/scripts/theme-switcher.sh wofi";
+      terminal = false;
+      categories = [ "Settings" "DesktopSettings" ];
       startupNotify = true;
     };
   };
@@ -530,6 +732,8 @@ in
     pnpm
     python3
     go
+    rustup
+    foundry
     solc
   ];
 }
