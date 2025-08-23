@@ -4,6 +4,10 @@
   ...
 }:
 
+let
+  themes = import ./themes/default.nix;
+  currentTheme = themes.${themes.current};
+in
 {
   # Wofi launcher configuration - shared across all hosts
   programs.wofi = {
@@ -27,29 +31,29 @@
     style = ''
       window {
         margin: 0px;
-        border: 1px solid #1e1e2e;
-        background-color: #1e1e2e;
+        border: 1px solid ${currentTheme.wofi.window_border};
+        background-color: ${currentTheme.wofi.window_bg};
         border-radius: 0px;
       }
 
       #input {
         margin: 5px;
         border: none;
-        color: #cdd6f4;
-        background-color: #313244;
+        color: ${currentTheme.wofi.input_fg};
+        background-color: ${currentTheme.wofi.input_bg};
         border-radius: 0px;
       }
 
       #inner-box {
         margin: 5px;
         border: none;
-        background-color: #1e1e2e;
+        background-color: ${currentTheme.wofi.window_bg};
       }
 
       #outer-box {
         margin: 5px;
         border: none;
-        background-color: #1e1e2e;
+        background-color: ${currentTheme.wofi.window_bg};
       }
 
       #scroll {
@@ -60,15 +64,15 @@
       #text {
         margin: 5px;
         border: none;
-        color: #cdd6f4;
+        color: ${currentTheme.wofi.text_fg};
       }
 
       #entry:selected {
-        background-color: #585b70;
+        background-color: ${currentTheme.wofi.entry_selected_bg};
       }
 
       #entry:selected #text {
-        color: #cdd6f4;
+        color: ${currentTheme.wofi.entry_selected_fg};
       }
     '';
   };
@@ -106,7 +110,7 @@
           enabled = true;
           range = 4;
           render_power = 3;
-          color = "rgba(1a1a1aee)";
+          color = "rgba(${builtins.substring 1 6 currentTheme.colors.bg0}ee)";
         };
 
         blur = {
@@ -440,9 +444,9 @@
       }
 
       window#waybar {
-        color: #d4d4d8;
-        background: rgba(39, 39, 42, 0.9);
-        border: 1px solid rgba(63, 63, 70, 0.3);
+        color: ${currentTheme.waybar.foreground};
+        background: ${currentTheme.waybar.background};
+        border: 1px solid ${currentTheme.waybar.border};
         border-radius: 0;
         margin: 2px;
       }
@@ -457,26 +461,26 @@
       #workspaces button {
         padding: 0px 2px;
         margin: 0;
-        color: rgba(212, 212, 216, 0.6);
+        color: ${currentTheme.waybar.workspace_inactive};
         border-radius: 4px;
         transition: all 200ms ease;
         background: transparent;
       }
 
       #workspaces button.visible {
-        color: #d4d4d8;
-        background: rgba(63, 63, 70, 0.6);
+        color: ${currentTheme.waybar.foreground};
+        background: ${currentTheme.waybar.workspace_visible};
       }
 
       #workspaces button.focused {
         color: #ffffff;
-        background: rgba(99, 102, 241, 0.8);
-        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        background: ${currentTheme.waybar.workspace_active};
+        box-shadow: 0 2px 8px ${currentTheme.waybar.workspace_active};
       }
 
       #workspaces button.urgent {
-        color: #ef4444;
-        background: rgba(239, 68, 68, 0.2);
+        color: ${currentTheme.waybar.critical};
+        background: ${currentTheme.waybar.critical}33;
       }
 
       /* System info modules - left side */
@@ -485,7 +489,7 @@
         padding: 0 4px;
         background: transparent;
         min-width: 20px;
-        color: #d4d4d8;
+        color: ${currentTheme.waybar.foreground};
       }
 
       /* Center window title */
@@ -493,7 +497,7 @@
         margin: 0 8px;
         padding: 0 6px;
         background: transparent;
-        color: #a1a1aa;
+        color: ${currentTheme.colors.gray1};
         font-weight: 400;
       }
 
@@ -503,7 +507,7 @@
         padding: 0 4px;
         background: transparent;
         min-width: 16px;
-        color: #d4d4d8;
+        color: ${currentTheme.waybar.foreground};
       }
 
       #custom-wallpaper {
@@ -522,33 +526,33 @@
 
       #custom-power {
         margin: 0 4px 0 3px;
-        color: #ef4444;
+        color: ${currentTheme.waybar.power_button};
         font-size: 16px;
         transition: all 200ms ease;
       }
 
       #custom-power:hover {
-        color: #dc2626;
-        background: rgba(239, 68, 68, 0.1);
+        color: ${currentTheme.waybar.power_button_hover};
+        background: ${currentTheme.waybar.power_button}1a;
         border-radius: 4px;
       }
 
       /* Battery states */
       #battery.warning {
-        color: #f59e0b;
+        color: ${currentTheme.waybar.warning};
       }
 
       #battery.critical {
-        color: #ef4444;
+        color: ${currentTheme.waybar.critical};
         animation: blink 1s linear infinite alternate;
       }
 
       #battery.charging {
-        color: #10b981;
+        color: ${currentTheme.waybar.charging};
       }
 
       #temperature.critical {
-        color: #ef4444;
+        color: ${currentTheme.waybar.critical};
         animation: blink 1s linear infinite alternate;
       }
 
