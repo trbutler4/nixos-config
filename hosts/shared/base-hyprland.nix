@@ -110,7 +110,7 @@ in
           enabled = true;
           range = 4;
           render_power = 3;
-          color = "rgba(${builtins.substring 1 6 currentTheme.colors.bg0}ee)";
+          color = "rgba(${builtins.substring 1 6 currentTheme.colors.bg1}ee)";
         };
 
         blur = {
@@ -497,7 +497,7 @@ in
         margin: 0 8px;
         padding: 0 6px;
         background: transparent;
-        color: ${currentTheme.colors.gray1};
+        color: ${currentTheme.colors.fg1};
         font-weight: 400;
       }
 
