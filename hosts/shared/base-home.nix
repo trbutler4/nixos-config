@@ -134,7 +134,6 @@ in
     settings = {
       main = {
         term = "xterm-256color";
-        font = "monospace:size=10";
         dpi-aware = "yes";
       };
 
@@ -416,8 +415,6 @@ in
         diagnostics = false;
       };
       vim_mode = true;
-      ui_font_size = 14;
-      buffer_font_size = 14;
       theme = {
         mode = "dark";
         light = "One Light";
@@ -465,8 +462,6 @@ in
     gcc
     vim
     git
-    htop
-    tmux
     cryptsetup
     openssl
 
@@ -478,9 +473,7 @@ in
 
     # Terminal Programs
     htop
-    helix
     tmux
-    zellij
     lazygit
     lazydocker
     yazi
@@ -493,8 +486,8 @@ in
     wl-clipboard
     ripgrep
     jq
-    doctl # digital ocean cli
-    kubectl # kubernetes cli
+    doctl 
+    kubectl 
     k9s
     bat
     awscli
