@@ -447,7 +447,7 @@ in
         color: ${currentTheme.waybar.foreground};
         background: ${currentTheme.waybar.background};
         border: 1px solid ${currentTheme.waybar.border};
-        border-radius: 0;
+        border-radius: 0px;
         margin: 2px;
       }
 
@@ -475,12 +475,12 @@ in
       #workspaces button.focused {
         color: #ffffff;
         background: ${currentTheme.waybar.workspace_active};
-        box-shadow: 0 2px 8px ${currentTheme.waybar.workspace_active};
+        box-shadow: 0px 2px 8px ${currentTheme.waybar.workspace_active};
       }
 
       #workspaces button.urgent {
         color: ${currentTheme.waybar.critical};
-        background: ${currentTheme.waybar.critical}33;
+        background: ${currentTheme.waybar.critical};
       }
 
       /* System info modules - left side */
@@ -533,7 +533,7 @@ in
 
       #custom-power:hover {
         color: ${currentTheme.waybar.power_button_hover};
-        background: ${currentTheme.waybar.power_button}1a;
+        background: ${currentTheme.waybar.power_button};
         border-radius: 4px;
       }
 
