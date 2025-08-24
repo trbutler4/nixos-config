@@ -82,7 +82,7 @@ in
     enable = true;
     #enableZshIntegration = true;
     settings = {
-      theme = "gruvbox-dark";
+      theme = currentTheme.zellij.theme_name;
       default_layout = "compact";
       pane_frames = false;
       simplified_ui = true;
@@ -99,18 +99,18 @@ in
       ];
       keybinds.unbind = [ "Ctrl o" ];
       themes = {
-        gruvbox-dark = {
-          fg = "#ebdbb2";
-          bg = "#282828";
-          black = "#282828";
-          red = "#cc241d";
-          green = "#98971a";
-          yellow = "#d79921";
-          blue = "#458588";
-          magenta = "#b16286";
-          cyan = "#689d6a";
-          white = "#a89984";
-          orange = "#d65d0e";
+        "${currentTheme.zellij.theme_name}" = {
+          fg = currentTheme.zellij.fg;
+          bg = currentTheme.zellij.bg;
+          black = currentTheme.zellij.black;
+          red = currentTheme.zellij.red;
+          green = currentTheme.zellij.green;
+          yellow = currentTheme.zellij.yellow;
+          blue = currentTheme.zellij.blue;
+          magenta = currentTheme.zellij.magenta;
+          cyan = currentTheme.zellij.cyan;
+          white = currentTheme.zellij.white;
+          orange = currentTheme.zellij.orange;
         };
       };
     };
@@ -143,27 +143,26 @@ in
       };
 
       colors = {
-        # Gruvbox dark theme
-        background = "282828";
-        foreground = "ebdbb2";
+        background = currentTheme.foot.background;
+        foreground = currentTheme.foot.foreground;
 
-        regular0 = "282828";   # black
-        regular1 = "cc241d";   # red
-        regular2 = "98971a";   # green
-        regular3 = "d79921";   # yellow
-        regular4 = "458588";   # blue
-        regular5 = "b16286";   # magenta
-        regular6 = "689d6a";   # cyan
-        regular7 = "a89984";   # white
+        regular0 = currentTheme.foot.regular0;   # black
+        regular1 = currentTheme.foot.regular1;   # red
+        regular2 = currentTheme.foot.regular2;   # green
+        regular3 = currentTheme.foot.regular3;   # yellow
+        regular4 = currentTheme.foot.regular4;   # blue
+        regular5 = currentTheme.foot.regular5;   # magenta
+        regular6 = currentTheme.foot.regular6;   # cyan
+        regular7 = currentTheme.foot.regular7;   # white
 
-        bright0 = "928374";    # bright black
-        bright1 = "fb4934";    # bright red
-        bright2 = "b8bb26";    # bright green
-        bright3 = "fabd2f";    # bright yellow
-        bright4 = "83a598";    # bright blue
-        bright5 = "d3869b";    # bright magenta
-        bright6 = "8ec07c";    # bright cyan
-        bright7 = "ebdbb2";    # bright white
+        bright0 = currentTheme.foot.bright0;    # bright black
+        bright1 = currentTheme.foot.bright1;    # bright red
+        bright2 = currentTheme.foot.bright2;    # bright green
+        bright3 = currentTheme.foot.bright3;    # bright yellow
+        bright4 = currentTheme.foot.bright4;    # bright blue
+        bright5 = currentTheme.foot.bright5;    # bright magenta
+        bright6 = currentTheme.foot.bright6;    # bright cyan
+        bright7 = currentTheme.foot.bright7;    # bright white
       };
     };
   };
@@ -173,7 +172,7 @@ in
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox-dark-hard-transparent";
+      theme = currentTheme.helix.name;
 
       editor = {
         line-number = "relative";

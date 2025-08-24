@@ -3,6 +3,10 @@
   pkgs,
   ...
 }:
+let
+  themes = import ./themes/default.nix;
+  currentTheme = themes.${themes.current};
+in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -26,11 +30,18 @@
 
     globals.mapleader = " ";
 
-    # Theme
+    # Theme - dynamically enable based on current theme
     colorschemes.gruvbox = {
-      enable = true;
+      enable = currentTheme.name == "gruvbox";
       settings = {
         transparent_mode = true;
+      };
+    };
+    
+    colorschemes.everforest = {
+      enable = currentTheme.name == "everforest";
+      settings = {
+        transparent_mode = 1;
       };
     };
 
@@ -119,7 +130,7 @@
       # Status line
       lualine = {
         enable = true;
-        settings.options.theme = "gruvbox";
+        settings.options.theme = currentTheme.neovim.colorscheme;
       };
 
       # Which-key
