@@ -105,6 +105,7 @@ in
         settings = {
           keymap = {
             preset = "default";
+            "<S-Tab>" = [ "select_and_accept" ];
           };
           appearance.nerd_font_variant = "mono";
           completion.documentation.auto_show = false;
