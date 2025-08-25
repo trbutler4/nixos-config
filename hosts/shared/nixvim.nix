@@ -103,7 +103,9 @@ in
       blink-cmp = {
         enable = true;
         settings = {
-          keymap.preset = "default";
+          keymap = {
+            preset = "default";
+          };
           appearance.nerd_font_variant = "mono";
           completion.documentation.auto_show = false;
           sources.default = [

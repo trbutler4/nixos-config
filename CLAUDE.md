@@ -119,3 +119,5 @@ The configuration uses environment variables for secrets, loaded from `~/.secret
 ## Memory Management
 
 - **Rebuild Directive**: i will rebuild the system myself. do not attempt to rebuild
+
+- use: https://github.com/JMartJonesy/kickstart.nixvim/blob/main/nixvim.nix as a reference for nixvim
