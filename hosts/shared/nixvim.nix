@@ -34,7 +34,7 @@ in
     colorschemes.gruvbox = {
       enable = currentTheme.name == "gruvbox";
       settings = {
-        transparent_mode = true;
+        transparent_mode = false;
       };
     };
     
