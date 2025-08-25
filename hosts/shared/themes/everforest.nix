@@ -105,4 +105,41 @@
   neovim = {
     colorscheme = "everforest";
   };
+  
+  alacritty = {
+    colors = {
+      primary = {
+        background = "#2d353b";
+        foreground = "#d3c6aa";
+        bright_foreground = "#d3c6aa";
+      };
+      
+      normal = {
+        black = "#2d353b";
+        red = "#e67e80";
+        green = "#a7c080";
+        yellow = "#dbbc7f";
+        blue = "#7fbbb3";
+        magenta = "#d699b6";
+        cyan = "#83c092";
+        white = "#9da9a0";
+      };
+      
+      bright = {
+        black = "#7a8478";
+        red = "#e67e80";
+        green = "#a7c080";
+        yellow = "#dbbc7f";
+        blue = "#7fbbb3";
+        magenta = "#d699b6";
+        cyan = "#83c092";
+        white = "#d3c6aa";
+      };
+      
+      selection = {
+        text = "#2d353b";
+        background = "#d3c6aa";
+      };
+    };
+  };
 }

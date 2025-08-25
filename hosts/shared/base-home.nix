@@ -122,6 +122,7 @@ in
       window = {
         decorations = "None";
       };
+      colors = currentTheme.alacritty.colors;
     };
   };
 
