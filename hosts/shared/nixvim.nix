@@ -336,6 +336,14 @@ in
           desc = "Search Neovim files";
         };
       }
+      {
+        mode = "n";
+        key = "<leader>sc";
+        action = "<cmd>Telescope git_status<cr>";
+        options = {
+          desc = "[S]earch [C]hanged files";
+        };
+      }
 
       # LSP
       {
