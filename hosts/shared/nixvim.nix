@@ -45,6 +45,19 @@ in
       };
     };
 
+    # Monokai Pro theme using extra plugins
+    extraPlugins = with pkgs.vimPlugins; [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "monokai-pro.nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "loctvl842";
+          repo = "monokai-pro.nvim";
+          rev = "v1.26.1";
+          sha256 = "sha256-ZyBmU7FSEVXJGPjPKSJCMo3BJU++yv8r1G0K0t/cPEI=";
+        };
+      })
+    ];
+
     # Clipboard
     clipboard = {
       register = "unnamedplus";
@@ -199,9 +212,18 @@ in
       };
     };
 
-    # Enable undo file
+    # Enable undo file and Monokai Pro theme setup
     extraConfigLua = ''
       vim.opt.undofile = true
+      
+      -- Monokai Pro theme setup
+      if "${currentTheme.name}" == "monokai-pro" then
+        require("monokai-pro").setup({
+          transparent_mode = true,
+          filter = "pro",
+        })
+        vim.cmd("colorscheme monokai-pro")
+      end
     '';
 
     # Keymaps
