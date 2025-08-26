@@ -12,6 +12,7 @@
     bg4 = "#7c6f64";
     
     # Foreground colors
+    fg = "#ebdbb2";  # Primary foreground (same as fg1)
     fg0 = "#fbf1c7";
     fg1 = "#ebdbb2";
     fg2 = "#d5c4a1";
