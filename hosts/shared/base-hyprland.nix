@@ -496,7 +496,7 @@ in
         margin: 0 8px;
         padding: 0 6px;
         background: transparent;
-        color: ${currentTheme.colors.fg1};
+        color: ${currentTheme.colors.fg};
         font-weight: 400;
       }
 
