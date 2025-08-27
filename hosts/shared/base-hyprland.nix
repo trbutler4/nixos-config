@@ -91,30 +91,32 @@ in
         sensitivity = 0;
       };
 
-      # General window management - follows default config
+      # General window management - optimized with borders for active window
       general = {
         gaps_in = 3;
         gaps_out = 6;
-        border_size = 0;
+        border_size = 2;  # Add border to show active window
+        "col.active_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.green})";
+        "col.inactive_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.bg2})";
         resize_on_border = false;
         allow_tearing = false;
         layout = "master";
       };
 
-      # Decoration - follows default config
+      # Decoration - optimized for performance
       decoration = {
-        active_opacity = 0.98;
-        inactive_opacity = 0.95;
+        active_opacity = 1.0;  # No transparency for better performance
+        inactive_opacity = 1.0;  # No transparency for inactive windows
 
         shadow = {
-          enabled = true;
+          enabled = false;  # Disable shadows for better performance
           range = 4;
           render_power = 3;
           color = "rgba(${builtins.substring 1 6 currentTheme.colors.bg1}ee)";
         };
 
         blur = {
-          enabled = true;
+          enabled = false;  # Disable blur for significant performance gain
           size = 3;
           passes = 1;
           vibrancy = 0.1696;
@@ -129,36 +131,32 @@ in
         no_hardware_cursors = false;
       };
 
-      # Animations - follows default config structure
+      # Performance optimizations
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
+        vfr = true;  # Variable frame rate for better performance
+        vrr = 0;  # Disable VRR if not needed
+        animate_manual_resizes = false;
+        animate_mouse_windowdragging = false;
+        enable_swallow = false;
+        swallow_regex = "";
+        focus_on_activate = true;
+        new_window_takes_over_fullscreen = 2;
+      };
+
+      # Debug settings for performance monitoring (optional)
+      debug = {
+        damage_tracking = 2;  # Full damage tracking for better performance
+        disable_logs = true;  # Disable logs for performance
+        disable_time = true;  # Disable time logging
+      };
+
+      # Animations - minimal for maximum performance
       animations = {
-        enabled = true;
-
-        bezier = [
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
-        ];
-
-        animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
-        ];
+        enabled = false;  # Disable all animations for maximum performance
       };
 
       # Dark theme - shared
@@ -284,10 +282,21 @@ in
         "$mod, mouse:273, resizewindow"
       ];
 
-      # Window rules for clean appearance
+      # Window rules for performance
       windowrulev2 = [
-        "bordersize 0,class:.*"
-        "rounding 8,class:.*"
+        "rounding 0,class:.*"  # No rounded corners for better performance
+        "noshadow,class:.*"  # Ensure no shadows on any windows
+        "noblur,class:.*"  # Ensure no blur on any windows
+        
+        # Browser-specific optimizations
+        "immediate,class:^(brave-browser)$"  # Immediate rendering for Brave
+        "immediate,class:^(firefox)$"  # Immediate rendering for Firefox
+        "immediate,class:^(chromium-browser)$"  # Immediate rendering for Chromium
+        "immediate,class:^(google-chrome)$"  # Immediate rendering for Chrome
+        "nodim,class:^(brave-browser)$"  # No dimming for browsers
+        "nodim,class:^(firefox)$"
+        "nodim,class:^(chromium-browser)$"
+        "nodim,class:^(google-chrome)$"
       ];
     };
   };
