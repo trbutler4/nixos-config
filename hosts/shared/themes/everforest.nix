@@ -3,29 +3,42 @@
   
   colors = {
     # Background colors
-    bg0 = "#2d353b";
+    bg0_hard = "#232a2e";
+    bg0_normal = "#2d353b";
+    bg0_soft = "#323c41";
     bg1 = "#343f44";
     bg2 = "#3d484d";
     bg3 = "#475258";
     bg4 = "#4f585e";
-    bg5 = "#56635f";
     
     # Foreground colors
     fg = "#d3c6aa";
+    fg0 = "#d3c6aa";
+    fg1 = "#d3c6aa";
+    fg2 = "#9da9a0";
+    fg3 = "#859289";
+    fg4 = "#7a8478";
     
     # Gray
-    gray0 = "#7a8478";
-    gray1 = "#859289";
-    gray2 = "#9da9a0";
+    gray = "#859289";
     
     # Colors
     red = "#e67e80";
-    orange = "#e69875";
-    yellow = "#dbbc7f";
     green = "#a7c080";
-    aqua = "#83c092";
+    yellow = "#dbbc7f";
     blue = "#7fbbb3";
     purple = "#d699b6";
+    aqua = "#83c092";
+    orange = "#e69875";
+    
+    # Light variants
+    light_red = "#e67e80";
+    light_green = "#a7c080";
+    light_yellow = "#dbbc7f";
+    light_blue = "#7fbbb3";
+    light_purple = "#d699b6";
+    light_aqua = "#83c092";
+    light_orange = "#e69875";
   };
   
   # Application-specific theme configurations

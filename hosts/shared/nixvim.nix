@@ -219,7 +219,7 @@ in
       -- Monokai Pro theme setup
       if "${currentTheme.name}" == "monokai-pro" then
         require("monokai-pro").setup({
-          transparent_mode = true,
+          transparent_background = true,
           filter = "pro",
         })
         vim.cmd("colorscheme monokai-pro")

@@ -2,31 +2,43 @@
   name = "monokai-pro";
   
   colors = {
-    # Background colors (authentic Monokai Pro palette)
-    bg0 = "#19181a";      # Dark background
-    bg1 = "#221f22";      # Black background  
-    bg2 = "#403e41";      # Dimmed5
-    bg3 = "#5b595c";      # Dimmed4
-    bg4 = "#727072";      # Dimmed3
-    bg5 = "#939293";      # Dimmed2
+    # Background colors
+    bg0_hard = "#19181a";
+    bg0_normal = "#221f22";
+    bg0_soft = "#2d2a2e";
+    bg1 = "#221f22";
+    bg2 = "#403e41";
+    bg3 = "#5b595c";
+    bg4 = "#727072";
     
     # Foreground colors
-    fg = "#fcfcfa";       # White
+    fg = "#fcfcfa";
+    fg0 = "#fcfcfa";
+    fg1 = "#fcfcfa";
+    fg2 = "#c1c0c0";
+    fg3 = "#939293";
+    fg4 = "#727072";
     
-    # Gray variations
-    gray0 = "#727072";    # Dimmed3
-    gray1 = "#939293";    # Dimmed2
-    gray2 = "#c1c0c0";    # Dimmed1
+    # Gray
+    gray = "#939293";
     
-    # Primary colors (authentic Monokai Pro)
+    # Colors
     red = "#ff6188";
-    orange = "#fc9867";   # Blue in original palette
-    yellow = "#ffd866";
     green = "#a9dc76";
-    aqua = "#78dce8";     # Cyan
-    blue = "#ab9df2";     # Magenta
-    purple = "#ab9df2";   # Magenta
-    pink = "#ff6188";     # Red
+    yellow = "#ffd866";
+    blue = "#ab9df2";
+    purple = "#ab9df2";
+    aqua = "#78dce8";
+    orange = "#fc9867";
+    
+    # Light variants
+    light_red = "#ff6188";
+    light_green = "#a9dc76";
+    light_yellow = "#ffd866";
+    light_blue = "#ab9df2";
+    light_purple = "#ab9df2";
+    light_aqua = "#78dce8";
+    light_orange = "#fc9867";
   };
   
   # Application-specific theme configurations

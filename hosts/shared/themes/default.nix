@@ -5,5 +5,5 @@
   monokai-pro = import ./monokai-pro.nix;
   
   # Theme selection - change this to switch themes globally
-  current = "gruvbox";
+  current = "monokai-pro";
 }
