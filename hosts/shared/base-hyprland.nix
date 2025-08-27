@@ -27,6 +27,7 @@ in
       insensitive = true;
       allow_images = true;
       image_size = 40;
+      matching = "fuzzy";
     };
     style = ''
       window {
@@ -249,9 +250,6 @@ in
         # Window resizing (vim keys)
         "$mod SHIFT, H, resizeactive, -50 0"
         "$mod SHIFT, L, resizeactive, 50 0"
-
-        # Toggle waybar
-        "$mod, V, exec, pkill -SIGUSR1 waybar"
 
         # Screenshots (moved from S to Print since S is used for stacking)
         ", Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
@@ -586,4 +584,5 @@ in
   xdg.dataFile."applications/wallpaper-next.desktop".source = ../../desktop-entries/wallpaper-next.desktop;
   xdg.dataFile."applications/wallpaper-previous.desktop".source = ../../desktop-entries/wallpaper-previous.desktop;
   xdg.dataFile."applications/toggle-window-borders.desktop".source = ../../desktop-entries/toggle-window-borders.desktop;
+  xdg.dataFile."applications/toggle-waybar.desktop".source = ../../desktop-entries/toggle-waybar.desktop;
 }

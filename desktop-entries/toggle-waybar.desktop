@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Toggle Waybar
+Comment=Show or hide the Waybar status bar
+Exec=/home/trbiv/nixos-config/scripts/toggle-waybar.sh
+Icon=view-fullscreen
+Terminal=false
+Categories=Utility;DesktopUtility;Settings;
+Keywords=waybar;statusbar;panel;toggle;hide;show;
