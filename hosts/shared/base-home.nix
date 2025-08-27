@@ -126,10 +126,6 @@ in
     };
   };
 
-  programs.ghostty = {
-    enable = true;
-  };
-
   programs.foot = {
     enable = true;
     settings = {
@@ -500,7 +496,6 @@ in
     spotify
     telegram-desktop
     alacritty
-    ghostty
     libreoffice-still
     gimp3
     discord
