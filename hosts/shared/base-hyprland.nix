@@ -84,6 +84,11 @@ in
   # Base Hyprland configuration - shared settings
   wayland.windowManager.hyprland = {
     enable = true;
+    extraConfig = ''
+      # Source nwg-displays generated configuration if they exist
+      source = ~/.config/hypr/monitors.conf
+      source = ~/.config/hypr/workspaces.conf
+    '';
     settings = {
       # Input configuration - shared
       input = {
