@@ -28,6 +28,9 @@ in
       allow_images = true;
       image_size = 40;
       matching = "fuzzy";
+      sort_order = "default";
+      gtk_dark = true;
+      dynamic_lines = true;
     };
     style = ''
       window {
