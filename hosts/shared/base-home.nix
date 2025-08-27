@@ -126,42 +126,6 @@ in
     };
   };
 
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        term = "xterm-256color";
-        dpi-aware = "yes";
-      };
-
-      mouse = {
-        hide-when-typing = "yes";
-      };
-
-      colors = {
-        background = currentTheme.foot.background;
-        foreground = currentTheme.foot.foreground;
-
-        regular0 = currentTheme.foot.regular0;   # black
-        regular1 = currentTheme.foot.regular1;   # red
-        regular2 = currentTheme.foot.regular2;   # green
-        regular3 = currentTheme.foot.regular3;   # yellow
-        regular4 = currentTheme.foot.regular4;   # blue
-        regular5 = currentTheme.foot.regular5;   # magenta
-        regular6 = currentTheme.foot.regular6;   # cyan
-        regular7 = currentTheme.foot.regular7;   # white
-
-        bright0 = currentTheme.foot.bright0;    # bright black
-        bright1 = currentTheme.foot.bright1;    # bright red
-        bright2 = currentTheme.foot.bright2;    # bright green
-        bright3 = currentTheme.foot.bright3;    # bright yellow
-        bright4 = currentTheme.foot.bright4;    # bright blue
-        bright5 = currentTheme.foot.bright5;    # bright magenta
-        bright6 = currentTheme.foot.bright6;    # bright cyan
-        bright7 = currentTheme.foot.bright7;    # bright white
-      };
-    };
-  };
 
   programs.firefox.enable = true;
 

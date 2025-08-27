@@ -45,27 +45,6 @@
     orange = "#fc9867";   # accent5
   };
   
-  foot = {
-    background = "19181a";
-    foreground = "fcfcfa";
-    regular0 = "221f22";
-    regular1 = "ff6188";
-    regular2 = "a9dc76";
-    regular3 = "ffd866";
-    regular4 = "ab9df2";
-    regular5 = "ab9df2";
-    regular6 = "78dce8";
-    regular7 = "c1c0c0";
-    bright0 = "727072";
-    bright1 = "ff6188";
-    bright2 = "a9dc76";
-    bright3 = "ffd866";
-    bright4 = "ab9df2";
-    bright5 = "ab9df2";
-    bright6 = "78dce8";
-    bright7 = "fcfcfa";
-  };
-  
   waybar = {
     background = "rgba(25, 24, 26, 0.9)";
     foreground = "#fcfcfa";
