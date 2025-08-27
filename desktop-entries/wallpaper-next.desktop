@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Next Wallpaper
+Comment=Switch to next wallpaper
+Exec=/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next
+Icon=go-next
+Terminal=false
+Categories=Utility;DesktopUtility;Settings;
+Keywords=wallpaper;background;next;switch;

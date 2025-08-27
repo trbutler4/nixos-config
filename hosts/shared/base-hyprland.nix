@@ -93,10 +93,10 @@ in
 
       # General window management - optimized with borders for active window
       general = {
-        gaps_in = 3;
-        gaps_out = 6;
+        gaps_in = 1;
+        gaps_out = 4;
         border_size = 2;  # Add border to show active window
-        "col.active_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.green})";
+        "col.active_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.fg0})";
         "col.inactive_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.bg2})";
         resize_on_border = false;
         allow_tearing = false;
@@ -250,10 +250,6 @@ in
         "$mod SHIFT, H, resizeactive, -50 0"
         "$mod SHIFT, L, resizeactive, 50 0"
 
-        # Wallpaper switching
-        "$mod, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh next"
-        "$mod SHIFT, W, exec, /home/trbiv/nixos-config/scripts/wallpaper-switcher.sh prev"
-
         # Toggle waybar
         "$mod, V, exec, pkill -SIGUSR1 waybar"
 
@@ -265,6 +261,12 @@ in
         "$mod, S, togglegroup,"
         "$mod CTRL, H, changegroupactive, b"
         "$mod CTRL, L, changegroupactive, f"
+
+        # Display management
+        "$mod SHIFT, D, exec, nwg-displays"
+
+        # Window border toggle
+        "$mod, F1, exec, /home/trbiv/nixos-config/scripts/toggle-window-borders.sh"
       ];
 
       # Audio control bindings
@@ -318,7 +320,6 @@ in
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
-          "custom/wallpaper"
           "bluetooth"
           "wireplumber"
           "battery"
@@ -407,16 +408,6 @@ in
           tooltip = false;
         };
 
-        "custom/wallpaper" = {
-          format = "   ";
-          exec = "/home/trbiv/nixos-config/scripts/wallpaper-switcher.sh current";
-          on-click = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
-          on-click-right = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
-          on-click-middle = "/home/trbiv/nixos-config/scripts/wallpaper-selector.sh";
-          signal = 8;
-          interval = "once";
-          tooltip-format = "Click: Open wallpaper selector";
-        };
 
         bluetooth = {
           format = "󰂯";
@@ -510,16 +501,12 @@ in
       }
 
       /* Right modules */
-      #custom-wallpaper, #bluetooth, #wireplumber, #battery, #tray, #clock, #custom-power {
+      #bluetooth, #wireplumber, #battery, #tray, #clock, #custom-power {
         margin: 0 3px;
         padding: 0 4px;
         background: transparent;
         min-width: 16px;
         color: ${currentTheme.waybar.foreground};
-      }
-
-      #custom-wallpaper {
-        margin: 0 3px 0 4px;
       }
 
       #battery {
@@ -591,5 +578,12 @@ in
     playerctl
     blueman
     swayidle
+    nwg-displays
   ];
+
+  # Copy desktop entries for utilities
+  xdg.dataFile."applications/wallpaper-selector.desktop".source = ../../desktop-entries/wallpaper-selector.desktop;
+  xdg.dataFile."applications/wallpaper-next.desktop".source = ../../desktop-entries/wallpaper-next.desktop;
+  xdg.dataFile."applications/wallpaper-previous.desktop".source = ../../desktop-entries/wallpaper-previous.desktop;
+  xdg.dataFile."applications/toggle-window-borders.desktop".source = ../../desktop-entries/toggle-window-borders.desktop;
 }

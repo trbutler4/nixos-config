@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Wallpaper Selector
+Comment=Select wallpaper from available options
+Exec=/home/trbiv/nixos-config/scripts/wallpaper-selector.sh
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Categories=Utility;DesktopUtility;Settings;
+Keywords=wallpaper;background;theme;

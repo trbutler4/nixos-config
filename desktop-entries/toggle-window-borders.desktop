@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Toggle Window Borders
+Comment=Enable or disable active window outlines
+Exec=/home/trbiv/nixos-config/scripts/toggle-window-borders.sh
+Icon=preferences-system-windows
+Terminal=false
+Categories=Utility;DesktopUtility;Settings;
+Keywords=window;border;outline;toggle;active;
