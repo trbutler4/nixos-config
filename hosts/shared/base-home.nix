@@ -388,6 +388,7 @@ in
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
+      # Use wallpaper as background
       screenshots = true;
       clock = true;
       indicator = true;
@@ -400,8 +401,24 @@ in
       line-color = "00000000";
       inside-color = "00000088";
       separator-color = "00000000";
+      text-color = "ffffff";
+      text-ver-color = "ffffff";
+      text-wrong-color = "ff0000";
+      text-clear-color = "ffffff";
+      ring-ver-color = "bb00cc";
+      ring-wrong-color = "ff0000";
+      ring-clear-color = "ffa500";
+      inside-ver-color = "00000088";
+      inside-wrong-color = "00000088";
+      inside-clear-color = "00000088";
       grace = 2;
+      grace-no-mouse = true;
+      grace-no-touch = true;
+      datestr = "%a, %B %e";
+      timestr = "%H:%M";
       fade-in = 0.2;
+      ignore-empty-password = false;
+      show-failed-attempts = true;
     };
   };
 

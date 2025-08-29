@@ -64,16 +64,11 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   
-  # Enable swaylock with proper PAM configuration
-  security.pam.services.swaylock = {};
-  
-  # Add swaylock to security wrappers for proper permissions
-  security.wrappers.swaylock = {
-    source = "${pkgs.swaylock}/bin/swaylock";
-    capabilities = "cap_sys_admin+ep";
-    owner = "root";
-    group = "root";
-    permissions = "u+rx,g+x,o+x";
+  # Enable swaylock-effects with proper PAM configuration
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
   };
   
   # Audio configuration - PipeWire
@@ -137,7 +132,7 @@
     home-manager
 
     # Screen locking
-    swaylock
+    swaylock-effects
 
   ];
 
