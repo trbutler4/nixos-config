@@ -49,7 +49,7 @@ in
 
       # Claude Code directory-based config switching
       claude() {
-        if [[ $PWD == */Projects/oku/* || $PWD == */Projects/oku ]]; then
+        if [ $PWD == */Projects/gfx/*]; then
           CLAUDE_CODE_CONFIG_DIR="/etc/claude-code" command claude "$@"
         else
           command claude "$@"
