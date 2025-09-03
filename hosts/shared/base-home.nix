@@ -33,6 +33,7 @@ in
       lg = "lazygit";
       ldo = "lazydocker";
       z = "zellij";
+      ze = "zeditor";
       y = "yazi";
       nv = "nvim";
       # Alias management
