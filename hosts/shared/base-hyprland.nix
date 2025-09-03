@@ -258,6 +258,8 @@ in
         # Window resizing (vim keys)
         "$mod SHIFT, H, resizeactive, -50 0"
         "$mod SHIFT, L, resizeactive, 50 0"
+        "$mod SHIFT, K, resizeactive, 0 -50"
+        "$mod SHIFT, J, resizeactive, 0 50"
 
         # Screenshots (moved from S to Print since S is used for stacking)
         ", Print, exec, /home/trbiv/nixos-config/scripts/screenshot-utility.sh"
