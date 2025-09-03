@@ -381,6 +381,13 @@ in
         light = "One Light";
         dark = "Gruvbox Dark Hard";
       };
+      tab_bar = {
+        show = false;
+      };
+      format_on_save = "off";
+      scrollbar = { 
+        show = "never";
+      };
     };
   };
 
