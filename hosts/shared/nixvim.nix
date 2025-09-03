@@ -464,6 +464,15 @@ in
         };
       }
 
+      {
+        mode = "n";
+        key = "<leader>lg";
+        action = "<cmd>LazyGit<cr>";
+        options = {
+          desc = "Lazygit";
+        };
+      }
+
       # Which-key
       {
         mode = "n";
