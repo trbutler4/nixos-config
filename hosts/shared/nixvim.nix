@@ -98,17 +98,18 @@ in
       lsp = {
         enable = true;
         servers = {
-          nil_ls.enable = true;  # Nix
-          ts_ls.enable = true;   # TypeScript
+          nil_ls.enable = true;
+          ts_ls.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
           };
-          pyright.enable = true; # Python
-          gopls.enable = true;   # Go
-          astro.enable = true;   # Astro
-          lua_ls.enable = true;  # Lua
+          pyright.enable = true;
+          gopls.enable = true;  
+          astro.enable = true;
+          lua_ls.enable = true; 
+          tailwindcss.enable = true;
         };
       };
 
