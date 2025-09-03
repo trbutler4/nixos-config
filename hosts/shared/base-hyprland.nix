@@ -102,8 +102,8 @@ in
 
       # General window management - optimized with borders for active window
       general = {
-        gaps_in = 1;
-        gaps_out = 4;
+        gaps_in = 0;
+        gaps_out = 0;
         border_size = 2;  # Add border to show active window
         "col.active_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.fg0})";
         "col.inactive_border" = "rgb(${builtins.substring 1 6 currentTheme.colors.bg2})";
