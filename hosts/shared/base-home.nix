@@ -49,11 +49,27 @@ in
 
       # Claude Code directory-based config switching
       claude() {
-        if [ $PWD == */Projects/gfx/*]; then
+        # Check if we're under ~/Projects/gfx (including the directory itself)
+        if [[ $PWD == "$HOME/Projects/gfx" || $PWD == "$HOME/Projects/gfx/"* ]]; then
+          echo "[Claude: Using /etc/claude-code config]" >&2
           CLAUDE_CODE_CONFIG_DIR="/etc/claude-code" command claude "$@"
         else
+          # Optional: show which config is being used
+          # echo "[Claude: Using default config]" >&2
           command claude "$@"
         fi
+      }
+      
+      # Helper function to check current Claude config status
+      claude-config-check() {
+        echo "Current directory: $PWD"
+        if [[ $PWD == "$HOME/Projects/gfx" || $PWD == "$HOME/Projects/gfx/"* ]]; then
+          echo "✓ Claude will use /etc/claude-code config in this directory"
+        else
+          echo "✗ Claude will use default config in this directory"
+        fi
+        echo ""
+        echo "To test: try 'claude --version' and watch for the config message"
       }
     '';
   };
