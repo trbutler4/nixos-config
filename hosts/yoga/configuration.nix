@@ -141,20 +141,6 @@
     enable = true;
   };
 
-  # QEMU/KVM virtualization for Windows VMs
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = false;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-  };
-
   # Enable virt-manager for GUI VM management
   programs.virt-manager.enable = true;
 
