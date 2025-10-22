@@ -63,7 +63,7 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   
-  
+  services.openssh.enable = true; 
   
   # Audio configuration - PipeWire
   security.rtkit.enable = true;
@@ -138,7 +138,6 @@
     # Nix stuff
     home-manager
   ];
-
 
   virtualisation.docker = {
     enable = true;
