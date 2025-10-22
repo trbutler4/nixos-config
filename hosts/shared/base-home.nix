@@ -1,4 +1,5 @@
 {
+
   config,
   pkgs,
   ...
@@ -143,6 +144,7 @@ in
     };
   };
 
+  programs.neovim.enable = true;
 
   programs.firefox.enable = true;
 
@@ -500,7 +502,6 @@ in
     obs-studio
     spotify
     telegram-desktop
-    alacritty
     libreoffice-still
     gimp3
     discord
