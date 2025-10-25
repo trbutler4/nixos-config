@@ -275,6 +275,9 @@ in
 
         # Window border toggle
         "$mod, F1, exec, /home/trbiv/nixos-config/scripts/toggle-window-borders.sh"
+
+        # Do Not Disturb toggle
+        "$mod, N, exec, /home/trbiv/nixos-config/scripts/toggle-dnd.sh"
       ];
 
       # Audio control bindings
@@ -582,6 +585,22 @@ in
     };
   };
 
+  # Mako notification daemon
+  services.mako = {
+    enable = true;
+    borderSize = 2;
+    borderRadius = 0;
+    width = 300;
+    height = 100;
+    padding = "10";
+    margin = "10";
+    defaultTimeout = 5000;
+    ignoreTimeout = false;
+    font = "0xProto 12";
+    layer = "overlay";
+    anchor = "top-right";
+  };
+
   home.packages = with pkgs; [
     wofi
     waybar
@@ -594,6 +613,7 @@ in
     blueman
     swayidle
     nwg-displays
+    mako
   ];
 
   # Copy desktop entries for utilities
