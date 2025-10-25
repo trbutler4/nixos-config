@@ -105,7 +105,7 @@
         foreground = "#ebdbb2";
         bright_foreground = "#fbf1c7";
       };
-      
+
       normal = {
         black = "#282828";
         red = "#cc241d";
@@ -116,7 +116,7 @@
         cyan = "#689d6a";
         white = "#a89984";
       };
-      
+
       bright = {
         black = "#928374";
         red = "#fb4934";
@@ -127,11 +127,39 @@
         cyan = "#8ec07c";
         white = "#ebdbb2";
       };
-      
+
       selection = {
         text = "#1d2021";
         background = "#ebdbb2";
       };
+    };
+  };
+
+  mako = {
+    backgroundColor = "#282828";
+    textColor = "#ebdbb2";
+    borderColor = "#504945";
+    progressColor = "over #83a598";
+
+    # Low urgency
+    low = {
+      backgroundColor = "#282828";
+      textColor = "#a89984";
+      borderColor = "#3c3836";
+    };
+
+    # Normal urgency
+    normal = {
+      backgroundColor = "#282828";
+      textColor = "#ebdbb2";
+      borderColor = "#504945";
+    };
+
+    # Critical urgency
+    critical = {
+      backgroundColor = "#282828";
+      textColor = "#fb4934";
+      borderColor = "#fb4934";
     };
   };
 }

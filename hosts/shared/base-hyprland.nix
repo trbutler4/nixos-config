@@ -599,6 +599,30 @@ in
     font = "0xProto 12";
     layer = "overlay";
     anchor = "top-right";
+
+    # Theme colors
+    backgroundColor = currentTheme.mako.backgroundColor;
+    textColor = currentTheme.mako.textColor;
+    borderColor = currentTheme.mako.borderColor;
+    progressColor = currentTheme.mako.progressColor;
+
+    # Urgency-specific colors
+    extraConfig = ''
+      [urgency=low]
+      background-color=${currentTheme.mako.low.backgroundColor}
+      text-color=${currentTheme.mako.low.textColor}
+      border-color=${currentTheme.mako.low.borderColor}
+
+      [urgency=normal]
+      background-color=${currentTheme.mako.normal.backgroundColor}
+      text-color=${currentTheme.mako.normal.textColor}
+      border-color=${currentTheme.mako.normal.borderColor}
+
+      [urgency=critical]
+      background-color=${currentTheme.mako.critical.backgroundColor}
+      text-color=${currentTheme.mako.critical.textColor}
+      border-color=${currentTheme.mako.critical.borderColor}
+    '';
   };
 
   home.packages = with pkgs; [
