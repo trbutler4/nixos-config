@@ -490,11 +490,12 @@ in
     wl-clipboard
     ripgrep
     jq
-    doctl 
-    kubectl 
+    doctl
+    kubectl
     k9s
     bat
     awscli
+    typst
 
     # GUI Apps
     brave
@@ -506,6 +507,7 @@ in
     gimp3
     discord
     gedit
+    zathura
     zoom-us
     ledger-live-desktop
     gnome-disk-utility
