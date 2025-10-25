@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Toggle Do Not Disturb
+Comment=Toggle notification Do Not Disturb mode
+Exec=/home/trbiv/nixos-config/scripts/toggle-dnd.sh
+Icon=notifications-disabled
+Terminal=false
+Categories=Utility;DesktopUtility;Settings;
+Keywords=dnd;notifications;disturb;toggle;mako;

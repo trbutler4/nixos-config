@@ -620,4 +620,5 @@ in
   xdg.dataFile."applications/wallpaper-selector.desktop".source = ../../desktop-entries/wallpaper-selector.desktop;
   xdg.dataFile."applications/toggle-window-borders.desktop".source = ../../desktop-entries/toggle-window-borders.desktop;
   xdg.dataFile."applications/toggle-waybar.desktop".source = ../../desktop-entries/toggle-waybar.desktop;
+  xdg.dataFile."applications/toggle-dnd.desktop".source = ../../desktop-entries/toggle-dnd.desktop;
 }
