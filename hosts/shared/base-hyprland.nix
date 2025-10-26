@@ -588,23 +588,25 @@ in
   # Mako notification daemon
   services.mako = {
     enable = true;
-    borderSize = 2;
-    borderRadius = 0;
-    width = 300;
-    height = 100;
-    padding = "10";
-    margin = "10";
-    defaultTimeout = 5000;
-    ignoreTimeout = false;
-    font = "0xProto 12";
-    layer = "overlay";
-    anchor = "top-right";
+    settings = {
+      border-size = 2;
+      border-radius = 0;
+      width = 300;
+      height = 100;
+      padding = "10";
+      margin = "10";
+      default-timeout = 5000;
+      ignore-timeout = false;
+      font = "0xProto 12";
+      layer = "overlay";
+      anchor = "top-right";
 
-    # Theme colors
-    backgroundColor = currentTheme.mako.backgroundColor;
-    textColor = currentTheme.mako.textColor;
-    borderColor = currentTheme.mako.borderColor;
-    progressColor = currentTheme.mako.progressColor;
+      # Theme colors
+      background-color = currentTheme.mako.backgroundColor;
+      text-color = currentTheme.mako.textColor;
+      border-color = currentTheme.mako.borderColor;
+      progress-color = currentTheme.mako.progressColor;
+    };
 
     # Urgency-specific colors
     extraConfig = ''

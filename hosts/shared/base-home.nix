@@ -83,9 +83,11 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Thomas Butler";
-    userEmail = "trbiv@proton.me";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Thomas Butler";
+        email = "trbiv@proton.me";
+      };
       pull = {
         rebase = false;
       };
@@ -94,6 +96,7 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
   };
 
   programs.zellij = {
