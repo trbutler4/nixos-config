@@ -74,7 +74,20 @@
 
     # Default virtual host (responds to all requests)
     virtualHosts."http://".extraConfig = ''
-      reverse_proxy localhost:5173
+      # Vite on /vite path
+      handle_path /vite* {
+        reverse_proxy localhost:5173
+      }
+
+      # Storybook on /storybook path
+      handle_path /storybook* {
+        reverse_proxy localhost:6006
+      }
+
+      # Default handler for root (returns 404)
+      handle {
+        respond 404
+      }
     '';
   };
 
