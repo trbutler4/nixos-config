@@ -86,6 +86,8 @@
   time.timeZone = "America/Chicago";
   services.automatic-timezoned.enable = false;
 
+  services.tailscale.enable = true;
+
   # Temporarily disabled due to OpenJDK 8 cycle detection bug
   # virtualisation.virtualbox.host.enable = true;
   # users.extraGroups.vboxusers.members = [ "trbiv" "root" ];
