@@ -16,8 +16,8 @@
   networking.hostName = "desktop"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Open port 80 for Caddy (accessible via tailscale)
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  # Open port 5173 for Vite dev server (accessible via tailscale)
+  networking.firewall.allowedTCPPorts = [ 5173 ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
