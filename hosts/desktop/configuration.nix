@@ -16,6 +16,9 @@
   networking.hostName = "desktop"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Open port 80 for Caddy (accessible via tailscale)
+  networking.firewall.allowedTCPPorts = [ 80 ];
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
