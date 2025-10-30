@@ -83,9 +83,11 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Thomas Butler";
-    userEmail = "trbiv@proton.me";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Thomas Butler";
+        email = "trbiv@proton.me";
+      };
       pull = {
         rebase = false;
       };
@@ -94,6 +96,7 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
   };
 
   programs.zellij = {
@@ -490,11 +493,12 @@ in
     wl-clipboard
     ripgrep
     jq
-    doctl 
-    kubectl 
+    doctl
+    kubectl
     k9s
     bat
     awscli
+    typst
 
     # GUI Apps
     brave
@@ -506,6 +510,7 @@ in
     gimp3
     discord
     gedit
+    zathura
     zoom-us
     ledger-live-desktop
     gnome-disk-utility

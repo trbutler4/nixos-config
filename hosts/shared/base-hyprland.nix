@@ -275,6 +275,9 @@ in
 
         # Window border toggle
         "$mod, F1, exec, /home/trbiv/nixos-config/scripts/toggle-window-borders.sh"
+
+        # Do Not Disturb toggle
+        "$mod, N, exec, /home/trbiv/nixos-config/scripts/toggle-dnd.sh"
       ];
 
       # Audio control bindings
@@ -582,6 +585,48 @@ in
     };
   };
 
+  # Mako notification daemon
+  services.mako = {
+    enable = true;
+    settings = {
+      border-size = 2;
+      border-radius = 0;
+      width = 300;
+      height = 100;
+      padding = "10";
+      margin = "10";
+      default-timeout = 5000;
+      ignore-timeout = false;
+      font = "0xProto 12";
+      layer = "overlay";
+      anchor = "top-right";
+
+      # Theme colors
+      background-color = currentTheme.mako.backgroundColor;
+      text-color = currentTheme.mako.textColor;
+      border-color = currentTheme.mako.borderColor;
+      progress-color = currentTheme.mako.progressColor;
+    };
+
+    # Urgency-specific colors
+    extraConfig = ''
+      [urgency=low]
+      background-color=${currentTheme.mako.low.backgroundColor}
+      text-color=${currentTheme.mako.low.textColor}
+      border-color=${currentTheme.mako.low.borderColor}
+
+      [urgency=normal]
+      background-color=${currentTheme.mako.normal.backgroundColor}
+      text-color=${currentTheme.mako.normal.textColor}
+      border-color=${currentTheme.mako.normal.borderColor}
+
+      [urgency=critical]
+      background-color=${currentTheme.mako.critical.backgroundColor}
+      text-color=${currentTheme.mako.critical.textColor}
+      border-color=${currentTheme.mako.critical.borderColor}
+    '';
+  };
+
   home.packages = with pkgs; [
     wofi
     waybar
@@ -594,10 +639,12 @@ in
     blueman
     swayidle
     nwg-displays
+    mako
   ];
 
   # Copy desktop entries for utilities
   xdg.dataFile."applications/wallpaper-selector.desktop".source = ../../desktop-entries/wallpaper-selector.desktop;
   xdg.dataFile."applications/toggle-window-borders.desktop".source = ../../desktop-entries/toggle-window-borders.desktop;
   xdg.dataFile."applications/toggle-waybar.desktop".source = ../../desktop-entries/toggle-waybar.desktop;
+  xdg.dataFile."applications/toggle-dnd.desktop".source = ../../desktop-entries/toggle-dnd.desktop;
 }
