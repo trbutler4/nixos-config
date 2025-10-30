@@ -16,8 +16,8 @@
   networking.hostName = "desktop"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Open port 5173 for Vite dev server (accessible via tailscale)
-  networking.firewall.allowedTCPPorts = [ 5173 ];
+  # Open port 80 for Caddy (accessible via tailscale)
+  networking.firewall.allowedTCPPorts = [ 80 ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -66,8 +66,18 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   
-  services.openssh.enable = true; 
-  
+  services.openssh.enable = true;
+
+  # Caddy reverse proxy for local services over tailscale
+  services.caddy = {
+    enable = true;
+
+    # Default virtual host (responds to all requests)
+    virtualHosts."http://".extraConfig = ''
+      reverse_proxy localhost:5173
+    '';
+  };
+
   # Audio configuration - PipeWire
   security.rtkit.enable = true;
   services.pipewire = {
