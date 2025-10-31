@@ -37,6 +37,7 @@ in
       ze = "zeditor";
       y = "yazi";
       nv = "nvim";
+      c = "claude";
       # Alias management
       aliases = "alias | fzf";
     };
